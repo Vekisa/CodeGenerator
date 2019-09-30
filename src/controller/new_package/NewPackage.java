@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import model.Item;
-import model.Project;
 import windows.main.MainWindow;
 import windows.message.MessageDialog;
 import windows.new_package.NewPackageWindow;

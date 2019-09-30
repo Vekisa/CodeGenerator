@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.new_project.NewProject;
-import windows.new_package.NewPackageWindow;
 
 public class NewProjectWindow extends JDialog {
 
@@ -24,6 +23,7 @@ public class NewProjectWindow extends JDialog {
 	private static NewProjectWindow instance;
 	private JTextField nameField;
 
+	@SuppressWarnings("deprecation")
 	public static NewProjectWindow getInstance () {
 	    if (NewProjectWindow.instance == null) {
 	    	NewProjectWindow.instance = new NewProjectWindow();

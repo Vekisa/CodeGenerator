@@ -9,6 +9,8 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import windows.Configuration;
+
 public class NavigationRenderer extends DefaultTreeCellRenderer {
 
 	private static final String SPAN_FORMAT = "<span style='color:%s;'>%s</span>";
@@ -32,7 +34,7 @@ public class NavigationRenderer extends DefaultTreeCellRenderer {
 	          String text = String.format(SPAN_FORMAT, "blue", project.getName());
 	          //text += " [" + String.format(SPAN_FORMAT, "orange", pp.getRole()) + "]";
 	          this.setText("<html>" + text + "</html>");
-	          //this.setIcon(employeeIcon);
+	          this.setIcon(Configuration.projectIcon);
 	      } else if (userObject instanceof model.Package) {
 	    	  model.Package packageNode = (model.Package) userObject;
 	          String text = String.format(SPAN_FORMAT, "blue", packageNode.getName());
@@ -42,6 +44,7 @@ public class NavigationRenderer extends DefaultTreeCellRenderer {
 	      } else {
 	          String text = String.format(SPAN_FORMAT, "red", userObject);
 	          this.setText("<html>" + text + "</html>");
+	          this.setIcon(Configuration.classIcon);
 	      }
 	      
 	      return this;

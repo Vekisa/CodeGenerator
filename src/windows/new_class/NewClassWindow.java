@@ -5,20 +5,21 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
 
 public class NewClassWindow extends JDialog {
 
@@ -28,6 +29,7 @@ public class NewClassWindow extends JDialog {
 	private static final long serialVersionUID = 1978685336525540440L;
 	private static NewClassWindow instance;
 	
+	@SuppressWarnings("deprecation")
 	public static NewClassWindow getInstance () {
 	    if (NewClassWindow.instance == null) {
 	    	NewClassWindow.instance = new NewClassWindow();
@@ -53,27 +55,35 @@ public class NewClassWindow extends JDialog {
 		classNameField.setPreferredSize(fieldDimension);
 		
 		String[] list = {"extends", "implement"};
-		JComboBox combo = new JComboBox(list);
+		JComboBox<String> combo = new JComboBox<String>(list);
 		
-		JRadioButton fromProjectClass = new JRadioButton("From project",true);
-		JRadioButton newClass = new JRadioButton("New");
-		ButtonGroup group = new ButtonGroup();
-		group.add(fromProjectClass);
-		group.add(newClass);
+		Object[] obj = {"a", "b", "c","d","e","f"};
+		JList<Object> listt = new JList<Object>(obj);
+		listt.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		listt.setLayoutOrientation(JList.VERTICAL);
+		listt.setVisibleRowCount(-1);
+
+		JScrollPane listScroller = new JScrollPane(listt);
+		listScroller.setPreferredSize(new Dimension(150, 80));
 		
-		String[] pomList = {"","A","B","C"};
-		JComboBox comboFromProject = new JComboBox(pomList);
-		
-		JTextField newClassField = new JTextField();
-		newClassField.setPreferredSize(fieldDimension);
+		JButton addNewClass = new JButton("Add");
 		
 		namePane.add(classNameLabel);
 		namePane.add(classNameField);
 		namePane.add(combo);
-		namePane.add(fromProjectClass);
-		namePane.add(comboFromProject);
-		namePane.add(newClass);
-		namePane.add(newClassField);
+		namePane.add(listScroller);
+		namePane.add(addNewClass);
+		
+		//parameters panel
+		JPanel parametersPanel = new JPanel();
+		parametersPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+		parametersPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JCheckBox defaultConstructor = new JCheckBox("Default Constructor");
+		JCheckBox getters = new JCheckBox("Getters");
+		JCheckBox setters = new JCheckBox("Setters");
+		parametersPanel.add(defaultConstructor);
+		parametersPanel.add(getters);
+		parametersPanel.add(setters);
 		
 		//attributes panel
 		JPanel attributesPanel = new JPanel();
@@ -127,16 +137,14 @@ public class NewClassWindow extends JDialog {
 					     "Speed reading", new Integer(20), new Boolean(true)},
 					    {"Joe", "Brown",
 					     "Pool", new Integer(10), new Boolean(false)}
-					};
+		};
 				
-		JTable operationsTable = new JTable(data2, columnNames2);
-		operationsTable.setPreferredScrollableViewportSize(operationsTable.getPreferredSize());
-		operationsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		operationsTable.setFillsViewportHeight(false);
-		operationsPanel.add(operationsTable, BorderLayout.SOUTH);
+		JTable table2 = new JTable(data2, columnNames2);
+		table2.setPreferredScrollableViewportSize(table2.getPreferredSize());
+		JScrollPane scrollPane2 = new JScrollPane(table2);
+		table2.setFillsViewportHeight(false);
+		operationsPanel.add(scrollPane2, BorderLayout.SOUTH);
 		JPanel buttonPanel2 = new JPanel();
-		operationsPanel.setBackground(new Color(55,55,55));
-		operationsPanel.setPreferredSize(new Dimension(dim.width, 150));
 		buttonPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewOperation = new JButton("Add operation");
 		buttonPanel2.add(addNewOperation);
@@ -151,18 +159,11 @@ public class NewClassWindow extends JDialog {
 		buttonsPanel.add(cancel);
 		
 		box.add(namePane);
+		box.add(parametersPanel);
 		box.add(attributesPanel);
 		box.add(operationsPanel);
 		box.add(buttonsPanel);
 		this.add(box);
 		this.setVisible(true);
 	}
-}
-
-class ItemChangeListener implements ItemListener{
-    @Override
-    public void itemStateChanged(ItemEvent event) {
-          Object item = event.getItem();
-          // do something with object
-    }       
 }

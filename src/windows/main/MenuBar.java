@@ -4,6 +4,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import controller.FileChooser;
 import controller.NewClassOW;
 import controller.NewPackageOW;
 import controller.NewProjectOW;
@@ -24,10 +25,12 @@ public class MenuBar extends JMenuBar {
 		
 		
 		JMenu newSubMenu = new JMenu("New");
-		JMenuItem newProject = new JMenuItem("Project");
-		JMenuItem newPackage = new JMenuItem("Package");
-		JMenuItem newClass = new JMenuItem("Class");
+		JMenuItem newProject = new JMenuItem(new NewProjectOW());
+		JMenuItem newPackage = new JMenuItem(new NewPackageOW());
+		JMenuItem newClass = new JMenuItem(new NewClassOW());
 		JMenuItem newEnum = new JMenuItem("Enum");
+		
+		JMenuItem open = new JMenuItem(new FileChooser());
 		
 		newSubMenu.add(newProject);
 		newSubMenu.add(newPackage);
@@ -37,6 +40,7 @@ public class MenuBar extends JMenuBar {
 		JMenuItem exit = new JMenuItem("Exit");
 		
 		files.add(newSubMenu);
+		files.add(open);
 		files.add(exit);
 		
 		JMenu help = new JMenu("Help");

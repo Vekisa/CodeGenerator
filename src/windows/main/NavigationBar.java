@@ -28,8 +28,6 @@ public class NavigationBar extends JPanel {
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode(MainWindow.getInstance().getModel().getProject());
 	    
 	    for(Item item : MainWindow.getInstance().getModel().getProject().getChildren()) {
-	    	System.out.println("IMA DJECU: " + item.getName() + " " + item.getId());
-	    	System.out.println(item.getName());
 	    	printNode(item,top);
 	    }
 	    

@@ -23,6 +23,7 @@ public class NewPackageWindow extends JDialog {
 	private static NewPackageWindow instance;
 	private JTextField nameField;
 	
+	@SuppressWarnings("deprecation")
 	public static NewPackageWindow getInstance () {
 	    if (NewPackageWindow.instance == null) {
 	    	NewPackageWindow.instance = new NewPackageWindow();
