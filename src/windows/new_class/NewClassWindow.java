@@ -21,6 +21,9 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 
+import controller.NewAttributeOW;
+import controller.NewOperationOW;
+
 public class NewClassWindow extends JDialog {
 
 	/**
@@ -43,7 +46,7 @@ public class NewClassWindow extends JDialog {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(new Dimension(770, 550));
 		this.pack();
-		this.setLocation(dim.width/2- this.getSize().width/2, dim.height/2 - this.getSize().height/2);
+		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Class");
 		
 		//name panel
@@ -90,21 +93,24 @@ public class NewClassWindow extends JDialog {
 		attributesPanel.setLayout(new BorderLayout());
 		String[] columnNames = {"Name",
                 "Type",
-                "Sport",
-                "# of Years",
-                "Vegetarian"};
-		Object[][] data = {
+                "Static",
+                "Virtual",
+                "Getter",
+                "Setter"};
+		/*Object[][] data = {
 			    {"Kathy", "Smith",
-			     "Snowboarding", new Integer(5), new Boolean(false)},
+			     "Snowboarding", new Integer(5), new Boolean(false), "A"},
 			    {"John", "Doe",
-			     "Rowing", new Integer(3), new Boolean(true)},
+			     "Rowing", new Integer(3), new Boolean(true), "A"},
 			    {"Sue", "Black",
-			     "Knitting", new Integer(2), new Boolean(false)},
+			     "Knitting", new Integer(2), new Boolean(false), "A"},
 			    {"Jane", "White",
-			     "Speed reading", new Integer(20), new Boolean(true)},
+			     "Speed reading", new Integer(20), new Boolean(true), "A"},
 			    {"Joe", "Brown",
-			     "Pool", new Integer(10), new Boolean(false)}
-			};
+			     "Pool", new Integer(10), new Boolean(false), "A"}
+			};*/
+		
+		Object[][] data = {{"","","","","",""}};
 		
 		JTable table = new JTable(data, columnNames);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
@@ -114,7 +120,7 @@ public class NewClassWindow extends JDialog {
 		attributesPanel.add(scrollPane, BorderLayout.SOUTH);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JButton addNewAttribute = new JButton("Add attribute");
+		JButton addNewAttribute = new JButton(new NewAttributeOW());
 		buttonPanel.add(addNewAttribute);
 		attributesPanel.add(buttonPanel,BorderLayout.NORTH);
 		
@@ -123,10 +129,10 @@ public class NewClassWindow extends JDialog {
 		operationsPanel.setLayout(new BorderLayout());
 		String[] columnNames2 = {"Name",
 		                "Type",
-		                "Sport",
-		                "# of Years",
-		                "Vegetarian"};
-		Object[][] data2 = {
+		                "Static",
+		                "Virtual",
+		                "Attributes"};
+		/*Object[][] data2 = {
 					    {"Kathy", "Smith",
 					     "Snowboarding", new Integer(5), new Boolean(false)},
 					    {"John", "Doe",
@@ -137,7 +143,8 @@ public class NewClassWindow extends JDialog {
 					     "Speed reading", new Integer(20), new Boolean(true)},
 					    {"Joe", "Brown",
 					     "Pool", new Integer(10), new Boolean(false)}
-		};
+		};*/
+		Object[][] data2 = {{"","","","",""}};
 				
 		JTable table2 = new JTable(data2, columnNames2);
 		table2.setPreferredScrollableViewportSize(table2.getPreferredSize());
@@ -146,7 +153,7 @@ public class NewClassWindow extends JDialog {
 		operationsPanel.add(scrollPane2, BorderLayout.SOUTH);
 		JPanel buttonPanel2 = new JPanel();
 		buttonPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JButton addNewOperation = new JButton("Add operation");
+		JButton addNewOperation = new JButton(new NewOperationOW());
 		buttonPanel2.add(addNewOperation);
 		operationsPanel.add(buttonPanel2,BorderLayout.NORTH);
 		
