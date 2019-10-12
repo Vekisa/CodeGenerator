@@ -46,17 +46,37 @@ public class NewEnumWindow extends JDialog {
 	public NewEnumWindow() {
 		Box box = Box.createVerticalBox();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension(770, 550));
+		this.setPreferredSize(new Dimension(770, 500));
 		this.pack();
 		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Enum");
+		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		//name panel
+		JLabel name = new JLabel("Name : ");
+		JTextField nameTF = new JTextField();
+		Dimension fieldDimension = new Dimension(200,25);
+		nameTF.setPreferredSize(fieldDimension);
+		//JList<String> enumList = new JList<String>();
+		Object[] obj = {"a", "b", "c","d","e","f"};
+		JList<Object> enumList = new JList<Object>(obj);
+		enumList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		enumList.setLayoutOrientation(JList.VERTICAL);
+		enumList.setVisibleRowCount(-1);
+		
+		JScrollPane listScroller = new JScrollPane(enumList);
+		listScroller.setPreferredSize(new Dimension(150, 80));
+		
+		JButton addBtnEnum = new JButton("Add");
+		JButton removeBtnEnum = new JButton("Remove");
+		
+		
+		this.add(name);
+		this.add(nameTF);
+		this.add(listScroller);
 		this.setVisible(true);
-		
-		
-		
-		
+			
+				
 	}
 	
 	

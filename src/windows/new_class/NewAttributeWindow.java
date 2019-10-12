@@ -1,14 +1,10 @@
 package windows.new_class;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-
-import com.jidesoft.swing.ComboBoxSearchable;
 
 public class NewAttributeWindow extends JDialog {
 
