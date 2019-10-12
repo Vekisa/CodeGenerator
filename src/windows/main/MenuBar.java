@@ -6,6 +6,7 @@ import javax.swing.JMenuItem;
 
 import controller.FileChooser;
 import controller.NewClassOW;
+import controller.NewEnumOW;
 import controller.NewPackageOW;
 import controller.NewProjectOW;
 import windows.Configuration;
@@ -48,6 +49,7 @@ public class MenuBar extends JMenuBar {
 		newPackage.addActionListener(new NewPackageOW());
 		newProject.addActionListener(new NewProjectOW());
 		newClass.addActionListener(new NewClassOW());
+		newEnum.addActionListener(new NewEnumOW());
 		
 		this.add(files);
 		this.add(help);

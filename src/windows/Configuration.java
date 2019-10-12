@@ -15,4 +15,5 @@ public class Configuration {
 	public static ImageIcon projectIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/project.png");
 	public static ImageIcon classIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/class.png");
 	public static ImageIcon folderIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/folder.png");
+	public static ImageIcon enumIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/enum.png");
 }

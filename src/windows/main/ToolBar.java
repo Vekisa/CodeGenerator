@@ -4,6 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JToolBar;
 
 import controller.NewClassOW;
+import controller.NewEnumOW;
 import controller.NewPackageOW;
 import controller.NewProjectOW;
 import windows.Configuration;
@@ -21,14 +22,16 @@ public class ToolBar extends JToolBar {
 		
 		JButton newProjectBtn = new JButton(new NewProjectOW());
 		newProjectBtn.setHideActionText(true);
-		newProjectBtn.addActionListener(new controller.NewProjectOW());
+		
 		JButton newPackageBtn = new JButton(new NewPackageOW());
 		newPackageBtn.setHideActionText(true);
-		newPackageBtn.addActionListener(new controller.NewPackageOW());
+		
 		JButton newClassBtn = new JButton(new NewClassOW());
 		newClassBtn.setHideActionText(true);
-		newClassBtn.addActionListener(new controller.NewClassOW());
-		JButton newEnumBtn = new JButton("NewEnum");
+		
+		JButton newEnumBtn = new JButton(new NewEnumOW());
+		newClassBtn.setHideActionText(true);
+		
 		
 		this.add(newProjectBtn);
 		this.add(newPackageBtn);
