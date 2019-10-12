@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -22,7 +23,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 
 import controller.NewAttributeOW;
+import controller.NewItemOW;
 import controller.NewOperationOW;
+import controller.new_enum.RemoveItem;
 
 
 public class NewEnumWindow extends JDialog {
@@ -32,7 +35,9 @@ public class NewEnumWindow extends JDialog {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static NewEnumWindow instance;
-	
+	private DefaultListModel<String> model;
+	private JList<String> enumList;
+
 	@SuppressWarnings("deprecation")
 	public static NewEnumWindow getInstance() {
 		if(NewEnumWindow.instance == null) {
@@ -42,7 +47,7 @@ public class NewEnumWindow extends JDialog {
 		return NewEnumWindow.instance;
 	}
 	
-	
+
 	public NewEnumWindow() {
 		Box box = Box.createVerticalBox();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -57,9 +62,9 @@ public class NewEnumWindow extends JDialog {
 		JTextField nameTF = new JTextField();
 		Dimension fieldDimension = new Dimension(200,25);
 		nameTF.setPreferredSize(fieldDimension);
-		//JList<String> enumList = new JList<String>();
-		Object[] obj = {"a", "b", "c","d","e","f"};
-		JList<Object> enumList = new JList<Object>(obj);
+		
+		model = new DefaultListModel<>();
+		enumList = new JList<String>(model);
 		enumList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		enumList.setLayoutOrientation(JList.VERTICAL);
 		enumList.setVisibleRowCount(-1);
@@ -67,19 +72,41 @@ public class NewEnumWindow extends JDialog {
 		JScrollPane listScroller = new JScrollPane(enumList);
 		listScroller.setPreferredSize(new Dimension(150, 80));
 		
-		JButton addBtnEnum = new JButton("Add");
-		JButton removeBtnEnum = new JButton("Remove");
+		//name button panel
+		JPanel buttonPanel = new JPanel();
+		JButton addBtnEnum = new JButton(new NewItemOW());
+		JButton removeBtnEnum = new JButton(new RemoveItem());
 		
+		buttonPanel.setLayout(new BorderLayout());
+		buttonPanel.add(removeBtnEnum, BorderLayout.SOUTH);
+		buttonPanel.add(addBtnEnum, BorderLayout.NORTH);
 		
 		this.add(name);
 		this.add(nameTF);
 		this.add(listScroller);
 		this.setVisible(true);
+		this.add(buttonPanel);
 			
 				
 	}
 	
+	public void addItem(String s) {
+		model.addElement(s);
+	}
 	
+	public JList<String> getEnumList() {
+		return enumList;
+	}
+
+
+	public void setEnumList(JList<String> enumList) {
+		this.enumList = enumList;
+	}
+
+
+	public DefaultListModel<String> getModel() {
+		return model;
+	}
 	
 	
 	
