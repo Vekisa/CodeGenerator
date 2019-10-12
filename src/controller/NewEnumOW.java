@@ -15,7 +15,7 @@ public class NewEnumOW extends AbstractAction{
 
 
 	public NewEnumOW() {
-		super("Class", Configuration.enumIcon);
+		super("Enum", Configuration.enumIcon);
 		putValue(SHORT_DESCRIPTION, "Create a new enum");	
 	}
 	

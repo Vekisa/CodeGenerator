@@ -56,6 +56,7 @@ public class NewEnumWindow extends JDialog {
 		
 		
 		
+		
 	}
 	
 	
