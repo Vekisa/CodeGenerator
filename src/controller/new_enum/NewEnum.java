@@ -24,6 +24,7 @@ public class NewEnum extends AbstractAction {
 		newEnum.setEnumName(NewEnumWindow.getInstance().getNameTF().getText());
 		for(int i = 0; i < NewEnumWindow.getInstance().getModel().getSize(); i++) {
 			newEnum.getItems().add(NewEnumWindow.getInstance().getModel().get(i));
+			//bzvz
 		}
 	}
 	
