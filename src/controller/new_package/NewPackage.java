@@ -16,7 +16,7 @@ public class NewPackage implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		String name = NewPackageWindow.getInstance().getValue();
-		System.out.println("OVO PREUZIMAM: " + name);
+		System.out.println("OVO PREUZIMAM u packigu: " + name);
 		DefaultMutableTreeNode selectedNode = MainWindow.getInstance().getNavigationBar().getSelectedNode();
 		if(selectedNode != null) {
 			Item selectedItem = (Item) selectedNode.getUserObject();

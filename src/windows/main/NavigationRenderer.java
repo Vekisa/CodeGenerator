@@ -13,6 +13,10 @@ import windows.Configuration;
 
 public class NavigationRenderer extends DefaultTreeCellRenderer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5209345535944629046L;
 	private static final String SPAN_FORMAT = "<span style='color:%s;'>%s</span>";
 	private ImageIcon packageIcon;
 	
@@ -41,6 +45,10 @@ public class NavigationRenderer extends DefaultTreeCellRenderer {
 	          //text += " [" + String.format(SPAN_FORMAT, "orange", pp.getRole()) + "]";
 	          this.setText("<html>" + text + "</html>");
 	          this.setIcon(packageIcon);
+	      } else if(userObject instanceof model.Enum) {
+	    	  model.Enum packageNode = (model.Enum) userObject;
+	    	  String text = String.format(SPAN_FORMAT, "blue", packageNode.getEnumName());
+	    	  this.setText("<html>" + text + "</html>");	    	  
 	      } else {
 	          String text = String.format(SPAN_FORMAT, "red", userObject);
 	          this.setText("<html>" + text + "</html>");
