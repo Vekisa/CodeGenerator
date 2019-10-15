@@ -9,6 +9,11 @@ import windows.new_enum.NewEnumWindow;
 
 public class RemoveItem extends AbstractAction{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6795029647562961244L;
+
 	public RemoveItem() {
 		super("Remove", null);
 	}

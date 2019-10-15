@@ -25,6 +25,7 @@ import javax.swing.border.EtchedBorder;
 import controller.NewAttributeOW;
 import controller.NewItemOW;
 import controller.NewOperationOW;
+import controller.new_enum.NewEnum;
 import controller.new_enum.RemoveItem;
 
 
@@ -37,6 +38,7 @@ public class NewEnumWindow extends JDialog {
 	private static NewEnumWindow instance;
 	private DefaultListModel<String> model;
 	private JList<String> enumList;
+	private JTextField nameTF;
 
 	@SuppressWarnings("deprecation")
 	public static NewEnumWindow getInstance() {
@@ -55,11 +57,13 @@ public class NewEnumWindow extends JDialog {
 		this.pack();
 		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Enum");
-		this.setLayout(new FlowLayout(FlowLayout.LEFT));
+		this.setLayout(new BorderLayout());
 		
 		//name panel
+		JPanel top = new JPanel();
+		top.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JLabel name = new JLabel("Name : ");
-		JTextField nameTF = new JTextField();
+		nameTF = new JTextField();
 		Dimension fieldDimension = new Dimension(200,25);
 		nameTF.setPreferredSize(fieldDimension);
 		
@@ -81,11 +85,21 @@ public class NewEnumWindow extends JDialog {
 		buttonPanel.add(removeBtnEnum, BorderLayout.SOUTH);
 		buttonPanel.add(addBtnEnum, BorderLayout.NORTH);
 		
-		this.add(name);
-		this.add(nameTF);
-		this.add(listScroller);
-		this.setVisible(true);
-		this.add(buttonPanel);
+		//create_cancel panel
+		JPanel ccBtnPanel = new JPanel();
+		JButton createButton = new JButton(new NewEnum());
+		JButton cancelButton = new JButton("Cancel");
+		ccBtnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		ccBtnPanel.add(createButton);
+		ccBtnPanel.add(cancelButton);
+		
+		top.add(name);
+		top.add(nameTF);
+		top.add(listScroller);
+		top.setVisible(true);
+		top.add(buttonPanel);
+		this.add(top, BorderLayout.NORTH);
+		this.add(ccBtnPanel, BorderLayout.SOUTH);
 			
 				
 	}
@@ -106,6 +120,11 @@ public class NewEnumWindow extends JDialog {
 
 	public DefaultListModel<String> getModel() {
 		return model;
+	}
+
+
+	public JTextField getNameTF() {
+		return nameTF;
 	}
 	
 	
