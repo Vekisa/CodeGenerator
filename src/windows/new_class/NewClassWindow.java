@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -20,8 +21,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
 
 import controller.NewAttributeOW;
+import controller.NewClassExtendsOW;
 import controller.NewOperationOW;
 
 public class NewClassWindow extends JDialog {
@@ -31,7 +34,21 @@ public class NewClassWindow extends JDialog {
 	 */
 	private static final long serialVersionUID = 1978685336525540440L;
 	private static NewClassWindow instance;
+	private DefaultListModel<String> model;
+	private DefaultTableModel modelTable;
+	private JList<String> classList;
+	private JTable table;
+	private String[] columnNames = {"Name",
+            "Type",
+            "Static",
+            "Virtual",
+            "Getter",
+            "Setter"};
 	
+	public String[] getColumnNames() {
+		return columnNames;
+	}
+
 	@SuppressWarnings("deprecation")
 	public static NewClassWindow getInstance () {
 	    if (NewClassWindow.instance == null) {
@@ -60,16 +77,16 @@ public class NewClassWindow extends JDialog {
 		String[] list = {"extends", "implement"};
 		JComboBox<String> combo = new JComboBox<String>(list);
 		
-		Object[] obj = {"a", "b", "c","d","e","f"};
-		JList<Object> listt = new JList<Object>(obj);
-		listt.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		listt.setLayoutOrientation(JList.VERTICAL);
-		listt.setVisibleRowCount(-1);
-
-		JScrollPane listScroller = new JScrollPane(listt);
+		model = new DefaultListModel<>();
+		classList = new JList<String>(model);
+		classList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		classList.setLayoutOrientation(JList.VERTICAL);
+		classList.setVisibleRowCount(-1);
+		
+		JScrollPane listScroller = new JScrollPane(classList);
 		listScroller.setPreferredSize(new Dimension(150, 80));
 		
-		JButton addNewClass = new JButton("Add");
+		JButton addNewClass = new JButton(new NewClassExtendsOW());
 		
 		namePane.add(classNameLabel);
 		namePane.add(classNameField);
@@ -91,12 +108,7 @@ public class NewClassWindow extends JDialog {
 		//attributes panel
 		JPanel attributesPanel = new JPanel();
 		attributesPanel.setLayout(new BorderLayout());
-		String[] columnNames = {"Name",
-                "Type",
-                "Static",
-                "Virtual",
-                "Getter",
-                "Setter"};
+		
 		/*Object[][] data = {
 			    {"Kathy", "Smith",
 			     "Snowboarding", new Integer(5), new Boolean(false), "A"},
@@ -112,7 +124,7 @@ public class NewClassWindow extends JDialog {
 		
 		Object[][] data = {{"","","","","",""}};
 		
-		JTable table = new JTable(data, columnNames);
+		table = new JTable(new DefaultTableModel(data, columnNames));
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBackground(new Color(55,55,55));
@@ -173,4 +185,40 @@ public class NewClassWindow extends JDialog {
 		this.add(box);
 		this.setVisible(true);
 	}
+	
+	public void addItem(String s) {
+		model.addElement(s);
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+	public void addingRowTable(Object[][] data) {
+		this.modelTable = (DefaultTableModel) this.table.getModel();
+		modelTable.addRow(data);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

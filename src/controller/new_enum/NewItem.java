@@ -10,6 +10,11 @@ import windows.new_enum.NewItemWindow;
 
 public class NewItem extends AbstractAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3062114603237081781L;
+
 	public NewItem() {
 		super("Add", null);	
 	}
