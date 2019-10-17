@@ -36,8 +36,10 @@ public class NewClassWindow extends JDialog {
 	private static NewClassWindow instance;
 	private DefaultListModel<String> model;
 	private DefaultTableModel modelTable;
+	private DefaultTableModel modelTable2;
 	private JList<String> classList;
 	private JTable table;
+	private JTable table2;
 	private String[] columnNames = {"Name",
             "Type",
             "Static",
@@ -107,23 +109,9 @@ public class NewClassWindow extends JDialog {
 		
 		//attributes panel
 		JPanel attributesPanel = new JPanel();
-		attributesPanel.setLayout(new BorderLayout());
-		
-		/*Object[][] data = {
-			    {"Kathy", "Smith",
-			     "Snowboarding", new Integer(5), new Boolean(false), "A"},
-			    {"John", "Doe",
-			     "Rowing", new Integer(3), new Boolean(true), "A"},
-			    {"Sue", "Black",
-			     "Knitting", new Integer(2), new Boolean(false), "A"},
-			    {"Jane", "White",
-			     "Speed reading", new Integer(20), new Boolean(true), "A"},
-			    {"Joe", "Brown",
-			     "Pool", new Integer(10), new Boolean(false), "A"}
-			};*/
-		
+		attributesPanel.setLayout(new BorderLayout());		
 		Object[] data = {"Name","Type","Static","Virtual","Getters","Setters"};
-		modelTable = new DefaultTableModel(data, 1);
+		modelTable = new DefaultTableModel(data, 7);
 		table = new JTable( modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -139,26 +127,9 @@ public class NewClassWindow extends JDialog {
 		//operations panel
 		JPanel operationsPanel = new JPanel();
 		operationsPanel.setLayout(new BorderLayout());
-		String[] columnNames2 = {"Name",
-		                "Return value",
-		                "Static",
-		                "Virtual",
-		                "Parameters"};
-		/*Object[][] data2 = {
-					    {"Kathy", "Smith",
-					     "Snowboarding", new Integer(5), new Boolean(false)},
-					    {"John", "Doe",
-					     "Rowing", new Integer(3), new Boolean(true)},
-					    {"Sue", "Black",
-					     "Knitting", new Integer(2), new Boolean(false)},
-					    {"Jane", "White",
-					     "Speed reading", new Integer(20), new Boolean(true)},
-					    {"Joe", "Brown",
-					     "Pool", new Integer(10), new Boolean(false)}
-		};*/
-		Object[][] data2 = {{"","","","",""}};
-				
-		JTable table2 = new JTable(data2, columnNames2);
+		Object[] data2 = {"Static", "Return Value", "Name", "Virtual", "Parameters"};
+		modelTable2 = new DefaultTableModel(data2, 7);
+		table2 = new JTable(modelTable2);
 		table2.setPreferredScrollableViewportSize(table2.getPreferredSize());
 		JScrollPane scrollPane2 = new JScrollPane(table2);
 		table2.setFillsViewportHeight(false);
@@ -194,12 +165,29 @@ public class NewClassWindow extends JDialog {
 		return table;
 	}
 
-	public void setTable(JTable table) {
-		this.table = table;
+	public DefaultTableModel getModelTable() {
+		return modelTable;
 	}
-	public void addingRowTable(Object[] data) {
+
+	public DefaultTableModel getModelTable2() {
+		return modelTable2;
+	}
+
+	public JTable getTable2() {
+		return table2;
+	}
+
+	public void setTable(DefaultTableModel modelTable, JTable table) {
+		modelTable = (DefaultTableModel) table.getModel();
+		modelTable.setRowCount(0);
+	}
+	public void addingRowTableAttributes(Object[] data) {
 		this.modelTable = (DefaultTableModel) this.table.getModel();
-		modelTable.addRow(data);
+		modelTable.insertRow(0, data);
+	}
+	public void addingRowTableOperations(Object[] data) {
+		this.modelTable2 = (DefaultTableModel) this.table2.getModel();
+		modelTable2.insertRow(0, data);
 	}
 }
 

@@ -26,6 +26,8 @@ public class NewOperationParameter extends AbstractAction {
 			,NewParameterWindow.getInstance().getParameterName().getText()};
 		
 		NewOperationWindow.getInstance().addingRowTable(data);
+		NewParameterWindow.getInstance().setParameterName();
+		NewParameterWindow.getInstance().setVisible(false);
 	}
 
 }

@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.new_class.NewAttribute;
-import controller.new_enum.NewEnum;
 
 public class NewAttributeWindow extends JDialog {
 
@@ -77,6 +76,30 @@ public class NewAttributeWindow extends JDialog {
 		this.setVisible(true);	
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
+	}
+
+	public void setAttributeName(String t) {
+		this.attributeName.setText(t);
+	}
+
+	public void setCombo(JComboBox<String> combo) {
+		this.combo = combo;
+	}
+
+	public void setStaticBox(boolean b) {
+		this.staticBox.setSelected(b);
+	}
+
+	public void setVirtual(boolean b) {
+		this.virtual.setSelected(b);
+	}
+
+	public void setGetters(boolean b) {
+		this.getters.setSelected(b);
+	}
+
+	public void setSetters(boolean b) {
+		this.setters.setSelected(b);
 	}
 
 	public JTextField getAttributeName() {
