@@ -123,7 +123,6 @@ public class NewClassWindow extends JDialog {
 			};*/
 		
 		Object[] data = {"Name","Type","Static","Virtual","Getters","Setters"};
-		
 		modelTable = new DefaultTableModel(data, 1);
 		table = new JTable( modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
@@ -141,10 +140,10 @@ public class NewClassWindow extends JDialog {
 		JPanel operationsPanel = new JPanel();
 		operationsPanel.setLayout(new BorderLayout());
 		String[] columnNames2 = {"Name",
-		                "Type",
+		                "Return value",
 		                "Static",
 		                "Virtual",
-		                "Attributes"};
+		                "Parameters"};
 		/*Object[][] data2 = {
 					    {"Kathy", "Smith",
 					     "Snowboarding", new Integer(5), new Boolean(false)},
