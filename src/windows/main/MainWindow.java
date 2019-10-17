@@ -10,6 +10,7 @@ import javax.swing.WindowConstants;
 
 import model.Model;
 import model.Project;
+import windows.TextEditor;
 
 public class MainWindow extends JFrame {
 	
