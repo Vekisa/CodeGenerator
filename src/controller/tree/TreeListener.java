@@ -23,10 +23,13 @@ public class TreeListener extends MouseAdapter {
         tree.setSelectionPath(path);
 
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)path.getLastPathComponent();
-
+        Item item = (Item)node.getUserObject();
         JPopupMenu popup = new JPopupMenu();
-        popup.add(new JMenuItem("PUSI KURAC DEJO"));
-        //popup.add(new JMenuItem("Remove"));
+        JMenuItem remove = new JMenuItem("Remove");
+        remove.addActionListener(new DeleteItem(item));
+        popup.add(new JMenuItem("Save"));
+        popup.add(new JMenuItem("Edit"));
+        popup.add(remove);
         popup.show(tree, x, y);
     }
     public void mousePressed(MouseEvent e) {

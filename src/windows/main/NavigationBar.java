@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import controller.tree.TreeListener;
 import model.Item;
@@ -19,6 +21,7 @@ public class NavigationBar extends JPanel {
 	
 	private JTree tree;
 	private JScrollPane treeView;
+	private DefaultTreeModel treeModel;
 	
 	public NavigationBar() {
 		this.setLayout(new BorderLayout());
@@ -26,6 +29,10 @@ public class NavigationBar extends JPanel {
 	
 	private DefaultMutableTreeNode createNodes() {
 		
+		if(MainWindow.getInstance().getModel().getProject() == null) {
+			return null;
+		}
+			
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode(MainWindow.getInstance().getModel().getProject());
 	    
 	    for(Item item : MainWindow.getInstance().getModel().getProject().getChildren()) {
@@ -36,14 +43,15 @@ public class NavigationBar extends JPanel {
 	}
 	
 	public void refresh() {
-		tree = new JTree(createNodes());
-		tree.addMouseListener(new TreeListener());
-		treeView = new JScrollPane(tree);
-		tree.setCellRenderer(new NavigationRenderer());
-		this.removeAll();
-		this.add(treeView);
-		this.revalidate();
-		this.repaint();
+			treeModel = new DefaultTreeModel(createNodes());
+			tree = new JTree(treeModel);
+			tree.addMouseListener(new TreeListener());
+			treeView = new JScrollPane(tree);
+			tree.setCellRenderer(new NavigationRenderer());
+			this.removeAll();
+			this.add(treeView);
+			this.revalidate();
+			this.repaint();
 	}
 	
 	private void printNode(Item item, DefaultMutableTreeNode parent) {
@@ -58,6 +66,17 @@ public class NavigationBar extends JPanel {
 	
 	public DefaultMutableTreeNode getSelectedNode() {
 		return (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+	}
+	
+	public void insertInSelectedNode(Item item) {
+		DefaultMutableTreeNode parent = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+		treeModel.insertNodeInto(new DefaultMutableTreeNode(item),parent, parent.getChildCount());
+		tree.expandPath(new TreePath(parent.getPath()));
+	}
+	
+	public void removeSelecetedNode() {
+		DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+		treeModel.removeNodeFromParent(node);
 	}
 
 }

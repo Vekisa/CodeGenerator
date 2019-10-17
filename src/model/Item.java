@@ -21,7 +21,7 @@ public class Item {
 	
 	public void addChild(Item item) {
 		children.add(item);
-		MainWindow.getInstance().getNavigationBar().refresh();
+		MainWindow.getInstance().getNavigationBar().insertInSelectedNode(item);
 	}
 	
 	public int getId() {
