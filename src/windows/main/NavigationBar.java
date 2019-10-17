@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import controller.tree.TreeListener;
 import model.Item;
 
 public class NavigationBar extends JPanel {
@@ -36,6 +37,7 @@ public class NavigationBar extends JPanel {
 	
 	public void refresh() {
 		tree = new JTree(createNodes());
+		tree.addMouseListener(new TreeListener());
 		treeView = new JScrollPane(tree);
 		tree.setCellRenderer(new NavigationRenderer());
 		this.removeAll();
