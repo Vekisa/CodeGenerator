@@ -21,14 +21,13 @@ public class NewAttribute extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Object[][] data = 
-			{{NewAttributeWindow.getInstance().getAttributeName().getText()
+		Object[] data = 
+			{NewAttributeWindow.getInstance().getAttributeName().getText()
 			,NewAttributeWindow.getInstance().getCombo().getSelectedItem().toString()
-			,NewAttributeWindow.getInstance().getStaticBox().toString()
-			,NewAttributeWindow.getInstance().getVirtual().toString()
-			,NewAttributeWindow.getInstance().getGetters().toString()
-			,NewAttributeWindow.getInstance().getSetters().toString()}};
-		
+			,NewAttributeWindow.getInstance().getStaticBox().isSelected()
+			,NewAttributeWindow.getInstance().getVirtual().isSelected()
+			,NewAttributeWindow.getInstance().getGetters().isSelected()
+			,NewAttributeWindow.getInstance().getSetters().isSelected()};
 		
 		NewClassWindow.getInstance().addingRowTable(data);
 	}
