@@ -122,9 +122,9 @@ public class NewClassWindow extends JDialog {
 			     "Pool", new Integer(10), new Boolean(false), "A"}
 			};*/
 		
-		Object[][] data = {{"","","","","",""}};
-		
-		table = new JTable(new DefaultTableModel(data, columnNames));
+		Object[] data = {"Name","Type","Static","Virtual","Getters","Setters"};
+		modelTable = new DefaultTableModel(data, 1);
+		table = new JTable( modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBackground(new Color(55,55,55));
@@ -140,10 +140,10 @@ public class NewClassWindow extends JDialog {
 		JPanel operationsPanel = new JPanel();
 		operationsPanel.setLayout(new BorderLayout());
 		String[] columnNames2 = {"Name",
-		                "Type",
+		                "Return value",
 		                "Static",
 		                "Virtual",
-		                "Attributes"};
+		                "Parameters"};
 		/*Object[][] data2 = {
 					    {"Kathy", "Smith",
 					     "Snowboarding", new Integer(5), new Boolean(false)},
@@ -197,7 +197,7 @@ public class NewClassWindow extends JDialog {
 	public void setTable(JTable table) {
 		this.table = table;
 	}
-	public void addingRowTable(Object[][] data) {
+	public void addingRowTable(Object[] data) {
 		this.modelTable = (DefaultTableModel) this.table.getModel();
 		modelTable.addRow(data);
 	}

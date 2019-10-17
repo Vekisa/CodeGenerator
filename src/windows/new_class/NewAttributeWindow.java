@@ -44,13 +44,13 @@ public class NewAttributeWindow extends JDialog {
 		this.pack();
 		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Attribute");
-		this.setLayout(new FlowLayout(FlowLayout.LEFT));
+		this.setLayout(new BorderLayout());
 		
 		//detail of attributes panel
 		JPanel top = new JPanel();
 		top.setLayout(new FlowLayout(FlowLayout.LEFT));
 		attributeName = new JTextField();
-		attributeName.setToolTipText("Name of the class");
+		attributeName.setToolTipText("Name of the attribute");
 		Dimension fieldDimension = new Dimension(100,25);
 		attributeName.setPreferredSize(fieldDimension);
 		String[] list = {"none", "int", "String", "boolean", "double", "char", "float"};
