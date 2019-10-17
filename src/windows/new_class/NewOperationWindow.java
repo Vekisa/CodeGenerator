@@ -93,4 +93,9 @@ public class NewOperationWindow extends JDialog {
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
 	}
+	
+	public void addingRowTable(Object[] data) {
+		this.modelTable = (DefaultTableModel) this.table.getModel();
+		modelTable.addRow(data);
+	}
 }

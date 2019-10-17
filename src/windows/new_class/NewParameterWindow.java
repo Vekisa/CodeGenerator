@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controller.new_class.NewAttribute;
+import controller.new_class.NewOperationParameter;
 
 public class NewParameterWindow extends JDialog {
 	/**
@@ -50,7 +51,7 @@ public class NewParameterWindow extends JDialog {
 		
 		//create cancel panel
 		JPanel ccBtnPanel = new JPanel();
-		JButton createButton = new JButton("add new parameter");
+		JButton createButton = new JButton(new NewOperationParameter());
 		JButton cancelButton = new JButton("Cancel");
 		ccBtnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
@@ -65,4 +66,11 @@ public class NewParameterWindow extends JDialog {
 		
 		
 	}
+	public JTextField getParameterName() {
+		return parameterName;
+	}
+	public JComboBox getCombo() {
+		return combo;
+	}
+	
 }

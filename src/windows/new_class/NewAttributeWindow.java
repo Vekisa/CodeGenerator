@@ -44,7 +44,7 @@ public class NewAttributeWindow extends JDialog {
 		this.pack();
 		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Attribute");
-		this.setLayout(new FlowLayout(FlowLayout.LEFT));
+		this.setLayout(new BorderLayout());
 		
 		//detail of attributes panel
 		JPanel top = new JPanel();
