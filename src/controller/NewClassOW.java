@@ -20,6 +20,8 @@ public class NewClassOW extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		NewClassWindow.getInstance().setTable(NewClassWindow.getInstance().getModelTable(), NewClassWindow.getInstance().getTable() );
+		NewClassWindow.getInstance().setTable(NewClassWindow.getInstance().getModelTable2(), NewClassWindow.getInstance().getTable2() );
 		NewClassWindow.getInstance();
 	}
 }

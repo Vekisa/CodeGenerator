@@ -9,10 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import controller.new_class.NewAttribute;
 import controller.new_class.NewOperationParameter;
 
 public class NewParameterWindow extends JDialog {
@@ -22,7 +20,7 @@ public class NewParameterWindow extends JDialog {
 	private static final long serialVersionUID = 8649572864215527663L;
 	private static NewParameterWindow instance;
 	private JTextField parameterName;
-	private JComboBox combo;
+	private JComboBox<String> combo;
 	
 	@SuppressWarnings("deprecation")
 	public static NewParameterWindow getInstance() {
@@ -46,7 +44,7 @@ public class NewParameterWindow extends JDialog {
 		parameterName = new JTextField();
 		Dimension fieldDimension = new Dimension(100,25);
 		parameterName.setPreferredSize(fieldDimension);
-		String[] list = {"void", "int", "String", "boolean", "double", "char", "float"};
+		String[] list = {"int", "String", "boolean", "double", "char", "float"};
 		combo = new JComboBox<String>(list);
 		
 		//create cancel panel
@@ -69,7 +67,10 @@ public class NewParameterWindow extends JDialog {
 	public JTextField getParameterName() {
 		return parameterName;
 	}
-	public JComboBox getCombo() {
+	public void setParameterName() {
+		this.parameterName.setText("");
+	}
+	public JComboBox<String> getCombo() {
 		return combo;
 	}
 	
