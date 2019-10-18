@@ -2,8 +2,6 @@ package controller.tree;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -25,7 +23,8 @@ public class TreeListener extends MouseAdapter {
 
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)path.getLastPathComponent();
         Item item = (Item)node.getUserObject();
-        TreeDropDownMenu dropdown = new TreeDropDownMenu(item, tree, x, y);
+        @SuppressWarnings("unused")
+		TreeDropDownMenu dropdown = new TreeDropDownMenu(item, tree, x, y);
         
     }
     public void mousePressed(MouseEvent e) {

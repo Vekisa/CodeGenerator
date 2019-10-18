@@ -9,8 +9,7 @@ import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
 
 import model.Model;
-import model.Project;
-import windows.TextEditor;
+import parsers.MainParser;
 
 public class MainWindow extends JFrame {
 	
@@ -22,6 +21,7 @@ public class MainWindow extends JFrame {
 	private static MainWindow instance;
 	private Model model;
 	private NavigationBar navigationBar;
+	private Workspace workspace;
 
 	public static MainWindow getInstance () {
 	    if (MainWindow.instance == null) {
@@ -43,7 +43,7 @@ public class MainWindow extends JFrame {
 		ToolBar toolBar = new ToolBar();
 		navigationBar = new NavigationBar();
 		StatusBar statusBar = new StatusBar();
-		Workspace workspace = new Workspace();
+		workspace = new Workspace();
 		
 		JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, navigationBar, workspace);
 		splitPanel.setOneTouchExpandable(true);
@@ -67,5 +67,9 @@ public class MainWindow extends JFrame {
 	
 	public NavigationBar getNavigationBar() {
 		return navigationBar;
+	}
+	
+	public Workspace getWorkspace() {
+		return workspace;
 	}
 }	
