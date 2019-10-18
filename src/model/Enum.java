@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Enum extends Item {
 
-	String enumName;
-	ArrayList<String> items;
+	private String enumName;
+	private ArrayList<String> items;
 	
 	public Enum() {
 		super();
