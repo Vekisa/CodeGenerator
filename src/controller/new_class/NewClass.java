@@ -18,7 +18,7 @@ public class NewClass extends AbstractAction {
 	private static final long serialVersionUID = 3187339255186401422L;
 
 	public NewClass() {
-		super("Create" , null);
+		super("Create Class" , null);
 	}
 	
 	@Override
@@ -29,6 +29,9 @@ public class NewClass extends AbstractAction {
 		newClass.setExtendsInterfaces(NewClassWindow.getInstance().getClassList());
 		newClass.setAttributes(NewClassWindow.getInstance().getTableAttributes());
 		newClass.setOperations(NewClassWindow.getInstance().getTableOperations());
+		newClass.setDefaultConstructor(NewClassWindow.getInstance().getDefaultConstructor().toString());
+		newClass.setSetters(NewClassWindow.getInstance().getSetters().toString());
+		newClass.setGetters(NewClassWindow.getInstance().getGetters().toString());
 		
 		DefaultMutableTreeNode selectedNode = MainWindow.getInstance().getNavigationBar().getSelectedNode();
 		if(selectedNode != null) {
@@ -40,6 +43,7 @@ public class NewClass extends AbstractAction {
 				MessageDialog.showMessage("internal Problem!");
 		} else
 			MessageDialog.showMessage("item nije selektovan!");
+		
 		NewPackageWindow.getInstance().dispose();
 		
 	}

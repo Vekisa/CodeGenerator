@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import controller.NewAttributeOW;
 import controller.NewClassExtendsOW;
 import controller.NewOperationOW;
+import controller.new_class.NewClass;
 
 public class NewClassWindow extends JDialog {
 
@@ -44,6 +45,9 @@ public class NewClassWindow extends JDialog {
 	private JTable table;
 	private JTable table2;
 	private JTextField classNameField;
+	private JCheckBox defaultConstructor;
+	private JCheckBox getters;
+	private JCheckBox setters;
 	private String[] columnNames = {"Name",
             "Type",
             "Static",
@@ -104,9 +108,9 @@ public class NewClassWindow extends JDialog {
 		JPanel parametersPanel = new JPanel();
 		parametersPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		parametersPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JCheckBox defaultConstructor = new JCheckBox("Default Constructor");
-		JCheckBox getters = new JCheckBox("Getters");
-		JCheckBox setters = new JCheckBox("Setters");
+		defaultConstructor = new JCheckBox("Default Constructor");
+		getters = new JCheckBox("Getters");
+		setters = new JCheckBox("Setters");
 		parametersPanel.add(defaultConstructor);
 		parametersPanel.add(getters);
 		parametersPanel.add(setters);
@@ -148,7 +152,7 @@ public class NewClassWindow extends JDialog {
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		JButton cancel = new JButton("Cancel");
-		JButton ok = new JButton("Ok");
+		JButton ok = new JButton(new NewClass());
 		buttonsPanel.add(ok);
 		buttonsPanel.add(cancel);
 		
@@ -202,6 +206,30 @@ public class NewClassWindow extends JDialog {
 		this.classNameField = classNameField;
 	}
 	
+	public JCheckBox getDefaultConstructor() {
+		return defaultConstructor;
+	}
+
+	public void setDefaultConstructor(JCheckBox defaultConstructor) {
+		this.defaultConstructor = defaultConstructor;
+	}
+
+	public JCheckBox getGetters() {
+		return getters;
+	}
+
+	public void setGetters(JCheckBox getters) {
+		this.getters = getters;
+	}
+
+	public JCheckBox getSetters() {
+		return setters;
+	}
+
+	public void setSetters(JCheckBox setters) {
+		this.setters = setters;
+	}
+	
 	public ArrayList<String> getClassList() {
 		ArrayList<String> list = new ArrayList<String>(classList.getModel().getSize());
 		for(int i = 0; i < classList.getModel().getSize(); i++) {
@@ -213,8 +241,10 @@ public class NewClassWindow extends JDialog {
 	@SuppressWarnings("null")
 	public ArrayList<model.Attribute> getTableAttributes(){
 		ArrayList<model.Attribute> list = new ArrayList<model.Attribute>();
-		model.Attribute atribut = null;
+		model.Attribute atribut = new model.Attribute();
+		System.out.println("radi ulaz u atribut");
 		for(int i = 0; i < table.getModel().getRowCount(); i++) {
+			System.out.println("radi i for");
 			atribut.setName(table.getModel().getValueAt(i, 0).toString());
 			atribut.setType(table.getModel().getValueAt(i, 1).toString());
 			atribut.setIsStatic(table.getModel().getValueAt(i, 2).toString());
@@ -223,15 +253,16 @@ public class NewClassWindow extends JDialog {
 			atribut.setSetter(table.getModel().getValueAt(i, 5).toString());
 			list.add((model.Attribute) atribut);
 		}
+		System.out.println(list);
 		return list;
 	}
 	
 	@SuppressWarnings("null")
 	public ArrayList<model.Operation> getTableOperations(){
 		ArrayList<model.Operation> list = new ArrayList<model.Operation>();
-		model.Operation operation = null;
+		model.Operation operation = new model.Operation();
 		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
-		model.Attribute parametar = null;
+		model.Attribute parametar = new model.Attribute();
 		for(int i = 0; i < table2.getModel().getRowCount(); i++) {
 			operation.setStatic(table2.getModel().getValueAt(i, 0).toString());
 			operation.setReturnValue(table2.getModel().getValueAt(i, 1).toString());
@@ -251,6 +282,7 @@ public class NewClassWindow extends JDialog {
 		}
 		return list;
 	}
+
 }
 
 

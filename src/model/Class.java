@@ -64,24 +64,24 @@ public class Class extends Item {
 		return defaultConstructor;
 	}
 
-	public void setDefaultConstructor(boolean defaultConstructor) {
-		this.defaultConstructor = defaultConstructor;
+	public void setDefaultConstructor(String s) {
+		this.defaultConstructor = Boolean.parseBoolean(s);
 	}
 
 	public boolean isGetters() {
 		return getters;
 	}
 
-	public void setGetters(boolean getters) {
-		this.getters = getters;
+	public void setGetters(String s) {
+		this.getters = Boolean.getBoolean(s);
 	}
 
 	public boolean isSetters() {
 		return setters;
 	}
 
-	public void setSetters(boolean setters) {
-		this.setters = setters;
+	public void setSetters(String s) {
+		this.setters = Boolean.parseBoolean(s);
 	}
 	
 }
