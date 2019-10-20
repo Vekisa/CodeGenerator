@@ -40,24 +40,24 @@ public class Attribute {
 		return isConst;
 	}
 
-	public void setConst(boolean isConst) {
-		this.isConst = isConst;
+	public void setConst(String s) {
+		this.isConst = Boolean.parseBoolean(s);
 	}
 
 	public boolean isGetter() {
 		return getter;
 	}
 
-	public void setGetter(boolean getter) {
-		this.getter = getter;
+	public void setGetter(String s) {
+		this.getter = Boolean.parseBoolean(s);
 	}
 
 	public boolean isSetter() {
 		return setter;
 	}
 
-	public void setSetter(boolean setter) {
-		this.setter = setter;
+	public void setSetter(String s) {
+		this.setter = Boolean.parseBoolean(s);
 	}
 	
 }

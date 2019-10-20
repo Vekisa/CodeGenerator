@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.List;
 import java.awt.Toolkit;
+import java.security.KeyStore.Entry.Attribute;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -40,6 +43,7 @@ public class NewClassWindow extends JDialog {
 	private JList<String> classList;
 	private JTable table;
 	private JTable table2;
+	private JTextField classNameField;
 	private String[] columnNames = {"Name",
             "Type",
             "Static",
@@ -72,7 +76,7 @@ public class NewClassWindow extends JDialog {
 		JPanel namePane = new JPanel();
 		namePane.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JLabel classNameLabel = new JLabel("Name: ");
-		JTextField classNameField = new JTextField();
+		classNameField = new JTextField();
 		Dimension fieldDimension = new Dimension(200,25);
 		classNameField.setPreferredSize(fieldDimension);
 		
@@ -156,7 +160,7 @@ public class NewClassWindow extends JDialog {
 		this.add(box);
 		this.setVisible(true);
 	}
-	
+		
 	public void addItem(String s) {
 		model.addElement(s);
 	}
@@ -188,6 +192,64 @@ public class NewClassWindow extends JDialog {
 	public void addingRowTableOperations(Object[] data) {
 		this.modelTable2 = (DefaultTableModel) this.table2.getModel();
 		modelTable2.insertRow(0, data);
+	}
+
+	public JTextField getClassNameField() {
+		return classNameField;
+	}
+
+	public void setClassNameField(JTextField classNameField) {
+		this.classNameField = classNameField;
+	}
+	
+	public ArrayList<String> getClassList() {
+		ArrayList<String> list = new ArrayList<String>(classList.getModel().getSize());
+		for(int i = 0; i < classList.getModel().getSize(); i++) {
+			list.add(classList.getModel().getElementAt(i));
+		}
+		return list;
+	}
+	
+	@SuppressWarnings("null")
+	public ArrayList<model.Attribute> getTableAttributes(){
+		ArrayList<model.Attribute> list = new ArrayList<model.Attribute>();
+		model.Attribute atribut = null;
+		for(int i = 0; i < table.getModel().getRowCount(); i++) {
+			atribut.setName(table.getModel().getValueAt(i, 0).toString());
+			atribut.setType(table.getModel().getValueAt(i, 1).toString());
+			atribut.setIsStatic(table.getModel().getValueAt(i, 2).toString());
+			atribut.setConst(table.getModel().getValueAt(i, 3).toString());
+			atribut.setGetter(table.getModel().getValueAt(i, 4).toString());
+			atribut.setSetter(table.getModel().getValueAt(i, 5).toString());
+			list.add((model.Attribute) atribut);
+		}
+		return list;
+	}
+	
+	@SuppressWarnings("null")
+	public ArrayList<model.Operation> getTableOperations(){
+		ArrayList<model.Operation> list = new ArrayList<model.Operation>();
+		model.Operation operation = null;
+		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
+		model.Attribute parametar = null;
+		for(int i = 0; i < table2.getModel().getRowCount(); i++) {
+			operation.setStatic(table2.getModel().getValueAt(i, 0).toString());
+			operation.setReturnValue(table2.getModel().getValueAt(i, 1).toString());
+			operation.setName(table2.getModel().getValueAt(i, 2).toString());
+			operation.setVirtual(table2.getModel().getValueAt(i, 3).toString());
+			for(int j = 0; j < NewOperationWindow.getInstance().getTable().getModel().getRowCount(); j++ ) {
+				parametar.setType(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 0).toString());
+				parametar.setName(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 1).toString());
+				parametar.setIsStatic(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 2).toString());
+				parametar.setConst(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 3).toString());
+				parametar.setGetter(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 4).toString());
+				parametar.setSetter(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 5).toString());
+				parameters.add((model.Attribute) parametar);
+			}
+			operation.setParameters(parameters);
+			list.add((model.Operation) operation);
+		}
+		return list;
 	}
 }
 
