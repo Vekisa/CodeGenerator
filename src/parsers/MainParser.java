@@ -9,6 +9,9 @@ public class MainParser {
 		if(item instanceof Enum) {
 			Enum enumeration = (Enum)item;
 			return EnumParser.parse(enumeration);
+		}else if(item instanceof model.Class) {
+			model.Class classPom = (model.Class)item;
+			return ClassParser.parse(classPom);
 		}
 		
 		return "";

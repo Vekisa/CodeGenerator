@@ -2,7 +2,7 @@ package parsers;
 
 import model.Enum;
 
-public class EnumParser extends MainParser {
+public class EnumParser{
 
 	public static String parse(Enum enumeration) {
 		String parsed = "enum " + enumeration.getEnumName() + " {\n";
