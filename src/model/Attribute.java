@@ -3,7 +3,7 @@ package model;
 public class Attribute {
 	private String name;
 	private String type;
-	private String isStatic;
+	private boolean isStatic;
 	private boolean isConst;
 	private boolean getter;
 	private boolean setter;
@@ -28,36 +28,36 @@ public class Attribute {
 		this.type = type;
 	}
 
-	public String getIsStatic() {
+	public boolean isStatic() {
 		return isStatic;
 	}
 
 	public void setIsStatic(String isStatic) {
-		this.isStatic = isStatic;
+		this.isStatic = Boolean.parseBoolean(isStatic);
 	}
 
 	public boolean isConst() {
 		return isConst;
 	}
 
-	public void setConst(boolean isConst) {
-		this.isConst = isConst;
+	public void setConst(String s) {
+		this.isConst = Boolean.parseBoolean(s);
 	}
 
 	public boolean isGetter() {
 		return getter;
 	}
 
-	public void setGetter(boolean getter) {
-		this.getter = getter;
+	public void setGetter(String s) {
+		this.getter = Boolean.parseBoolean(s);
 	}
 
 	public boolean isSetter() {
 		return setter;
 	}
 
-	public void setSetter(boolean setter) {
-		this.setter = setter;
+	public void setSetter(String s) {
+		this.setter = Boolean.parseBoolean(s);
 	}
 	
 }

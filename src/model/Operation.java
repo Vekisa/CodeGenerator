@@ -26,16 +26,16 @@ public class Operation {
 		return isStatic;
 	}
 
-	public void setStatic(boolean isStatic) {
-		this.isStatic = isStatic;
+	public void setStatic(String s) {
+		this.isStatic = Boolean.parseBoolean(s);
 	}
 
 	public boolean isVirtual() {
 		return isVirtual;
 	}
 
-	public void setVirtual(boolean isVirtual) {
-		this.isVirtual = isVirtual;
+	public void setVirtual(String s) {
+		this.isVirtual = Boolean.parseBoolean(s);
 	}
 
 	public String getReturnValue() {
@@ -50,8 +50,8 @@ public class Operation {
 		return isConst;
 	}
 
-	public void setConst(boolean isConst) {
-		this.isConst = isConst;
+	public void setConst(String s) {
+		this.isConst = Boolean.parseBoolean(s);
 	}
 
 	public ArrayList<Attribute> getParameters() {

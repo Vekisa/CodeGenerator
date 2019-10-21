@@ -4,7 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.List;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.security.KeyStore.Entry.Attribute;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -26,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 import controller.NewAttributeOW;
 import controller.NewClassExtendsOW;
 import controller.NewOperationOW;
+import controller.new_class.NewClass;
 
 public class NewClassWindow extends JDialog {
 
@@ -34,18 +40,24 @@ public class NewClassWindow extends JDialog {
 	 */
 	private static final long serialVersionUID = 1978685336525540440L;
 	private static NewClassWindow instance;
-	private DefaultListModel<String> model;
+	private DefaultListModel<String> modelExtends;
+	private DefaultListModel<String> modelImplements;
 	private DefaultTableModel modelTable;
 	private DefaultTableModel modelTable2;
 	private JList<String> classList;
 	private JTable table;
 	private JTable table2;
+	private JTextField classNameField;
+	private JCheckBox defaultConstructor;
+	private JCheckBox getters;
+	private JCheckBox setters;
 	private String[] columnNames = {"Name",
             "Type",
             "Static",
             "Virtual",
             "Getter",
             "Setter"};
+	private JComboBox<String> combo;
 	
 	public String[] getColumnNames() {
 		return columnNames;
@@ -72,15 +84,28 @@ public class NewClassWindow extends JDialog {
 		JPanel namePane = new JPanel();
 		namePane.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JLabel classNameLabel = new JLabel("Name: ");
-		JTextField classNameField = new JTextField();
+		classNameField = new JTextField();
 		Dimension fieldDimension = new Dimension(200,25);
 		classNameField.setPreferredSize(fieldDimension);
 		
 		String[] list = {"extends", "implement"};
-		JComboBox<String> combo = new JComboBox<String>(list);
+		combo = new JComboBox<String>(list);
+		combo.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(combo.getSelectedIndex() == 0)
+					classList.setModel(modelExtends);
+				else
+					classList.setModel(modelImplements);;
+			}
+		});
 		
-		model = new DefaultListModel<>();
-		classList = new JList<String>(model);
+		modelExtends = new DefaultListModel<>();
+		modelImplements = new DefaultListModel<>();
+		
+		classList = new JList<String>(modelExtends);
 		classList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		classList.setLayoutOrientation(JList.VERTICAL);
 		classList.setVisibleRowCount(-1);
@@ -100,9 +125,9 @@ public class NewClassWindow extends JDialog {
 		JPanel parametersPanel = new JPanel();
 		parametersPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		parametersPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JCheckBox defaultConstructor = new JCheckBox("Default Constructor");
-		JCheckBox getters = new JCheckBox("Getters");
-		JCheckBox setters = new JCheckBox("Setters");
+		defaultConstructor = new JCheckBox("Default Constructor");
+		getters = new JCheckBox("Getters");
+		setters = new JCheckBox("Setters");
 		parametersPanel.add(defaultConstructor);
 		parametersPanel.add(getters);
 		parametersPanel.add(setters);
@@ -144,7 +169,7 @@ public class NewClassWindow extends JDialog {
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		JButton cancel = new JButton("Cancel");
-		JButton ok = new JButton("Ok");
+		JButton ok = new JButton(new NewClass());
 		buttonsPanel.add(ok);
 		buttonsPanel.add(cancel);
 		
@@ -156,9 +181,15 @@ public class NewClassWindow extends JDialog {
 		this.add(box);
 		this.setVisible(true);
 	}
-	
+		
 	public void addItem(String s) {
-		model.addElement(s);
+		if(combo.getSelectedIndex() == 0)
+			modelExtends.addElement(s);
+		else 
+			modelImplements.addElement(s);
+		
+		System.out.println("IMPL: " + modelImplements.getSize());
+		System.out.println("EXT: " + modelExtends.getSize());
 	}
 
 	public JTable getTable() {
@@ -189,6 +220,103 @@ public class NewClassWindow extends JDialog {
 		this.modelTable2 = (DefaultTableModel) this.table2.getModel();
 		modelTable2.insertRow(0, data);
 	}
+
+	public JTextField getClassNameField() {
+		return classNameField;
+	}
+
+	public void setClassNameField(JTextField classNameField) {
+		this.classNameField = classNameField;
+	}
+	
+	public JCheckBox getDefaultConstructor() {
+		return defaultConstructor;
+	}
+
+	public void setDefaultConstructor(JCheckBox defaultConstructor) {
+		this.defaultConstructor = defaultConstructor;
+	}
+
+	public JCheckBox getGetters() {
+		return getters;
+	}
+
+	public void setGetters(JCheckBox getters) {
+		this.getters = getters;
+	}
+
+	public JCheckBox getSetters() {
+		return setters;
+	}
+
+	public void setSetters(JCheckBox setters) {
+		this.setters = setters;
+	}
+	
+	public ArrayList<String> getClassList() {
+		ArrayList<String> list = new ArrayList<String>(modelExtends.getSize());
+		for(int i = 0; i < modelExtends.getSize(); i++) {
+			list.add(modelExtends.getElementAt(i));
+		}
+		return list;
+	}
+	
+	public ArrayList<String> getInterfaceList() {
+		ArrayList<String> list = new ArrayList<String>(modelImplements.getSize());
+		for(int i = 0; i < modelImplements.getSize(); i++) {
+			list.add(modelImplements.getElementAt(i));
+		}
+		return list;
+	}
+	
+	@SuppressWarnings("null")
+	public ArrayList<model.Attribute> getTableAttributes(){
+		ArrayList<model.Attribute> list = new ArrayList<model.Attribute>();
+		model.Attribute atribut = null;
+		System.out.println("radi ulaz u atribut");
+		for(int i = 0; i < table.getModel().getRowCount(); i++) {
+			atribut = new model.Attribute();
+			System.out.println("radi i for");
+			atribut.setName(table.getModel().getValueAt(i, 0).toString());
+			atribut.setType(table.getModel().getValueAt(i, 1).toString());
+			atribut.setIsStatic(table.getModel().getValueAt(i, 2).toString());
+			atribut.setConst(table.getModel().getValueAt(i, 3).toString());
+			atribut.setGetter(table.getModel().getValueAt(i, 4).toString());
+			atribut.setSetter(table.getModel().getValueAt(i, 5).toString());
+			list.add((model.Attribute) atribut);
+		}
+		System.out.println(list);
+		return list;
+	}
+	
+	@SuppressWarnings("null")
+	public ArrayList<model.Operation> getTableOperations(){
+		ArrayList<model.Operation> list = new ArrayList<model.Operation>();
+		model.Operation operation = null;
+		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
+		model.Attribute parametar = null;
+		for(int i = 0; i < table2.getModel().getRowCount(); i++) {
+			operation = new model.Operation();
+			operation.setStatic(table2.getModel().getValueAt(i, 0).toString());
+			operation.setReturnValue(table2.getModel().getValueAt(i, 1).toString());
+			operation.setName(table2.getModel().getValueAt(i, 2).toString());
+			operation.setVirtual(table2.getModel().getValueAt(i, 3).toString());
+			for(int j = 0; j < NewOperationWindow.getInstance().getTable().getModel().getRowCount(); j++ ) {
+				parametar = new model.Attribute();
+				parametar.setType(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 0).toString());
+				parametar.setName(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 1).toString());
+				parametar.setIsStatic(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 2).toString());
+				parametar.setConst(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 3).toString());
+				parametar.setGetter(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 4).toString());
+				parametar.setSetter(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 5).toString());
+				parameters.add((model.Attribute) parametar);
+			}
+			operation.setParameters(parameters);
+			list.add((model.Operation) operation);
+		}
+		return list;
+	}
+
 }
 
 

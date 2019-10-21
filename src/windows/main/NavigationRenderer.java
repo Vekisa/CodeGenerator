@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+//import javax.jws.WebParam.Mode;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -49,12 +50,15 @@ public class NavigationRenderer extends DefaultTreeCellRenderer {
 	    	  model.Enum packageNode = (model.Enum) userObject;
 	    	  String text = String.format(SPAN_FORMAT, "blue", packageNode.getEnumName());
 	    	  this.setText("<html>" + text + "</html>");	    	  
-	      } else {
+	      } else if(userObject instanceof model.Class) {
+	    	  model.Class packageNode = (model.Class) userObject;
+	    	  String text = String.format(SPAN_FORMAT, "blue", packageNode.getClassName());
+	    	  this.setText("<html>" + text + "</html>");
+	      }else {
 	          String text = String.format(SPAN_FORMAT, "red", userObject);
 	          this.setText("<html>" + text + "</html>");
 	          this.setIcon(Configuration.classIcon);
 	      }
-	      
 	      return this;
 	}
 }

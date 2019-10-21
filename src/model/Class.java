@@ -6,7 +6,7 @@ public class Class extends Item {
 	
 	private String className;
 	private ArrayList<String> extendsClasses;
-	private ArrayList<String> extendsInterfaces;
+	private ArrayList<String> implementsInterfaces;
 	private ArrayList<Attribute> attributes;
 	private ArrayList<Operation> operations;
 	private boolean defaultConstructor;
@@ -15,7 +15,7 @@ public class Class extends Item {
 	
 	public Class ( ) {
 		extendsClasses = new ArrayList<String>();
-		extendsInterfaces = new ArrayList<String>();
+		implementsInterfaces = new ArrayList<String>();
 		attributes = new ArrayList<Attribute>();
 		operations = new ArrayList<Operation>();
 	}
@@ -36,12 +36,12 @@ public class Class extends Item {
 		this.extendsClasses = extendsClasses;
 	}
 
-	public ArrayList<String> getExtendsInterfaces() {
-		return extendsInterfaces;
+	public ArrayList<String> getImplementsInterfaces() {
+		return implementsInterfaces;
 	}
 
-	public void setExtendsInterfaces(ArrayList<String> extendsInterfaces) {
-		this.extendsInterfaces = extendsInterfaces;
+	public void setImplementsInterfaces(ArrayList<String> implementsInterfaces) {
+		this.implementsInterfaces = implementsInterfaces;
 	}
 
 	public ArrayList<Attribute> getAttributes() {
@@ -64,24 +64,24 @@ public class Class extends Item {
 		return defaultConstructor;
 	}
 
-	public void setDefaultConstructor(boolean defaultConstructor) {
-		this.defaultConstructor = defaultConstructor;
+	public void setDefaultConstructor(String s) {
+		this.defaultConstructor = Boolean.parseBoolean(s);
 	}
 
 	public boolean isGetters() {
 		return getters;
 	}
 
-	public void setGetters(boolean getters) {
-		this.getters = getters;
+	public void setGetters(String s) {
+		this.getters = Boolean.getBoolean(s);
 	}
 
 	public boolean isSetters() {
 		return setters;
 	}
 
-	public void setSetters(boolean setters) {
-		this.setters = setters;
+	public void setSetters(String s) {
+		this.setters = Boolean.parseBoolean(s);
 	}
 	
 }

@@ -46,7 +46,7 @@ public class NewOperationWindow extends JDialog {
 	public NewOperationWindow() {
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension(700, 200));
+		this.setPreferredSize(new Dimension(900, 200));
 		this.pack();
 		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Operation");
@@ -65,7 +65,7 @@ public class NewOperationWindow extends JDialog {
 		virtual = new JCheckBox("Virtual");
 		
 		//parameters table
-		Object[] data = {"Type", "Name"};
+		Object[] data = {"Type", "Name", "Static", "Virtual", "Getters", "Setters"};
 		modelTable = new DefaultTableModel(data, 4);
 		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());

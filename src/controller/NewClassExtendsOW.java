@@ -13,9 +13,11 @@ public class NewClassExtendsOW extends AbstractAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 5566454213420357923L;
+	
 	public NewClassExtendsOW() {
-		super("Add Classes", null);	
+		super("Add", null);	
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		NewClassExtendsWindow.getInstance();

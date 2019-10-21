@@ -23,7 +23,11 @@ public class NewOperationParameter extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		Object[] data = 
 			{NewParameterWindow.getInstance().getCombo().getSelectedItem().toString()
-			,NewParameterWindow.getInstance().getParameterName().getText()};
+			,NewParameterWindow.getInstance().getParameterName().getText()
+			,NewParameterWindow.getInstance().getStaticBox().isSelected()
+			,NewParameterWindow.getInstance().getVirtual().isSelected()
+			,NewParameterWindow.getInstance().getGetters().isSelected()
+			,NewParameterWindow.getInstance().getSetters().isSelected()};
 		
 		NewOperationWindow.getInstance().addingRowTable(data);
 		NewParameterWindow.getInstance().setParameterName();
