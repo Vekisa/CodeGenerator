@@ -2,7 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-public class Operation {
+public class Operation implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4527410502453255430L;
 	private String name;
 	private boolean isStatic;
 	private boolean isVirtual;

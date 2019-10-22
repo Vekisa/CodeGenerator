@@ -30,9 +30,8 @@ public class ToolBar extends JToolBar {
 		newClassBtn.setHideActionText(true);
 	
 		JButton newEnumBtn = new JButton(new NewEnumOW());
-		newClassBtn.setHideActionText(true);
+		newEnumBtn.setHideActionText(true);
 
-		
 		this.add(newProjectBtn);
 		this.add(newPackageBtn);
 		this.add(newClassBtn);

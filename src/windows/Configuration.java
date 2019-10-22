@@ -14,6 +14,9 @@ public class Configuration {
 	public static ImageIcon packageIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/package.png");
 	public static ImageIcon projectIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/project.png");
 	public static ImageIcon classIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/class.png");
-	public static ImageIcon folderIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/folder.png");
+	public static ImageIcon interfaceIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/interface.png");
 	public static ImageIcon enumIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/enum.png");
+	public static ImageIcon folderIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/folder.png");
+	public static ImageIcon saveIcon = new ImageIcon(currentRelativePath.toAbsolutePath().toString() + "/resources/save.png");
+
 }

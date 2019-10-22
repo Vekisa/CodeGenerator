@@ -1,6 +1,10 @@
 package model;
 
-public class Attribute {
+public class Attribute implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -85841148375169837L;
 	private String name;
 	private String type;
 	private boolean isStatic;

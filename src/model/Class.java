@@ -2,8 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
-public class Class extends Item {
+public class Class extends Item implements java.io.Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4963790775542795361L;
 	private String className;
 	private ArrayList<String> extendsClasses;
 	private ArrayList<String> implementsInterfaces;

@@ -2,8 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
-public class Enum extends Item {
+public class Enum extends Item implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3424945810697166137L;
 	private String enumName;
 	private ArrayList<String> items;
 	

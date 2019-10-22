@@ -2,7 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-public class Interface extends Item {
+public class Interface extends Item implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7527555816402607666L;
 	private String name;
 	private ArrayList<Operation> operations;
 	

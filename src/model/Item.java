@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 import windows.main.MainWindow;
 
-public class Item {
+public class Item implements java.io.Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1171943828571653867L;
 	protected String name;
 	protected ArrayList<Item> children;
 	private int id;

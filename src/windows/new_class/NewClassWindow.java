@@ -269,7 +269,6 @@ public class NewClassWindow extends JDialog {
 		return list;
 	}
 	
-	@SuppressWarnings("null")
 	public ArrayList<model.Attribute> getTableAttributes(){
 		ArrayList<model.Attribute> list = new ArrayList<model.Attribute>();
 		model.Attribute atribut = null;
@@ -289,7 +288,6 @@ public class NewClassWindow extends JDialog {
 		return list;
 	}
 	
-	@SuppressWarnings("null")
 	public ArrayList<model.Operation> getTableOperations(){
 		ArrayList<model.Operation> list = new ArrayList<model.Operation>();
 		model.Operation operation = null;

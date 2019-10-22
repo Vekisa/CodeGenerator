@@ -12,6 +12,9 @@ public class MainParser {
 		}else if(item instanceof model.Class) {
 			model.Class classPom = (model.Class)item;
 			return ClassParser.parse(classPom);
+		}else if(item instanceof model.Package) {
+			model.Package packagePom = (model.Package)item;
+			return PackageParser.parse(packagePom);
 		}
 		
 		return "";
