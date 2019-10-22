@@ -6,8 +6,9 @@ import java.nio.file.Paths;
 
 import javax.swing.ImageIcon;
 
-public class Configuration {
+public class InternalConfiguration {
 	private static Path currentRelativePath = Paths.get("");
+	public static String currentPath = currentRelativePath.toAbsolutePath().toString();
 
 	public static Color themeColor = new Color(199,255,248);
 	public static Color themeColorToolBar = new Color(180,255,150);

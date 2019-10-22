@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import serialization.Serializer;
-import windows.Configuration;
+import windows.InternalConfiguration;
 import windows.FileChooser;
 import windows.main.MainWindow;
 import windows.message.MessageDialog;
@@ -18,7 +18,7 @@ public class Save extends AbstractAction {
 	private static final long serialVersionUID = 8648240095381746125L;
 	
 	public Save() {
-		super("Save", Configuration.saveIcon);
+		super("Save", InternalConfiguration.saveIcon);
 	    putValue(SHORT_DESCRIPTION, "Save");
 	}
 

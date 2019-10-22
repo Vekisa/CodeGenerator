@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import serialization.Serializer;
-import windows.Configuration;
+import windows.InternalConfiguration;
 import windows.FileChooser;
 import windows.main.MainWindow;
 
@@ -17,7 +17,7 @@ public class Open extends AbstractAction {
 	private static final long serialVersionUID = -6750190410942331938L;
 
 	public Open() {
-		super("Open", Configuration.folderIcon);
+		super("Open", InternalConfiguration.folderIcon);
 	    putValue(SHORT_DESCRIPTION, "Open");
 	}
 

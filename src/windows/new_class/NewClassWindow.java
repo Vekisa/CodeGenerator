@@ -298,7 +298,6 @@ public class NewClassWindow extends JDialog {
 			operation.setName(table2.getModel().getValueAt(i, 2).toString());
 			operation.setVirtual(table2.getModel().getValueAt(i, 3).toString());
 			for(int j = 0; j < NewOperationWindow.getInstance().getTable().getModel().getRowCount(); j++ ) {
-
 				parametar = new model.Attribute();
 				parametar.setType(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 0).toString());
 				parametar.setName(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 1).toString());

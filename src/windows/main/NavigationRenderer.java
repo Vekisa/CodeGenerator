@@ -6,7 +6,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import windows.Configuration;
+import windows.InternalConfiguration;
 
 public class NavigationRenderer extends DefaultTreeCellRenderer {
 
@@ -32,23 +32,23 @@ public class NavigationRenderer extends DefaultTreeCellRenderer {
 	          String text = String.format(SPAN_FORMAT, "blue", project.getName());
 	          //text += " [" + String.format(SPAN_FORMAT, "orange", pp.getRole()) + "]";
 	          this.setText("<html>" + text + "</html>");
-	          this.setIcon(Configuration.projectIcon);
+	          this.setIcon(InternalConfiguration.projectIcon);
 	      } else if (userObject instanceof model.Package) {
 	    	  model.Package packageNode = (model.Package) userObject;
 	          String text = String.format(SPAN_FORMAT, "blue", packageNode.getName());
 	          //text += " [" + String.format(SPAN_FORMAT, "orange", pp.getRole()) + "]";
 	          this.setText("<html>" + text + "</html>");
-	          this.setIcon(Configuration.packageIcon);
+	          this.setIcon(InternalConfiguration.packageIcon);
 	      } else if(userObject instanceof model.Enum) {
 	    	  model.Enum packageNode = (model.Enum) userObject;
 	    	  String text = String.format(SPAN_FORMAT, "blue", packageNode.getEnumName());
 	    	  this.setText("<html>" + text + "</html>");	
-	    	  this.setIcon(Configuration.enumIcon);
+	    	  this.setIcon(InternalConfiguration.enumIcon);
 	      } else if(userObject instanceof model.Class) {
 	    	  model.Class packageNode = (model.Class) userObject;
 	    	  String text = String.format(SPAN_FORMAT, "blue", packageNode.getClassName());
 	    	  this.setText("<html>" + text + "</html>");
-	    	  this.setIcon(Configuration.classIcon);
+	    	  this.setIcon(InternalConfiguration.classIcon);
 	      }
 	      return this;
 	}

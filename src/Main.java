@@ -1,5 +1,6 @@
 import javax.swing.UIManager;
 
+import controller.WindowListener;
 import windows.main.MainWindow;
 
 public class Main {
@@ -21,6 +22,7 @@ public class Main {
         } 
         
         MainWindow.getInstance();
+        MainWindow.getInstance().addWindowListener(new WindowListener());
 	}
 
 }

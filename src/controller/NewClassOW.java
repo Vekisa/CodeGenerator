@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
-import windows.Configuration;
+import windows.InternalConfiguration;
 import windows.new_class.NewClassWindow;
 
 public class NewClassOW extends AbstractAction {
@@ -13,7 +13,7 @@ public class NewClassOW extends AbstractAction {
 	private static final long serialVersionUID = 2000358251564509946L;
 
 	public NewClassOW() {
-		super("Class", Configuration.classIcon);
+		super("Class", InternalConfiguration.classIcon);
 	    putValue(SHORT_DESCRIPTION, "Create a new class");
 	}
 	

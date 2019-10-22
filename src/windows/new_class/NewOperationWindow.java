@@ -70,7 +70,7 @@ public class NewOperationWindow extends JDialog {
 		
 		//parameters table
 		Object[] data = {"Type", "Name", "Static", "Virtual", "Getters", "Setters"};
-		modelTable = new DefaultTableModel(data, 0);
+		modelTable = new DefaultTableModel(data, 4);
 		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		JScrollPane scrollPane = new JScrollPane(table);

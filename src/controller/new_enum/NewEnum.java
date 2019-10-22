@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import model.Item;
-import windows.Configuration;
+import windows.InternalConfiguration;
 import windows.main.MainWindow;
 import windows.message.MessageDialog;
 import windows.new_enum.NewEnumWindow;

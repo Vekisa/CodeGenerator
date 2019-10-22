@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
 
+import model.Configuration;
 import model.Model;
 import parsers.MainParser;
 
@@ -22,6 +23,7 @@ public class MainWindow extends JFrame {
 	private Model model;
 	private NavigationBar navigationBar;
 	private Workspace workspace;
+	private Configuration configuration;
 
 	public static MainWindow getInstance () {
 	    if (MainWindow.instance == null) {
@@ -32,6 +34,7 @@ public class MainWindow extends JFrame {
 	
 	public MainWindow() {
 		model = new Model();
+		configuration = new Configuration();
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		this.setTitle("CodeGenerator");
@@ -71,5 +74,13 @@ public class MainWindow extends JFrame {
 	
 	public Workspace getWorkspace() {
 		return workspace;
+	}
+
+	public Configuration getConfiguration() {
+		return configuration;
+	}
+
+	public void setConfiguration(Configuration configuration) {
+		this.configuration = configuration;
 	}
 }	

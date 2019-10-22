@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import windows.Configuration;
+import windows.InternalConfiguration;
 
 public class StatusBar extends JPanel {
 
@@ -17,7 +17,7 @@ public class StatusBar extends JPanel {
 	public StatusBar() {
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JLabel path = new JLabel("D:/dasdsa/nesto/dsadsadsa");
-		this.setBackground(Configuration.themeColor);
+		this.setBackground(InternalConfiguration.themeColor);
 		this.add(path);
 	}
 

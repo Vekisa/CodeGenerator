@@ -7,7 +7,7 @@ import controller.NewClassOW;
 import controller.NewEnumOW;
 import controller.NewPackageOW;
 import controller.NewProjectOW;
-import windows.Configuration;
+import windows.InternalConfiguration;
 
 public class ToolBar extends JToolBar {
 
@@ -18,7 +18,7 @@ public class ToolBar extends JToolBar {
 	
 	public ToolBar() {
 		
-		this.setBackground(Configuration.themeColorToolBar);
+		this.setBackground(InternalConfiguration.themeColorToolBar);
 		
 		JButton newProjectBtn = new JButton(new NewProjectOW());
 		newProjectBtn.setHideActionText(true);

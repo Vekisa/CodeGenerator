@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
-import windows.Configuration;
+import windows.InternalConfiguration;
 import windows.new_enum.NewEnumWindow;
 
 public class NewEnumOW extends AbstractAction{
@@ -15,7 +15,7 @@ public class NewEnumOW extends AbstractAction{
 
 
 	public NewEnumOW() {
-		super("Enum", Configuration.enumIcon);
+		super("Enum", InternalConfiguration.enumIcon);
 		putValue(SHORT_DESCRIPTION, "Create a new enum");	
 	}
 	

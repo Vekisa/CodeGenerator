@@ -12,7 +12,7 @@ import controller.open.CloseProject;
 import controller.open.Open;
 import controller.save.Save;
 import controller.save.SaveAs;
-import windows.Configuration;
+import windows.InternalConfiguration;
 
 public class MenuBar extends JMenuBar {
 
@@ -23,7 +23,7 @@ public class MenuBar extends JMenuBar {
 	
 	public MenuBar() {
 		
-		this.setBackground(Configuration.themeColor);
+		this.setBackground(InternalConfiguration.themeColor);
 		
 		JMenu files = new JMenu("File");
 		
