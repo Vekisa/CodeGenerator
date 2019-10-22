@@ -66,7 +66,7 @@ public class NewOperationWindow extends JDialog {
 		
 		//parameters table
 		Object[] data = {"Type", "Name", "Static", "Virtual", "Getters", "Setters"};
-		modelTable = new DefaultTableModel(data, 4);
+		modelTable = new DefaultTableModel(data, 0);
 		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -88,9 +88,9 @@ public class NewOperationWindow extends JDialog {
 		top.add(virtual);
 		top.add(scrollPane);
 		top.add(addParameter);
-		this.setVisible(true);	
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
+		this.setVisible(true);	
 	}
 	
 	public void setMethodName(String methodName) {

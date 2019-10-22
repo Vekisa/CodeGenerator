@@ -44,7 +44,7 @@ public class NewClass extends AbstractAction {
 		} else
 			MessageDialog.showMessage("item nije selektovan!");
 		
-		NewPackageWindow.getInstance().dispose();
+		NewClassWindow.getInstance().dispose();
 		
 	}
 
