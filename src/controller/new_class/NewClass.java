@@ -8,7 +8,6 @@ import model.Item;
 import windows.main.MainWindow;
 import windows.message.MessageDialog;
 import windows.new_class.NewClassWindow;
-import windows.new_package.NewPackageWindow;
 
 public class NewClass extends AbstractAction {
 
@@ -44,7 +43,7 @@ public class NewClass extends AbstractAction {
 		} else
 			MessageDialog.showMessage("item nije selektovan!");
 		
-		NewPackageWindow.getInstance().dispose();
+		NewClassWindow.getInstance().dispose();
 		
 	}
 

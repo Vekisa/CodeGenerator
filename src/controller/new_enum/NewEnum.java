@@ -10,7 +10,6 @@ import windows.Configuration;
 import windows.main.MainWindow;
 import windows.message.MessageDialog;
 import windows.new_enum.NewEnumWindow;
-import windows.new_package.NewPackageWindow;
 
 public class NewEnum extends AbstractAction {
 
@@ -43,7 +42,7 @@ public class NewEnum extends AbstractAction {
 		} else
 			MessageDialog.showMessage("Item nije selektovan!");
 		
-		NewPackageWindow.getInstance().dispose();
+		NewEnumWindow.getInstance().dispose();
 	}
 	
 }

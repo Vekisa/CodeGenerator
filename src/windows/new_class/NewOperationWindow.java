@@ -34,15 +34,19 @@ public class NewOperationWindow extends JDialog {
 	private DefaultTableModel modelTable;
 	private JTable table;
 	
-	@SuppressWarnings("deprecation")
 	public static NewOperationWindow getInstance () {
 	    if (NewOperationWindow.instance == null) {
 	    	NewOperationWindow.instance = new NewOperationWindow();
 	    }
-	    NewOperationWindow.instance.show();
+	    
 	    return NewOperationWindow.instance;
 	}
 
+	@SuppressWarnings("deprecation")
+	public void showme() {
+		NewOperationWindow.instance.show();
+	}
+	
 	public NewOperationWindow() {
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -87,10 +91,10 @@ public class NewOperationWindow extends JDialog {
 		top.add(methodName);
 		top.add(virtual);
 		top.add(scrollPane);
-		top.add(addParameter);
-		this.setVisible(true);	
+		top.add(addParameter);	
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
+		this.setVisible(true);
 	}
 	
 	public void setMethodName(String methodName) {

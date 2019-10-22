@@ -71,10 +71,9 @@ public class NewParameterWindow extends JDialog {
 		top.add(virtual);
 		top.add(getters);
 		top.add(setters);
-		this.setVisible(true);
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
-		
+		this.setVisible(true);
 		
 	}
 	public JTextField getParameterName() {
