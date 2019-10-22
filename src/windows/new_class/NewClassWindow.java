@@ -51,77 +51,73 @@ public class NewClassWindow extends JDialog {
 	private JCheckBox defaultConstructor;
 	private JCheckBox getters;
 	private JCheckBox setters;
-	private String[] columnNames = {"Name",
-            "Type",
-            "Static",
-            "Virtual",
-            "Getter",
-            "Setter"};
+	private String[] columnNames = { "Name", "Type", "Static", "Virtual", "Getter", "Setter" };
 	private JComboBox<String> combo;
-	
+
 	public String[] getColumnNames() {
 		return columnNames;
 	}
 
 	@SuppressWarnings("deprecation")
-	public static NewClassWindow getInstance () {
-	    if (NewClassWindow.instance == null) {
-	    	NewClassWindow.instance = new NewClassWindow();
-	    }
-	    NewClassWindow.instance.show();
-	    return NewClassWindow.instance;
+	public static NewClassWindow getInstance() {
+		if (NewClassWindow.instance == null) {
+			NewClassWindow.instance = new NewClassWindow();
+		}
+		NewClassWindow.instance.show();
+		return NewClassWindow.instance;
 	}
-	
+
 	public NewClassWindow() {
 		Box box = Box.createVerticalBox();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(new Dimension(770, 550));
 		this.pack();
-		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		this.setTitle("Class");
-		
-		//name panel
+
+		// name panel
 		JPanel namePane = new JPanel();
 		namePane.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JLabel classNameLabel = new JLabel("Name: ");
 		classNameField = new JTextField();
-		Dimension fieldDimension = new Dimension(200,25);
+		Dimension fieldDimension = new Dimension(200, 25);
 		classNameField.setPreferredSize(fieldDimension);
-		
-		String[] list = {"extends", "implement"};
+
+		String[] list = { "extends", "implement" };
 		combo = new JComboBox<String>(list);
 		combo.addItemListener(new ItemListener() {
-			
+
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				if(combo.getSelectedIndex() == 0)
+				if (combo.getSelectedIndex() == 0)
 					classList.setModel(modelExtends);
 				else
-					classList.setModel(modelImplements);;
+					classList.setModel(modelImplements);
+				;
 			}
 		});
-		
+
 		modelExtends = new DefaultListModel<>();
 		modelImplements = new DefaultListModel<>();
-		
+
 		classList = new JList<String>(modelExtends);
 		classList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		classList.setLayoutOrientation(JList.VERTICAL);
 		classList.setVisibleRowCount(-1);
-		
+
 		JScrollPane listScroller = new JScrollPane(classList);
 		listScroller.setPreferredSize(new Dimension(150, 80));
-		
+
 		JButton addNewClass = new JButton(new NewClassExtendsOW());
-		
+
 		namePane.add(classNameLabel);
 		namePane.add(classNameField);
 		namePane.add(combo);
 		namePane.add(listScroller);
 		namePane.add(addNewClass);
-		
-		//parameters panel
+
+		// parameters panel
 		JPanel parametersPanel = new JPanel();
 		parametersPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		parametersPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -131,28 +127,28 @@ public class NewClassWindow extends JDialog {
 		parametersPanel.add(defaultConstructor);
 		parametersPanel.add(getters);
 		parametersPanel.add(setters);
-		
-		//attributes panel
+
+		// attributes panel
 		JPanel attributesPanel = new JPanel();
-		attributesPanel.setLayout(new BorderLayout());		
-		Object[] data = {"Name","Type","Static","Virtual","Getters","Setters"};
+		attributesPanel.setLayout(new BorderLayout());
+		Object[] data = { "Name", "Type", "Static", "Virtual", "Getters", "Setters" };
 		modelTable = new DefaultTableModel(data, 7);
-		table = new JTable( modelTable);
+		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBackground(new Color(55,55,55));
+		scrollPane.setBackground(new Color(55, 55, 55));
 		table.setFillsViewportHeight(false);
 		attributesPanel.add(scrollPane, BorderLayout.SOUTH);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewAttribute = new JButton(new NewAttributeOW());
 		buttonPanel.add(addNewAttribute);
-		attributesPanel.add(buttonPanel,BorderLayout.NORTH);
-		
-		//operations panel
+		attributesPanel.add(buttonPanel, BorderLayout.NORTH);
+
+		// operations panel
 		JPanel operationsPanel = new JPanel();
 		operationsPanel.setLayout(new BorderLayout());
-		Object[] data2 = {"Static", "Return Value", "Name", "Virtual", "Parameters"};
+		Object[] data2 = { "Static", "Return Value", "Name", "Virtual", "Parameters" };
 		modelTable2 = new DefaultTableModel(data2, 7);
 		table2 = new JTable(modelTable2);
 		table2.setPreferredScrollableViewportSize(table2.getPreferredSize());
@@ -163,16 +159,16 @@ public class NewClassWindow extends JDialog {
 		buttonPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewOperation = new JButton(new NewOperationOW());
 		buttonPanel2.add(addNewOperation);
-		operationsPanel.add(buttonPanel2,BorderLayout.NORTH);
-		
-		//buttons panel
+		operationsPanel.add(buttonPanel2, BorderLayout.NORTH);
+
+		// buttons panel
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		JButton cancel = new JButton("Cancel");
 		JButton ok = new JButton(new NewClass());
 		buttonsPanel.add(ok);
 		buttonsPanel.add(cancel);
-		
+
 		box.add(namePane);
 		box.add(parametersPanel);
 		box.add(attributesPanel);
@@ -181,13 +177,13 @@ public class NewClassWindow extends JDialog {
 		this.add(box);
 		this.setVisible(true);
 	}
-		
+
 	public void addItem(String s) {
-		if(combo.getSelectedIndex() == 0)
+		if (combo.getSelectedIndex() == 0)
 			modelExtends.addElement(s);
-		else 
+		else
 			modelImplements.addElement(s);
-		
+
 		System.out.println("IMPL: " + modelImplements.getSize());
 		System.out.println("EXT: " + modelExtends.getSize());
 	}
@@ -212,10 +208,12 @@ public class NewClassWindow extends JDialog {
 		modelTable = (DefaultTableModel) table.getModel();
 		modelTable.setRowCount(0);
 	}
+
 	public void addingRowTableAttributes(Object[] data) {
 		this.modelTable = (DefaultTableModel) this.table.getModel();
 		modelTable.insertRow(0, data);
 	}
+
 	public void addingRowTableOperations(Object[] data) {
 		this.modelTable2 = (DefaultTableModel) this.table2.getModel();
 		modelTable2.insertRow(0, data);
@@ -228,7 +226,7 @@ public class NewClassWindow extends JDialog {
 	public void setClassNameField(JTextField classNameField) {
 		this.classNameField = classNameField;
 	}
-	
+
 	public JCheckBox getDefaultConstructor() {
 		return defaultConstructor;
 	}
@@ -252,28 +250,28 @@ public class NewClassWindow extends JDialog {
 	public void setSetters(JCheckBox setters) {
 		this.setters = setters;
 	}
-	
+
 	public ArrayList<String> getClassList() {
 		ArrayList<String> list = new ArrayList<String>(modelExtends.getSize());
-		for(int i = 0; i < modelExtends.getSize(); i++) {
+		for (int i = 0; i < modelExtends.getSize(); i++) {
 			list.add(modelExtends.getElementAt(i));
 		}
 		return list;
 	}
-	
+
 	public ArrayList<String> getInterfaceList() {
 		ArrayList<String> list = new ArrayList<String>(modelImplements.getSize());
-		for(int i = 0; i < modelImplements.getSize(); i++) {
+		for (int i = 0; i < modelImplements.getSize(); i++) {
 			list.add(modelImplements.getElementAt(i));
 		}
 		return list;
 	}
-	
-	public ArrayList<model.Attribute> getTableAttributes(){
+
+	public ArrayList<model.Attribute> getTableAttributes() {
 		ArrayList<model.Attribute> list = new ArrayList<model.Attribute>();
 		model.Attribute atribut = null;
 		System.out.println("radi ulaz u atribut");
-		for(int i = 0; i < table.getModel().getRowCount(); i++) {
+		for (int i = 0; i < table.getModel().getRowCount(); i++) {
 			atribut = new model.Attribute();
 			System.out.println("radi i for");
 			atribut.setName(table.getModel().getValueAt(i, 0).toString());
@@ -287,21 +285,20 @@ public class NewClassWindow extends JDialog {
 		System.out.println(list);
 		return list;
 	}
-	
-	public ArrayList<model.Operation> getTableOperations(){
+
+	public ArrayList<model.Operation> getTableOperations() {
 		ArrayList<model.Operation> list = new ArrayList<model.Operation>();
 		model.Operation operation = null;
 		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
 		model.Attribute parametar = null;
-		System.out.println("BBB " + NewOperationWindow.getInstance().getTable().getModel().getRowCount());
 		for(int i = 0; i < table2.getModel().getRowCount(); i++) {
 			operation = new model.Operation();
 			operation.setStatic(table2.getModel().getValueAt(i, 0).toString());
 			operation.setReturnValue(table2.getModel().getValueAt(i, 1).toString());
 			operation.setName(table2.getModel().getValueAt(i, 2).toString());
 			operation.setVirtual(table2.getModel().getValueAt(i, 3).toString());
-			System.out.println("AAA " + NewOperationWindow.getInstance().getTable().getModel().getRowCount() );
 			for(int j = 0; j < NewOperationWindow.getInstance().getTable().getModel().getRowCount(); j++ ) {
+
 				parametar = new model.Attribute();
 				parametar.setType(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 0).toString());
 				parametar.setName(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 1).toString());
@@ -318,23 +315,3 @@ public class NewClassWindow extends JDialog {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

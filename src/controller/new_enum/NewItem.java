@@ -3,8 +3,6 @@ package controller.new_enum;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-
-import windows.Configuration;
 import windows.new_enum.NewEnumWindow;
 import windows.new_enum.NewItemWindow;
 

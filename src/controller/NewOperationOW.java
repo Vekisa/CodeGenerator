@@ -22,6 +22,8 @@ public class NewOperationOW extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		NewOperationWindow.getInstance();
+		NewOperationWindow.getInstance().setTable();
+		NewOperationWindow.getInstance().showme();
 	}
 
 }

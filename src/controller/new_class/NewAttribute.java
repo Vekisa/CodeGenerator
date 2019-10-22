@@ -34,7 +34,7 @@ public class NewAttribute extends AbstractAction {
 		NewAttributeWindow.getInstance().setGetters(false);
 		NewAttributeWindow.getInstance().setSetters(false);
 		
-		NewAttributeWindow.getInstance().setVisible(false);
+		NewAttributeWindow.getInstance().dispose();
 		
 	}
 	
