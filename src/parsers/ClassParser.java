@@ -15,7 +15,7 @@ public class ClassParser {
 				parsed += " implements ";
 				for(String interfacePom : classPom.getImplementsInterfaces())
 					if(classPom.getImplementsInterfaces().indexOf(interfacePom) == classPom.getImplementsInterfaces().size() - 1)
-						parsed += interfacePom + " {\n";
+						parsed += interfacePom + " {\n\n";
 					else
 						parsed += interfacePom + ", ";
 			}
@@ -32,35 +32,36 @@ public class ClassParser {
 					parsed += "const ";
 				parsed += attribute.getType() + " " + attribute.getName() + ";\n";
 			}
+			parsed += "\n";
 		}
 		
 		if(classPom.isDefaultConstructor())
-			parsed += "\n\t public " + classPom.getClassName() + "() { \n\t }";
+			parsed += "\t public " + classPom.getClassName() + "() { \n\t }\n\n";
 		
 		if(!classPom.getOperations().isEmpty()) {
 			for(Operation operation : classPom.getOperations()) {
-				parsed += "\n\t " + operation.getReturnValue() + " " + operation.getName() + "(";
+				parsed += "\t " + operation.getReturnValue() + " " + operation.getName() + "(";
 				for(Attribute attribute : operation.getParameters()) {
 					if(operation.getParameters().indexOf(attribute) == operation.getParameters().size() - 1)
 						parsed += " " + attribute.getType() + " " + attribute.getName() + " ";
 					else
 						parsed += " " + attribute.getType() + " " + attribute.getName() + ",";
 				}
-				parsed += "){\n\t}\n";
+				parsed += "){\n\t}\n\n";
 			}
 		}
 		
 		for(Attribute attribute : classPom.getAttributes()) {
 			if(attribute.isGetter()) 
 				parsed += "\tpublic " + attribute.getType() + " get" + attribute.getName() +
-					"() return this." + attribute.getName() + ";\n\t}\n";
+					"() { return this." + attribute.getName() + "; }\n\n";
 			if(attribute.isSetter())
-				parsed += "\tpublic void set" + attribute.getName() + "(" + attribute.getType() +
-					" " + attribute.getName() + "){\n\t this." + attribute.getName() + " = " + attribute.getName() + ";\n\t}\n";
+				parsed += "\n\tpublic void set" + attribute.getName() + "(" + attribute.getType() +
+					" " + attribute.getName() + "){ this." + attribute.getName() + " = " + attribute.getName() + "; }\n\n";
 		}
 		
 		
-		parsed += "\n}";
+		parsed += "}";
 		return parsed;
 	}
 
