@@ -68,24 +68,25 @@ public class Class extends Item implements java.io.Serializable {
 		return defaultConstructor;
 	}
 
-	public void setDefaultConstructor(String s) {
-		this.defaultConstructor = Boolean.parseBoolean(s);
+	public void setDefaultConstructor(boolean defaultConstructor) {
+		this.defaultConstructor = defaultConstructor;
 	}
 
 	public boolean isGetters() {
 		return getters;
 	}
 
-	public void setGetters(String s) {
-		this.getters = Boolean.getBoolean(s);
-	}
-
 	public boolean isSetters() {
 		return setters;
 	}
 
-	public void setSetters(String s) {
-		this.setters = Boolean.parseBoolean(s);
+	public void setGetters(boolean getters) {
+		this.getters = getters;
 	}
+
+	public void setSetters(boolean setters) {
+		this.setters = setters;
+	}
+
 	
 }

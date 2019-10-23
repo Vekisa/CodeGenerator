@@ -28,9 +28,9 @@ public class NewClass extends AbstractAction {
 		newClass.setImplementsInterfaces(NewClassWindow.getInstance().getInterfaceList());
 		newClass.setAttributes(NewClassWindow.getInstance().getTableAttributes());
 		newClass.setOperations(NewClassWindow.getInstance().getTableOperations());
-		newClass.setDefaultConstructor(NewClassWindow.getInstance().getDefaultConstructor().toString());
-		newClass.setSetters(NewClassWindow.getInstance().getSetters().toString());
-		newClass.setGetters(NewClassWindow.getInstance().getGetters().toString());
+		newClass.setDefaultConstructor(NewClassWindow.getInstance().getDefaultConstructor().isSelected());
+		newClass.setSetters(NewClassWindow.getInstance().getSetters().isSelected());
+		newClass.setGetters(NewClassWindow.getInstance().getGetters().isSelected());
 		
 		DefaultMutableTreeNode selectedNode = MainWindow.getInstance().getNavigationBar().getSelectedNode();
 		if(selectedNode != null) {
