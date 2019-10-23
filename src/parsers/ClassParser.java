@@ -25,7 +25,7 @@ public class ClassParser {
 		
 		if(!classPom.getAttributes().isEmpty()) {
 			for(Attribute attribute: classPom.getAttributes()) {
-				parsed += "\t ";
+				parsed += "\t";
 				if(attribute.isStatic())
 					parsed += "static ";
 				if(attribute.isConst())
@@ -56,7 +56,7 @@ public class ClassParser {
 				parsed += "\tpublic " + attribute.getType() + " get" + attribute.getName() +
 					"() { return this." + attribute.getName() + "; }\n\n";
 			if(attribute.isSetter())
-				parsed += "\n\tpublic void set" + attribute.getName() + "(" + attribute.getType() +
+				parsed += "\tpublic void set" + attribute.getName() + "(" + attribute.getType() +
 					" " + attribute.getName() + "){ this." + attribute.getName() + " = " + attribute.getName() + "; }\n\n";
 		}
 		
