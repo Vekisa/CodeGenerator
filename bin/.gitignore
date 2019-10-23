@@ -1,8 +1,13 @@
-/model/
-/parsers/
-/windows/
+/class.png
 /controller/
 /enum.png
+/folder.png
 /interface.png
+/model/
+/package.png
+/parsers/
+/project.png
 /save.png
 /serialization/
+/windows/
+/Main.class

@@ -87,5 +87,6 @@ public class Class extends Item implements java.io.Serializable {
 	public void setSetters(boolean setters) {
 		this.setters = setters;
 	}
+
 	
 }
