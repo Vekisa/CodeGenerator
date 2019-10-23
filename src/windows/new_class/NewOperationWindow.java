@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
-import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -17,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import controller.NewParameterOW;
 import controller.new_class.NewOperation;
