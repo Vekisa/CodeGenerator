@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.lang.reflect.Parameter;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,9 +17,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import controller.NewParameterOW;
-import controller.new_class.NewAttribute;
 import controller.new_class.NewOperation;
 
 public class NewOperationWindow extends JDialog {
@@ -33,6 +35,7 @@ public class NewOperationWindow extends JDialog {
 	private JCheckBox virtual;
 	private DefaultTableModel modelTable;
 	private JTable table;
+	Object[] data = {"Type", "Name", "Static", "Virtual", "Getters", "Setters"};
 	
 	public static NewOperationWindow getInstance () {
 	    if (NewOperationWindow.instance == null) {
@@ -68,8 +71,7 @@ public class NewOperationWindow extends JDialog {
 		staticBox = new JCheckBox("Static");
 		virtual = new JCheckBox("Virtual");
 		
-		//parameters table
-		Object[] data = {"Type", "Name", "Static", "Virtual", "Getters", "Setters"};
+		//parameters table	
 		modelTable = new DefaultTableModel(data, 4);
 		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
@@ -95,6 +97,12 @@ public class NewOperationWindow extends JDialog {
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
 		this.setVisible(true);
+	}
+	
+	public void reset() {
+		modelTable = new DefaultTableModel(data, 4);
+		table = new JTable();
+		table.setModel(modelTable);
 	}
 	
 	public void setMethodName(String methodName) {
@@ -166,6 +174,23 @@ public class NewOperationWindow extends JDialog {
 		}
 		
 		return s;
+	}
+	
+	public ArrayList<model.Attribute> tableToArray() {
+		model.Attribute parametar = null;
+		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
+		for(int j = 0; j < table.getModel().getRowCount(); j++ ) {
+			parametar = new model.Attribute();
+			parametar.setType(table.getModel().getValueAt(j, 0).toString());
+			parametar.setName(table.getModel().getValueAt(j, 1).toString());
+			parametar.setIsStatic(table.getModel().getValueAt(j, 2).toString());
+			parametar.setConst(table.getModel().getValueAt(j, 3).toString());
+			parametar.setGetter(table.getModel().getValueAt(j, 4).toString());
+			parametar.setSetter(table.getModel().getValueAt(j, 5).toString());
+			parameters.add((model.Attribute) parametar);
+		}
+		
+		return parameters;
 	}
 	
 	public void addingRowTable(Object[] data) {

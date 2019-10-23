@@ -25,7 +25,7 @@ public class NewOperation extends AbstractAction{
 			,NewOperationWindow.getInstance().getCombo().getSelectedItem().toString()
 			,NewOperationWindow.getInstance().getMethodName().getText()
 			,NewOperationWindow.getInstance().getVirtual().isSelected()
-			,NewOperationWindow.getInstance().tableToString()};
+			,NewOperationWindow.getInstance().tableToArray()};
 		
 		NewClassWindow.getInstance().addingRowTableOperations(data);
 		NewOperationWindow.getInstance().getMethodName().setText("");

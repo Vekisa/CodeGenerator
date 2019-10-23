@@ -289,25 +289,16 @@ public class NewClassWindow extends JDialog {
 	public ArrayList<model.Operation> getTableOperations() {
 		ArrayList<model.Operation> list = new ArrayList<model.Operation>();
 		model.Operation operation = null;
-		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
-		model.Attribute parametar = null;
 		for(int i = 0; i < table2.getModel().getRowCount(); i++) {
 			operation = new model.Operation();
 			operation.setStatic(table2.getModel().getValueAt(i, 0).toString());
 			operation.setReturnValue(table2.getModel().getValueAt(i, 1).toString());
 			operation.setName(table2.getModel().getValueAt(i, 2).toString());
 			operation.setVirtual(table2.getModel().getValueAt(i, 3).toString());
-			for(int j = 0; j < NewOperationWindow.getInstance().getTable().getModel().getRowCount(); j++ ) {
-				parametar = new model.Attribute();
-				parametar.setType(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 0).toString());
-				parametar.setName(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 1).toString());
-				parametar.setIsStatic(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 2).toString());
-				parametar.setConst(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 3).toString());
-				parametar.setGetter(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 4).toString());
-				parametar.setSetter(NewOperationWindow.getInstance().getTable().getModel().getValueAt(j, 5).toString());
-				parameters.add((model.Attribute) parametar);
-			}
-			operation.setParameters(parameters);
+			Object o = table2.getModel().getValueAt(i, 4);
+			@SuppressWarnings("unchecked")
+			ArrayList<model.Attribute> att = (ArrayList<model.Attribute>)o;
+			operation.setParameters(att);
 			list.add((model.Operation) operation);
 		}
 		return list;
