@@ -3,10 +3,11 @@ package windows.main;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
-import controller.NewClassOW;
-import controller.NewEnumOW;
-import controller.NewPackageOW;
-import controller.NewProjectOW;
+import controller.ow.NewClassOW;
+import controller.ow.NewEnumOW;
+import controller.ow.NewInterfaceOW;
+import controller.ow.NewPackageOW;
+import controller.ow.NewProjectOW;
 import windows.InternalConfiguration;
 
 public class ToolBar extends JToolBar {
@@ -28,6 +29,9 @@ public class ToolBar extends JToolBar {
 		
 		JButton newClassBtn = new JButton(new NewClassOW());
 		newClassBtn.setHideActionText(true);
+		
+		JButton newInterfaceBtn = new JButton(new NewInterfaceOW());
+		newInterfaceBtn.setHideActionText(true);
 	
 		JButton newEnumBtn = new JButton(new NewEnumOW());
 		newEnumBtn.setHideActionText(true);
@@ -35,6 +39,7 @@ public class ToolBar extends JToolBar {
 		this.add(newProjectBtn);
 		this.add(newPackageBtn);
 		this.add(newClassBtn);
+		this.add(newInterfaceBtn);
 		this.add(newEnumBtn);
 		
 	}
