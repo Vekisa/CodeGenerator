@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.DefaultListModel;
@@ -16,7 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.Border;
+
+import windows.main.MainWindow;
 
 public class PersonalizationWindow extends JDialog {
 
@@ -57,8 +60,9 @@ public class PersonalizationWindow extends JDialog {
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		
 		JLabel classesLabel = new JLabel("Classes");
-		DefaultListModel<String> extendsModel = new DefaultListModel<>();
-		JList<String> predefinedClasses = new JList<String>(extendsModel);
+		if(MainWindow.getInstance().getConfiguration().getExtendsModel() == null)
+			MainWindow.getInstance().getConfiguration().setExtendsModel(new DefaultListModel<String>());
+		JList<String> predefinedClasses = new JList<String>(MainWindow.getInstance().getConfiguration().getExtendsModel());
 		predefinedClasses.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		predefinedClasses.setLayoutOrientation(JList.VERTICAL);
 		predefinedClasses.setVisibleRowCount(-1);
@@ -69,14 +73,37 @@ public class PersonalizationWindow extends JDialog {
 		JTextField className = new JTextField();
 		className.setPreferredSize(new Dimension(200,25));
 		JButton removeClass = new JButton("Remove");
+		removeClass.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(predefinedClasses.getSelectedIndex() != -1)
+					MainWindow.getInstance().getConfiguration().getExtendsModel()
+						.remove(predefinedClasses.getSelectedIndex());
+				
+			}
+		});
 		JButton addClass = new JButton("Add");
+		addClass.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(className.getText() != "" && className.getText() != null && className.getText().length() > 0) {				
+					MainWindow.getInstance().getConfiguration().getExtendsModel()
+						.addElement(className.getText());
+					className.setText("");
+				}
+			}
+		});
+		
 		addPanel.add(className,BorderLayout.NORTH);
 		addPanel.add(addClass,BorderLayout.CENTER);
 		addPanel.add(removeClass,BorderLayout.SOUTH);
 		
 		JLabel interfacesLabel = new JLabel("Interfaces");
-		DefaultListModel<String> implementsModel = new DefaultListModel<>();
-		JList<String> predefinedInterfaces = new JList<String>(implementsModel);
+		if(MainWindow.getInstance().getConfiguration().getImplementsModel() == null)
+			MainWindow.getInstance().getConfiguration().setImplementsModel(new DefaultListModel<String>());
+		JList<String> predefinedInterfaces = new JList<String>(MainWindow.getInstance().getConfiguration().getImplementsModel());
 		predefinedInterfaces.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		predefinedInterfaces.setLayoutOrientation(JList.VERTICAL);
 		predefinedInterfaces.setVisibleRowCount(-1);
@@ -87,7 +114,29 @@ public class PersonalizationWindow extends JDialog {
 		JTextField interfaceName = new JTextField();
 		interfaceName.setPreferredSize(new Dimension(200,25));
 		JButton removeInterface = new JButton("Remove");
+		removeInterface.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(predefinedInterfaces.getSelectedIndex() != -1)
+					MainWindow.getInstance().getConfiguration().getImplementsModel()
+						.remove(predefinedInterfaces.getSelectedIndex());
+				
+			}
+		});
 		JButton addInterface = new JButton("Add");
+		addInterface.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(interfaceName.getText() != "" && interfaceName.getText() != null && interfaceName.getText().length() > 0) {
+					MainWindow.getInstance().getConfiguration().getImplementsModel()
+						.addElement(interfaceName.getText());
+					interfaceName.setText("");
+				}
+			}
+		});
+		
 		addPanelInterface.add(interfaceName,BorderLayout.NORTH);
 		addPanelInterface.add(addInterface,BorderLayout.CENTER);
 		addPanelInterface.add(removeInterface,BorderLayout.SOUTH);
