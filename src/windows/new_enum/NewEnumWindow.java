@@ -100,7 +100,6 @@ public class NewEnumWindow extends JDialog {
 		top.add(buttonPanel);
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
-			
 				
 	}
 	

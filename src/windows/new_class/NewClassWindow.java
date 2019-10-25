@@ -308,7 +308,7 @@ public class NewClassWindow extends JDialog {
 			operation.setReturnValue(modelTable2.getValueAt(i, table2.getColumn("Return Value").getModelIndex()).toString());
 			operation.setName(modelTable2.getValueAt(i, table2.getColumn("Name").getModelIndex()).toString());
 			operation.setVirtual(modelTable2.getValueAt(i, table2.getColumn("Virtual").getModelIndex()).toString());
-			Object o = modelTable2.getValueAt(i, table2.getColumn("Parameters").getModelIndex());
+			Object o = modelTable2.getValueAt(i, table2.getColumn("HiddenParameters").getModelIndex());
 			@SuppressWarnings("unchecked")
 			ArrayList<model.Attribute> att = (ArrayList<model.Attribute>)o;
 			operation.setParameters(att);
