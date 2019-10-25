@@ -26,6 +26,7 @@ public class ClassParser {
 		if(!classPom.getAttributes().isEmpty()) {
 			for(Attribute attribute: classPom.getAttributes()) {
 				parsed += "\t";
+				parsed += attribute.getAcsModifier() + " ";
 				if(attribute.isStatic())
 					parsed += "static ";
 				if(attribute.isConst())
@@ -40,7 +41,7 @@ public class ClassParser {
 		
 		if(!classPom.getOperations().isEmpty()) {
 			for(Operation operation : classPom.getOperations()) {
-				parsed += "\t " + operation.getReturnValue() + " " + operation.getName() + "(";
+				parsed += "\t " + operation.getAcsModifier() + " " + operation.getReturnValue() + " " + operation.getName() + "(";
 				for(Attribute attribute : operation.getParameters()) {
 					if(operation.getParameters().indexOf(attribute) == operation.getParameters().size() - 1)
 						parsed += " " + attribute.getType() + " " + attribute.getName() + " ";

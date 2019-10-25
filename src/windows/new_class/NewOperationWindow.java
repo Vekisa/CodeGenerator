@@ -27,6 +27,7 @@ public class NewOperationWindow extends JDialog {
 	 */
 	private static final long serialVersionUID = 6886496950805053857L;
 	private static NewOperationWindow instance;
+	private JComboBox<String> acsModifier;
 	private JTextField methodName;
 	private JComboBox<String> combo;
 	private JCheckBox staticBox;
@@ -65,6 +66,8 @@ public class NewOperationWindow extends JDialog {
 		Dimension fieldDimension = new Dimension(100,25);
 		methodName.setPreferredSize(fieldDimension);
 		String[] list = {"void", "int", "String", "boolean", "double", "char", "float", "Object"};
+		String[] list2 = {"public", "private", "protected"};
+		acsModifier = new JComboBox<String>(list2);
 		combo = new JComboBox<String>(list);
 		staticBox = new JCheckBox("Static");
 		virtual = new JCheckBox("Virtual");
@@ -86,6 +89,7 @@ public class NewOperationWindow extends JDialog {
 		ccBtnPanel.add(createButton);
 		ccBtnPanel.add(cancelButton);
 		
+		top.add(acsModifier);
 		top.add(staticBox);
 		top.add(combo);
 		top.add(methodName);
@@ -179,12 +183,12 @@ public class NewOperationWindow extends JDialog {
 		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
 		for(int j = 0; j < table.getModel().getRowCount(); j++ ) {
 			parametar = new model.Attribute();
-			parametar.setType(table.getModel().getValueAt(j, 0).toString());
-			parametar.setName(table.getModel().getValueAt(j, 1).toString());
-			parametar.setIsStatic(table.getModel().getValueAt(j, 2).toString());
-			parametar.setConst(table.getModel().getValueAt(j, 3).toString());
-			parametar.setGetter(table.getModel().getValueAt(j, 4).toString());
-			parametar.setSetter(table.getModel().getValueAt(j, 5).toString());
+			parametar.setType(table.getModel().getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
+			parametar.setName(table.getModel().getValueAt(j, table.getColumn("Name").getModelIndex()).toString());
+			parametar.setIsStatic(table.getModel().getValueAt(j, table.getColumn("Static").getModelIndex()).toString());
+			parametar.setConst(table.getModel().getValueAt(j, table.getColumn("Virtual").getModelIndex()).toString());
+			parametar.setGetter(table.getModel().getValueAt(j, table.getColumn("Getters").getModelIndex()).toString());
+			parametar.setSetter(table.getModel().getValueAt(j, table.getColumn("Setters").getModelIndex()).toString());
 			parameters.add((model.Attribute) parametar);
 		}
 		
@@ -194,5 +198,13 @@ public class NewOperationWindow extends JDialog {
 	public void addingRowTable(Object[] data) {
 		this.modelTable = (DefaultTableModel) this.table.getModel();
 		modelTable.insertRow(0, data);
+	}
+
+	public JComboBox<String> getAcsModifier() {
+		return acsModifier;
+	}
+
+	public void setAcsModifier(JComboBox<String> acsModifier) {
+		this.acsModifier = acsModifier;
 	}
 }

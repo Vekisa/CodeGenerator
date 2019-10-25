@@ -5,6 +5,7 @@ public class Attribute implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -85841148375169837L;
+	private String acsModifier;
 	private String name;
 	private String type;
 	private boolean isStatic;
@@ -62,6 +63,14 @@ public class Attribute implements java.io.Serializable {
 
 	public void setSetter(String s) {
 		this.setter = Boolean.parseBoolean(s);
+	}
+
+	public String getAcsModifier() {
+		return acsModifier;
+	}
+
+	public void setAcsModifiers(String visibility) {
+		this.acsModifier = visibility;
 	}
 	
 }

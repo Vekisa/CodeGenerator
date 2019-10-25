@@ -21,11 +21,13 @@ public class NewOperation extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Object[] data = 
-			{NewOperationWindow.getInstance().getStaticBox().isSelected()
+			{NewOperationWindow.getInstance().getAcsModifier().getSelectedItem().toString()
+			,NewOperationWindow.getInstance().getStaticBox().isSelected()
 			,NewOperationWindow.getInstance().getCombo().getSelectedItem().toString()
 			,NewOperationWindow.getInstance().getMethodName().getText()
 			,NewOperationWindow.getInstance().getVirtual().isSelected()
-			,NewOperationWindow.getInstance().tableToArray()};
+			,NewOperationWindow.getInstance().tableToArray()
+			,NewOperationWindow.getInstance().tableToString()};
 		
 		NewClassWindow.getInstance().addingRowTableOperations(data);
 		NewOperationWindow.getInstance().getMethodName().setText("");

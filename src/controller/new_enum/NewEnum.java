@@ -1,12 +1,10 @@
 package controller.new_enum;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import model.Item;
-import windows.InternalConfiguration;
 import windows.main.MainWindow;
 import windows.message.MessageDialog;
 import windows.new_enum.NewEnumWindow;

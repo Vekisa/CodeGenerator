@@ -50,6 +50,8 @@ public class NewClassWindow extends JDialog {
 	private JCheckBox setters;
 	private String[] columnNames = { "Name", "Type", "Static", "Virtual", "Getter", "Setter" };
 	private JComboBox<String> combo;
+	private int row;
+	private int col;
 
 	public String[] getColumnNames() {
 		return columnNames;
@@ -128,7 +130,7 @@ public class NewClassWindow extends JDialog {
 		// attributes panel
 		JPanel attributesPanel = new JPanel();
 		attributesPanel.setLayout(new BorderLayout());
-		Object[] data = { "Name", "Type", "Static", "Virtual", "Getters", "Setters" };
+		Object[] data = { "AcsModifier", "Name", "Type", "Static", "Const", "Getters", "Setters" };
 		modelTable = new DefaultTableModel(data, 7);
 		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
@@ -145,7 +147,7 @@ public class NewClassWindow extends JDialog {
 		// operations panel
 		JPanel operationsPanel = new JPanel();
 		operationsPanel.setLayout(new BorderLayout());
-		Object[] data2 = { "Static", "Return Value", "Name", "Virtual", "Parameters" };
+		Object[] data2 = { "AcsModifier", "Static", "Return Value", "Name", "Virtual", "Parameters", "ShowParametere" };
 		modelTable2 = new DefaultTableModel(data2, 7);
 		table2 = new JTable(modelTable2);
 		table2.setPreferredScrollableViewportSize(table2.getPreferredSize());
@@ -173,6 +175,15 @@ public class NewClassWindow extends JDialog {
 		box.add(buttonsPanel);
 		this.add(box);
 		this.setVisible(true);
+		table2.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				row = table2.rowAtPoint(evt.getPoint());
+				col = table2.columnAtPoint(evt.getPoint());
+				if(row >= 0 && col >= 0) {
+					new NewShowTableWindow();
+				}
+			}
+		});
 	}
 
 	public void addItem(String s) {
@@ -271,12 +282,13 @@ public class NewClassWindow extends JDialog {
 		for (int i = 0; i < table.getModel().getRowCount(); i++) {
 			atribut = new model.Attribute();
 			System.out.println("radi i for");
-			atribut.setName(table.getModel().getValueAt(i, 0).toString());
-			atribut.setType(table.getModel().getValueAt(i, 1).toString());
-			atribut.setIsStatic(table.getModel().getValueAt(i, 2).toString());
-			atribut.setConst(table.getModel().getValueAt(i, 3).toString());
-			atribut.setGetter(table.getModel().getValueAt(i, 4).toString());
-			atribut.setSetter(table.getModel().getValueAt(i, 5).toString());
+			atribut.setAcsModifiers(modelTable.getValueAt(i, table.getColumn("AcsModifier").getModelIndex()).toString());
+			atribut.setName(modelTable.getValueAt(i, table.getColumn("Name").getModelIndex()).toString());
+			atribut.setType(modelTable.getValueAt(i, table.getColumn("Type").getModelIndex()).toString());
+			atribut.setIsStatic(modelTable.getValueAt(i, table.getColumn("Static").getModelIndex()).toString());
+			atribut.setConst(modelTable.getValueAt(i, table.getColumn("Const").getModelIndex()).toString());
+			atribut.setGetter(modelTable.getValueAt(i, table.getColumn("Getters").getModelIndex()).toString());
+			atribut.setSetter(modelTable.getValueAt(i, table.getColumn("Setters").getModelIndex()).toString());
 			list.add((model.Attribute) atribut);
 		}
 		System.out.println(list);
@@ -288,11 +300,12 @@ public class NewClassWindow extends JDialog {
 		model.Operation operation = null;
 		for(int i = 0; i < table2.getModel().getRowCount(); i++) {
 			operation = new model.Operation();
-			operation.setStatic(table2.getModel().getValueAt(i, 0).toString());
-			operation.setReturnValue(table2.getModel().getValueAt(i, 1).toString());
-			operation.setName(table2.getModel().getValueAt(i, 2).toString());
-			operation.setVirtual(table2.getModel().getValueAt(i, 3).toString());
-			Object o = table2.getModel().getValueAt(i, 4);
+			operation.setAcsModifier(modelTable2.getValueAt(i, table2.getColumn("AcsModifier").getModelIndex()).toString());
+			operation.setStatic(modelTable2.getValueAt(i, table2.getColumn("Static").getModelIndex()).toString());
+			operation.setReturnValue(modelTable2.getValueAt(i, table2.getColumn("Return Value").getModelIndex()).toString());
+			operation.setName(modelTable2.getValueAt(i, table2.getColumn("Name").getModelIndex()).toString());
+			operation.setVirtual(modelTable2.getValueAt(i, table2.getColumn("Virtual").getModelIndex()).toString());
+			Object o = modelTable2.getValueAt(i, table2.getColumn("Parameters").getModelIndex());
 			@SuppressWarnings("unchecked")
 			ArrayList<model.Attribute> att = (ArrayList<model.Attribute>)o;
 			operation.setParameters(att);
