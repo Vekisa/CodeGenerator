@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 
@@ -51,7 +52,6 @@ public class NewEnumWindow extends JDialog {
 	
 
 	public NewEnumWindow() {
-		Box box = Box.createVerticalBox();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setPreferredSize(new Dimension(770, 500));
 		this.pack();

@@ -21,10 +21,11 @@ public class NewAttributeWindow extends JDialog {
 	 */
 	private static final long serialVersionUID = -8957473323992016134L;
 	private static NewAttributeWindow instance;
+	private JComboBox<String> acsModifier;
 	private JTextField attributeName;
 	private JComboBox<String> combo;
 	private JCheckBox staticBox;
-	private JCheckBox virtual;
+	private JCheckBox isConst;
 	private JCheckBox getters;
 	private JCheckBox setters;
 	
@@ -52,10 +53,12 @@ public class NewAttributeWindow extends JDialog {
 		attributeName.setToolTipText("Name of the attribute");
 		Dimension fieldDimension = new Dimension(100,25);
 		attributeName.setPreferredSize(fieldDimension);
-		String[] list = {"none", "int", "String", "boolean", "double", "char", "float"};
+		String[] list = {"void", "int", "String", "boolean", "double", "char", "float"};
+		String[] list2 = {"public", "private", "protected"};
+		acsModifier = new JComboBox<String>(list2);
 		combo = new JComboBox<String>(list);
 		staticBox = new JCheckBox("Static");
-		virtual = new JCheckBox("Virtual");
+		isConst = new JCheckBox("Const");
 		getters = new JCheckBox("Getters");
 		setters = new JCheckBox("Setters");
 		
@@ -67,10 +70,11 @@ public class NewAttributeWindow extends JDialog {
 		ccBtnPanel.add(createButton);
 		ccBtnPanel.add(cancelButton);
 		
+		top.add(acsModifier);
 		top.add(attributeName);
 		top.add(combo);
 		top.add(staticBox);
-		top.add(virtual);
+		top.add(isConst);
 		top.add(getters);
 		top.add(setters);
 		this.setVisible(true);	
@@ -90,8 +94,8 @@ public class NewAttributeWindow extends JDialog {
 		this.staticBox.setSelected(b);
 	}
 
-	public void setVirtual(boolean b) {
-		this.virtual.setSelected(b);
+	public void setConst(boolean b) {
+		this.isConst.setSelected(b);
 	}
 
 	public void setGetters(boolean b) {
@@ -114,8 +118,8 @@ public class NewAttributeWindow extends JDialog {
 		return staticBox;
 	}
 
-	public JCheckBox getVirtual() {
-		return virtual;
+	public JCheckBox getConst() {
+		return isConst;
 	}
 
 	public JCheckBox getGetters() {
@@ -124,5 +128,13 @@ public class NewAttributeWindow extends JDialog {
 
 	public JCheckBox getSetters() {
 		return setters;
+	}
+
+	public JComboBox<String> getAcsModifier() {
+		return acsModifier;
+	}
+
+	public void setAcsModifier(JComboBox<String> acsModifier) {
+		this.acsModifier = acsModifier;
 	}
 }

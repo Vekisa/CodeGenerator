@@ -7,6 +7,7 @@ public class Operation implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4527410502453255430L;
+	private String acsModifier;
 	private String name;
 	private boolean isStatic;
 	private boolean isVirtual;
@@ -64,6 +65,14 @@ public class Operation implements java.io.Serializable {
 
 	public void setParameters(ArrayList<Attribute> parameters) {
 		this.parameters = parameters;
+	}
+
+	public String getAcsModifier() {
+		return acsModifier;
+	}
+
+	public void setAcsModifier(String acsModifier) {
+		this.acsModifier = acsModifier;
 	}
 	
 }
