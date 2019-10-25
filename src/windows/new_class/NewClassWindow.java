@@ -147,7 +147,7 @@ public class NewClassWindow extends JDialog {
 		// operations panel
 		JPanel operationsPanel = new JPanel();
 		operationsPanel.setLayout(new BorderLayout());
-		Object[] data2 = { "AcsModifier", "Static", "Return Value", "Name", "Virtual", "Parameters", "ShowParametere" };
+		Object[] data2 = { "AcsModifier", "Static", "Return Value", "Name", "Virtual", "HiddenParameters", "Parameters" };
 		modelTable2 = new DefaultTableModel(data2, 7);
 		table2 = new JTable(modelTable2);
 		table2.setPreferredScrollableViewportSize(table2.getPreferredSize());
@@ -159,6 +159,9 @@ public class NewClassWindow extends JDialog {
 		JButton addNewOperation = new JButton(new NewOperationOW());
 		buttonPanel2.add(addNewOperation);
 		operationsPanel.add(buttonPanel2, BorderLayout.NORTH);
+		table2.getColumnModel().getColumn(5).setMinWidth(0);
+		table2.getColumnModel().getColumn(5).setMaxWidth(0);
+		table2.getColumnModel().getColumn(5).setWidth(0);
 
 		// buttons panel
 		JPanel buttonsPanel = new JPanel();
