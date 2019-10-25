@@ -183,7 +183,7 @@ public class NewClassWindow extends JDialog {
 				row = table2.rowAtPoint(evt.getPoint());
 				col = table2.columnAtPoint(evt.getPoint());
 				if(row >= 0 && col >= 0) {
-					new NewShowTableWindow();
+					NewShowTableWindow.getInstance();
 				}
 			}
 		});
@@ -315,6 +315,14 @@ public class NewClassWindow extends JDialog {
 			list.add((model.Operation) operation);
 		}
 		return list;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
 	}
 
 }

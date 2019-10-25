@@ -3,6 +3,7 @@ package windows.personalization;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +40,7 @@ public class PersonalizationWindow extends JDialog {
 
 	public PersonalizationWindow() {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension(700, 700));
+		this.setPreferredSize(new Dimension(700, 500));
 		this.pack();
 		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Personalization");
@@ -51,15 +52,32 @@ public class PersonalizationWindow extends JDialog {
 		JPanel predefinedPanel = new JPanel();
 		predefinedPanel.setLayout(new BorderLayout());
 		JPanel classesPane = new JPanel();
-		classesPane.setLayout(new FlowLayout(FlowLayout.LEFT));
+		classesPane.setLayout(new BorderLayout());
 		JPanel interfacesPane = new JPanel();
-		interfacesPane.setLayout(new FlowLayout(FlowLayout.LEFT));
+		interfacesPane.setLayout(new BorderLayout());
 		predefinedPanel.add(classesPane, BorderLayout.NORTH);
-		predefinedPanel.add(interfacesPane,BorderLayout.SOUTH);
+		predefinedPanel.add(interfacesPane,BorderLayout.CENTER);
 		tabbedPane.addTab("Predefined", null, predefinedPanel, "Something");
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		
+		JPanel topClasses = new JPanel();
+		JPanel bottomClasses = new JPanel();
+		bottomClasses.setLayout(new FlowLayout(FlowLayout.LEFT));
+		classesPane.add(topClasses,BorderLayout.NORTH);
+		classesPane.add(bottomClasses,BorderLayout.CENTER);
 		JLabel classesLabel = new JLabel("Classes");
+		classesLabel.setFont(new Font("Serif", Font.PLAIN, 36));
+		topClasses.add(classesLabel);
+		
+		JPanel topInterfaces = new JPanel();
+		JPanel bottomInterfaces = new JPanel();
+		bottomInterfaces.setLayout(new FlowLayout(FlowLayout.LEFT));
+		interfacesPane.add(topInterfaces,BorderLayout.NORTH);
+		interfacesPane.add(bottomInterfaces,BorderLayout.CENTER);
+		JLabel interfacesLabel = new JLabel("Interfaces");
+		interfacesLabel.setFont(new Font("Serif", Font.PLAIN, 36));
+		topInterfaces.add(interfacesLabel);
+		
 		if(MainWindow.getInstance().getConfiguration().getExtendsModel() == null)
 			MainWindow.getInstance().getConfiguration().setExtendsModel(new DefaultListModel<String>());
 		JList<String> predefinedClasses = new JList<String>(MainWindow.getInstance().getConfiguration().getExtendsModel());
@@ -73,8 +91,7 @@ public class PersonalizationWindow extends JDialog {
 		JTextField className = new JTextField();
 		className.setPreferredSize(new Dimension(200,25));
 		JButton removeClass = new JButton("Remove");
-		removeClass.addActionListener(new ActionListener() {
-			
+		removeClass.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(predefinedClasses.getSelectedIndex() != -1)
@@ -100,7 +117,6 @@ public class PersonalizationWindow extends JDialog {
 		addPanel.add(addClass,BorderLayout.CENTER);
 		addPanel.add(removeClass,BorderLayout.SOUTH);
 		
-		JLabel interfacesLabel = new JLabel("Interfaces");
 		if(MainWindow.getInstance().getConfiguration().getImplementsModel() == null)
 			MainWindow.getInstance().getConfiguration().setImplementsModel(new DefaultListModel<String>());
 		JList<String> predefinedInterfaces = new JList<String>(MainWindow.getInstance().getConfiguration().getImplementsModel());
@@ -140,14 +156,12 @@ public class PersonalizationWindow extends JDialog {
 		addPanelInterface.add(interfaceName,BorderLayout.NORTH);
 		addPanelInterface.add(addInterface,BorderLayout.CENTER);
 		addPanelInterface.add(removeInterface,BorderLayout.SOUTH);
+	
+		bottomClasses.add(listScroller);
+		bottomClasses.add(addPanel);
 		
-		classesPane.add(classesLabel);
-		classesPane.add(listScroller);
-		classesPane.add(addPanel);
-		
-		interfacesPane.add(interfacesLabel);
-		interfacesPane.add(listScrollerI);
-		interfacesPane.add(addPanelInterface);
+		bottomInterfaces.add(listScrollerI);
+		bottomInterfaces.add(addPanelInterface);
 		
 		//TAB 2
 		JPanel panel2 = new JPanel();

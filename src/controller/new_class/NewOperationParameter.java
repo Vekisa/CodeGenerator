@@ -25,7 +25,7 @@ public class NewOperationParameter extends AbstractAction {
 			{NewParameterWindow.getInstance().getCombo().getSelectedItem().toString()
 			,NewParameterWindow.getInstance().getParameterName().getText()
 			,NewParameterWindow.getInstance().getStaticBox().isSelected()
-			,NewParameterWindow.getInstance().getVirtual().isSelected()
+			,NewParameterWindow.getInstance().getConst().isSelected()
 			,NewParameterWindow.getInstance().getGetters().isSelected()
 			,NewParameterWindow.getInstance().getSetters().isSelected()};
 		
