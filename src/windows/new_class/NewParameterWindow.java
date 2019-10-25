@@ -23,7 +23,7 @@ public class NewParameterWindow extends JDialog {
 	private JTextField parameterName;
 	private JComboBox<String> combo;
 	private JCheckBox staticBox;
-	private JCheckBox virtual;
+	private JCheckBox isConst;
 	private JCheckBox getters;
 	private JCheckBox setters;
 	
@@ -52,7 +52,7 @@ public class NewParameterWindow extends JDialog {
 		String[] list = {"int", "String", "boolean", "double", "char", "float"};
 		combo = new JComboBox<String>(list);
 		staticBox = new JCheckBox("Static");
-		virtual = new JCheckBox("Virtual");
+		isConst = new JCheckBox("Const");
 		getters = new JCheckBox("Getters");
 		setters = new JCheckBox("Setters");
 		
@@ -68,7 +68,7 @@ public class NewParameterWindow extends JDialog {
 		top.add(combo);
 		top.add(parameterName);
 		top.add(staticBox);
-		top.add(virtual);
+		top.add(isConst);
 		top.add(getters);
 		top.add(setters);
 		this.add(top, BorderLayout.NORTH);
@@ -88,8 +88,8 @@ public class NewParameterWindow extends JDialog {
 	public JCheckBox getStaticBox() {
 		return staticBox;
 	}
-	public JCheckBox getVirtual() {
-		return virtual;
+	public JCheckBox getConst() {
+		return isConst;
 	}
 	public JCheckBox getGetters() {
 		return getters;

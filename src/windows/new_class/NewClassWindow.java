@@ -178,15 +178,15 @@ public class NewClassWindow extends JDialog {
 		box.add(buttonsPanel);
 		this.add(box);
 		this.setVisible(true);
-		/*table2.addMouseListener(new java.awt.event.MouseAdapter() {
+		table2.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				row = table2.rowAtPoint(evt.getPoint());
 				col = table2.columnAtPoint(evt.getPoint());
 				if(row >= 0 && col >= 0) {
-					new NewShowTableWindow();
+					NewShowTableWindow.getInstance();
 				}
 			}
-		});*/
+		});
 	}
 
 	public void addItem(String s) {
@@ -308,7 +308,7 @@ public class NewClassWindow extends JDialog {
 			operation.setReturnValue(modelTable2.getValueAt(i, table2.getColumn("Return Value").getModelIndex()).toString());
 			operation.setName(modelTable2.getValueAt(i, table2.getColumn("Name").getModelIndex()).toString());
 			operation.setVirtual(modelTable2.getValueAt(i, table2.getColumn("Virtual").getModelIndex()).toString());
-			Object o = modelTable2.getValueAt(i, table2.getColumn("Parameters").getModelIndex());
+			Object o = modelTable2.getValueAt(i, table2.getColumn("HiddenParameters").getModelIndex());
 			@SuppressWarnings("unchecked")
 			ArrayList<model.Attribute> att = (ArrayList<model.Attribute>)o;
 			operation.setParameters(att);

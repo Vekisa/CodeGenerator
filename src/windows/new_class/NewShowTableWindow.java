@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,17 +28,13 @@ public class NewShowTableWindow extends JDialog {
 	private JTable table;
 	Object[] data = {"Type", "Name", "Static", "Virtual", "Getters", "Setters"};
 	
+	@SuppressWarnings("deprecation")
 	public static NewShowTableWindow getInstance () {
 	    if (NewShowTableWindow.instance == null) {
 	    	NewShowTableWindow.instance = new NewShowTableWindow();
 	    }
-	    
+	    NewShowTableWindow.instance.show();
 	    return NewShowTableWindow.instance;
-	}
-
-	@SuppressWarnings("deprecation")
-	public void showme() {
-		NewShowTableWindow.instance.show();
 	}
 	
 	public NewShowTableWindow() {
@@ -64,12 +61,19 @@ public class NewShowTableWindow extends JDialog {
 		top.add(scrollPane);
 		this.add(top, BorderLayout.NORTH);
 		this.setVisible(true);
-
+		arrayToTable();
 	}
 	
 	public void arrayToTable() {
-		Object[] data = (Object[]) (NewClassWindow.getInstance().getTable2().getValueAt(NewClassWindow.getInstance().getRow(), NewClassWindow.getInstance().getCol()-1));
-		modelTable.insertRow(0, data);
+		Object data = (NewClassWindow.getInstance().getTable2().getValueAt(NewClassWindow.getInstance().getRow(), 5));
+		@SuppressWarnings("unchecked")
+		ArrayList<model.Attribute> attributes = (ArrayList<model.Attribute>) data;
+		Object[] row = {};
+		for(model.Attribute a : attributes ) {
+			row = new Object[] {a.getType(), a.getName(), a.isStatic(), a.isConst(), a.isGetter(), a.isSetter()};
+			modelTable.insertRow(0, row);
+		}
+		System.out.println(data);
 	}
 }
 

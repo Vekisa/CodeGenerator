@@ -34,7 +34,7 @@ public class NewOperationWindow extends JDialog {
 	private JCheckBox virtual;
 	private DefaultTableModel modelTable;
 	private JTable table;
-	Object[] data = {"Type", "Name", "Static", "Virtual", "Getters", "Setters"};
+	Object[] data = {"Type", "Name", "Static", "Const", "Getters", "Setters"};
 	
 	public static NewOperationWindow getInstance () {
 	    if (NewOperationWindow.instance == null) {
@@ -186,7 +186,7 @@ public class NewOperationWindow extends JDialog {
 			parametar.setType(table.getModel().getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
 			parametar.setName(table.getModel().getValueAt(j, table.getColumn("Name").getModelIndex()).toString());
 			parametar.setIsStatic(table.getModel().getValueAt(j, table.getColumn("Static").getModelIndex()).toString());
-			parametar.setConst(table.getModel().getValueAt(j, table.getColumn("Virtual").getModelIndex()).toString());
+			parametar.setConst(table.getModel().getValueAt(j, table.getColumn("Const").getModelIndex()).toString());
 			parametar.setGetter(table.getModel().getValueAt(j, table.getColumn("Getters").getModelIndex()).toString());
 			parametar.setSetter(table.getModel().getValueAt(j, table.getColumn("Setters").getModelIndex()).toString());
 			parameters.add((model.Attribute) parametar);
