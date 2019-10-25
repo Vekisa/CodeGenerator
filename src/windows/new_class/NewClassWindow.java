@@ -25,10 +25,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controller.NewAttributeOW;
-import controller.NewClassExtendsOW;
-import controller.NewOperationOW;
 import controller.new_class.NewClass;
+import controller.ow.NewAttributeOW;
+import controller.ow.NewClassExtendsOW;
+import controller.ow.NewOperationOW;
 
 public class NewClassWindow extends JDialog {
 

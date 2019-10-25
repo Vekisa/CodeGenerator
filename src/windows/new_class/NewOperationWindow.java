@@ -17,8 +17,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import controller.NewParameterOW;
 import controller.new_class.NewOperation;
+import controller.ow.NewParameterOW;
 
 public class NewOperationWindow extends JDialog {
 

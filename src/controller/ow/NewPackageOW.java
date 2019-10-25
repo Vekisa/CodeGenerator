@@ -1,4 +1,4 @@
-package controller;
+package controller.ow;
 
 import java.awt.event.ActionEvent;
 import java.nio.file.Path;
@@ -8,24 +8,24 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
 import windows.InternalConfiguration;
-import windows.new_project.NewProjectWindow;
+import windows.new_package.NewPackageWindow;
 
-public class NewProjectOW extends AbstractAction {
+public class NewPackageOW extends AbstractAction {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7394704850829558623L;
+	private static final long serialVersionUID = -7171665243932292433L;
 
-	public NewProjectOW() {
-		super("Project", InternalConfiguration.projectIcon);
+	public NewPackageOW() {
+		super("Package", InternalConfiguration.packageIcon);
 	    putValue(SHORT_DESCRIPTION, "Create a project");
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		NewProjectWindow.getInstance();
+		NewPackageWindow.getInstance();
 	}
 
 }

@@ -22,11 +22,11 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 
-import controller.NewAttributeOW;
-import controller.NewItemOW;
-import controller.NewOperationOW;
 import controller.new_enum.NewEnum;
 import controller.new_enum.RemoveItem;
+import controller.ow.NewAttributeOW;
+import controller.ow.NewItemOW;
+import controller.ow.NewOperationOW;
 
 
 public class NewEnumWindow extends JDialog {
