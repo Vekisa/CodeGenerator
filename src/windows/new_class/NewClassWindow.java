@@ -178,7 +178,7 @@ public class NewClassWindow extends JDialog {
 		box.add(buttonsPanel);
 		this.add(box);
 		this.setVisible(true);
-		table2.addMouseListener(new java.awt.event.MouseAdapter() {
+		/*table2.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				row = table2.rowAtPoint(evt.getPoint());
 				col = table2.columnAtPoint(evt.getPoint());
@@ -186,7 +186,7 @@ public class NewClassWindow extends JDialog {
 					new NewShowTableWindow();
 				}
 			}
-		});
+		});*/
 	}
 
 	public void addItem(String s) {
@@ -315,6 +315,14 @@ public class NewClassWindow extends JDialog {
 			list.add((model.Operation) operation);
 		}
 		return list;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
 	}
 
 }

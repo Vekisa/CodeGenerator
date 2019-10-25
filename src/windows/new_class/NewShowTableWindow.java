@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -58,13 +59,18 @@ public class NewShowTableWindow extends JDialog {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBackground(new Color(55,55,55));
 		table.setFillsViewportHeight(false);
-		JButton addParameter = new JButton(new NewParameterOW());
+		
 		
 		top.add(scrollPane);
 		this.add(top, BorderLayout.NORTH);
 		this.setVisible(true);
 
-	}	
+	}
+	
+	public void arrayToTable() {
+		Object[] data = (Object[]) (NewClassWindow.getInstance().getTable2().getValueAt(NewClassWindow.getInstance().getRow(), NewClassWindow.getInstance().getCol()-1));
+		modelTable.insertRow(0, data);
+	}
 }
 
 
