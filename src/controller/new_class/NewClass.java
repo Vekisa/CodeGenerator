@@ -40,8 +40,9 @@ public class NewClass extends AbstractAction {
 				selectedItem.addChild(newClass);
 			} else
 				MessageDialog.showMessage("internal Problem!");
-		} else
-			MessageDialog.showMessage("item nije selektovan!");
+		} else {
+			MainWindow.getInstance().getModel().getProject().addChild(newClass);
+		}
 		
 		NewClassWindow.getInstance().dispose();
 		

@@ -18,7 +18,11 @@ public class WindowListener extends WindowAdapter {
     public void windowOpened(WindowEvent e) {
     	System.out.println("Window opened event received");
     	Configuration config = Serializer.deserializeConfiguration();
-    	MainWindow.getInstance().setConfiguration(config);
-    	MainWindow.getInstance().getModel().setProject(config.getLastProject());
+    	if(config != null) {
+    		MainWindow.getInstance().setConfiguration(config);
+    		MainWindow.getInstance().getModel().setProject(config.getLastProject());
+    	} else {
+    		MainWindow.getInstance().setConfiguration(new Configuration());
+    	}
     }
 }

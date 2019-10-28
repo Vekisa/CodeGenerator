@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -30,7 +30,7 @@ import controller.ow.NewAttributeOW;
 import controller.ow.NewClassExtendsOW;
 import controller.ow.NewOperationOW;
 
-public class NewClassWindow extends JDialog {
+public class NewClassWindow extends JFrame {
 
 	/**
 	 * 

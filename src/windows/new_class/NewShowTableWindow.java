@@ -8,16 +8,14 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.ow.NewParameterOW;
-
-public class NewShowTableWindow extends JDialog {
+public class NewShowTableWindow extends JFrame {
 
 	/**
 	 * 
@@ -81,7 +79,11 @@ public class NewShowTableWindow extends JDialog {
 		model.Attribute parametar = null;
 		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
 		for(int j = 0; j < modelTable.getRowCount(); j++ ) {
+			if(modelTable.getValueAt(j, 0) == null)
+				continue;
 			parametar = new model.Attribute();
+			System.out.println(modelTable.getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
+			System.out.println(j);
 			parametar.setType(modelTable.getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
 			parametar.setName(modelTable.getValueAt(j, table.getColumn("Name").getModelIndex()).toString());
 			parametar.setIsStatic(modelTable.getValueAt(j, table.getColumn("Static").getModelIndex()).toString());

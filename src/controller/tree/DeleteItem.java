@@ -8,10 +8,6 @@ import windows.main.MainWindow;
 
 public class DeleteItem implements ActionListener {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8989081617534135696L;
 	private Item item;
 	
 	public DeleteItem(Item item) {

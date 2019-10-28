@@ -38,7 +38,7 @@ public class NewEnum extends AbstractAction {
 			}else
 				MessageDialog.showMessage("Internal problem!");
 		} else
-			MessageDialog.showMessage("Item nije selektovan!");
+			MainWindow.getInstance().getModel().getProject().addChild(newEnum);
 		
 		NewEnumWindow.getInstance().dispose();
 	}
