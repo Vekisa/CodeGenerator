@@ -81,7 +81,11 @@ public class NewShowTableWindow extends JDialog {
 		model.Attribute parametar = null;
 		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
 		for(int j = 0; j < modelTable.getRowCount(); j++ ) {
+			if(modelTable.getValueAt(j, 0) == null)
+				continue;
 			parametar = new model.Attribute();
+			System.out.println(modelTable.getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
+			System.out.println(j);
 			parametar.setType(modelTable.getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
 			parametar.setName(modelTable.getValueAt(j, table.getColumn("Name").getModelIndex()).toString());
 			parametar.setIsStatic(modelTable.getValueAt(j, table.getColumn("Static").getModelIndex()).toString());
