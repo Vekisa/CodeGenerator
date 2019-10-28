@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import controller.new_class.NewOperation;
+import controller.new_class.NewParameterRemove;
+import controller.new_class.SaveEditedOperation;
 import controller.ow.NewParameterOW;
 
 public class NewOperationWindow extends JDialog {
@@ -33,6 +35,8 @@ public class NewOperationWindow extends JDialog {
 	private JCheckBox staticBox;
 	private JCheckBox virtual;
 	private DefaultTableModel modelTable;
+	private JButton createButton;
+	private JButton saveButton;
 	private JTable table;
 	Object[] data = {"Type", "Name", "Static", "Const", "Getters", "Setters"};
 	
@@ -40,14 +44,14 @@ public class NewOperationWindow extends JDialog {
 	    if (NewOperationWindow.instance == null) {
 	    	NewOperationWindow.instance = new NewOperationWindow();
 	    }
-	    
+	    NewOperationWindow.instance.show();
 	    return NewOperationWindow.instance;
 	}
 
-	@SuppressWarnings("deprecation")
+	/*@SuppressWarnings("deprecation")
 	public void showme() {
 		NewOperationWindow.instance.show();
-	}
+	}*/
 	
 	public NewOperationWindow() {
 		
@@ -84,9 +88,13 @@ public class NewOperationWindow extends JDialog {
 		
 		//create cancel panel
 		JPanel ccBtnPanel = new JPanel();
-		JButton createButton = new JButton(new NewOperation());
+		createButton = new JButton(new NewOperation());
 		JButton cancelButton = new JButton("Cancel");
+		saveButton = new JButton(new SaveEditedOperation());
+		saveButton.hide();
+		createButton.hide();
 		ccBtnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		ccBtnPanel.add(saveButton);
 		ccBtnPanel.add(createButton);
 		ccBtnPanel.add(cancelButton);
 		
@@ -101,8 +109,23 @@ public class NewOperationWindow extends JDialog {
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
 		this.setVisible(true);
+	}	
+	public JButton getCreateButton() {
+		return createButton;
 	}
-	
+
+	public void setCreateButton(JButton createButton) {
+		this.createButton = createButton;
+	}
+
+	public JButton getSaveButton() {
+		return saveButton;
+	}
+
+	public void setSaveButton(JButton saveButton) {
+		this.saveButton = saveButton;
+	}
+
 	public void reset() {
 		modelTable = new DefaultTableModel(data, 4);
 		table = new JTable();
@@ -113,15 +136,23 @@ public class NewOperationWindow extends JDialog {
 		this.methodName.setText(methodName);;
 	}
 
-	public void setCombo(JComboBox<String> combo) {
-		this.combo = combo;
+	public void setCombo(String s) {
+		combo.setSelectedItem(s);;
 	}
 
-	public void setStaticBox(boolean b) {
+	public void setStaticBox(String b) {
+		this.staticBox.setSelected(Boolean.parseBoolean(b));
+	}
+	
+	public void setStaticBox(Boolean b) {
 		this.staticBox.setSelected(b);
 	}
 
-	public void setVirtual(boolean b) {
+	public void setVirtual(String b) {
+		this.virtual.setSelected(Boolean.parseBoolean(b));
+	}
+	
+	public void setVirtual(Boolean b) {
 		this.virtual.setSelected(b);
 	}
 
@@ -202,11 +233,39 @@ public class NewOperationWindow extends JDialog {
 		modelTable.insertRow(0, data);
 	}
 
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
 	public JComboBox<String> getAcsModifier() {
 		return acsModifier;
 	}
 
-	public void setAcsModifier(JComboBox<String> acsModifier) {
-		this.acsModifier = acsModifier;
+	public void setAcsModifier(String str) {
+		acsModifier.setSelectedItem(str);
+	}
+	
+	public void arrayToTable(int row) {
+		Object data = (NewClassWindow.getInstance().getTable2().getValueAt(row, 5));
+		@SuppressWarnings("unchecked")
+		ArrayList<model.Attribute> attributes = (ArrayList<model.Attribute>) data;
+		Object[] rowData = {};
+		for(model.Attribute a : attributes ) {
+			rowData = new Object[] {a.getType(), a.getName(), a.isStatic(), a.isConst(), a.isGetter(), a.isSetter()};
+			modelTable.insertRow(0, rowData);
+		}
+		System.out.println(data);
+	}
+
+	public void setMethodName(JTextField methodName) {
+		this.methodName = methodName;
+	}
+
+	public void setStaticBox(JCheckBox staticBox) {
+		this.staticBox = staticBox;
+	}
+
+	public void setVirtual(JCheckBox virtual) {
+		this.virtual = virtual;
 	}
 }

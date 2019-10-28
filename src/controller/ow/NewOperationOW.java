@@ -18,12 +18,14 @@ public class NewOperationOW extends AbstractAction {
 	    putValue(SHORT_DESCRIPTION, "Add new operation");
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		NewOperationWindow.getInstance().getCreateButton().show();
+		NewOperationWindow.getInstance().getSaveButton().hide();
 		NewOperationWindow.getInstance();
 		NewOperationWindow.getInstance().setTable();
-		NewOperationWindow.getInstance().showme();
 	}
 
 }

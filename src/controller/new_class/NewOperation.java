@@ -33,6 +33,7 @@ public class NewOperation extends AbstractAction{
 		NewOperationWindow.getInstance().getMethodName().setText("");
 		NewOperationWindow.getInstance().setStaticBox(false);
 		NewOperationWindow.getInstance().setVirtual(false);
+		NewOperationWindow.getInstance().setTable();
 		NewOperationWindow.getInstance().dispose();
 	}
 
