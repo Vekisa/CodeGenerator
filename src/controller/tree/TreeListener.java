@@ -31,6 +31,8 @@ public class TreeListener extends MouseAdapter {
     }
 	public void mouseClicked(MouseEvent e){
         if(e.getClickCount()==2){
+        	if(MainWindow.getInstance().getNavigationBar().getSelectedNode() == null)
+        		return;
         	Item item = (Item)MainWindow.getInstance().getNavigationBar().getSelectedNode().getUserObject();
     		MainWindow.getInstance().getWorkspace().showItem(MainParser.parse(item));
         }

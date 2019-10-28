@@ -45,6 +45,7 @@ public class NavigationBar extends JPanel {
 	public void refresh() {
 			treeModel = new DefaultTreeModel(createNodes());
 			tree = new JTree(treeModel);
+			tree.setToggleClickCount(0);
 			tree.addMouseListener(new TreeListener());
 			treeView = new JScrollPane(tree);
 			tree.setCellRenderer(new NavigationRenderer());
