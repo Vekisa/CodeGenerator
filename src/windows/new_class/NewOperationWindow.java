@@ -52,7 +52,7 @@ public class NewOperationWindow extends JDialog {
 	public NewOperationWindow() {
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension(1000, 200));
+		this.setPreferredSize(new Dimension(1100, 200));
 		this.pack();
 		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Operation");
@@ -80,6 +80,7 @@ public class NewOperationWindow extends JDialog {
 		scrollPane.setBackground(new Color(55,55,55));
 		table.setFillsViewportHeight(false);
 		JButton addParameter = new JButton(new NewParameterOW());
+		JButton removeParameter = new JButton(new NewParameterRemove());
 		
 		//create cancel panel
 		JPanel ccBtnPanel = new JPanel();
@@ -95,7 +96,8 @@ public class NewOperationWindow extends JDialog {
 		top.add(methodName);
 		top.add(virtual);
 		top.add(scrollPane);
-		top.add(addParameter);	
+		top.add(addParameter);
+		top.add(removeParameter);
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
 		this.setVisible(true);
