@@ -26,8 +26,10 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.new_class.NewClass;
+import controller.new_class.NewOperationRemove;
 import controller.ow.NewAttributeOW;
 import controller.ow.NewClassExtendsOW;
+import controller.ow.NewOperationEditOW;
 import controller.ow.NewOperationOW;
 
 public class NewClassWindow extends JFrame {
@@ -50,8 +52,6 @@ public class NewClassWindow extends JFrame {
 	private JCheckBox setters;
 	private String[] columnNames = { "Name", "Type", "Static", "Virtual", "Getter", "Setter" };
 	private JComboBox<String> combo;
-	private int row;
-	private int col;
 	private JComboBox<String> classAcsModifier;
 
 	public String[] getColumnNames() {
@@ -164,8 +164,10 @@ public class NewClassWindow extends JFrame {
 		buttonPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewOperation = new JButton(new NewOperationOW());
 		JButton removeOperation = new JButton(new NewOperationRemove());
+		JButton editOperation = new JButton(new NewOperationEditOW());
 		buttonPanel2.add(addNewOperation);
 		buttonPanel2.add(removeOperation);
+		buttonPanel2.add(editOperation);
 		operationsPanel.add(buttonPanel2, BorderLayout.NORTH);
 		table2.getColumnModel().getColumn(5).setMinWidth(0);
 		table2.getColumnModel().getColumn(5).setMaxWidth(0);
@@ -186,15 +188,6 @@ public class NewClassWindow extends JFrame {
 		box.add(buttonsPanel);
 		this.add(box);
 		this.setVisible(true);
-		table2.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				row = table2.rowAtPoint(evt.getPoint());
-				col = table2.columnAtPoint(evt.getPoint());
-				if(row >= 0 && col >= 0) {
-					NewShowTableWindow.getInstance();
-				}
-			}
-		});
 	}
 
 	public void addItem(String s) {
@@ -302,7 +295,6 @@ public class NewClassWindow extends JFrame {
 			atribut.setSetter(modelTable.getValueAt(i, table.getColumn("Setters").getModelIndex()).toString());
 			list.add((model.Attribute) atribut);
 		}
-		System.out.println(list);
 		return list;
 	}
 
@@ -323,14 +315,6 @@ public class NewClassWindow extends JFrame {
 			list.add((model.Operation) operation);
 		}
 		return list;
-	}
-
-	public int getRow() {
-		return row;
-	}
-
-	public int getCol() {
-		return col;
 	}
 	
 	public void removeTableRow(JTable table, DefaultTableModel modelTable) {

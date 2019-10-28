@@ -1,8 +1,10 @@
-package windows.new_class;
+package controller.new_class;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+
+import windows.new_class.NewClassWindow;
 
 public class NewOperationRemove extends AbstractAction{
 
