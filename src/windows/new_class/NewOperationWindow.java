@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,7 +22,7 @@ import controller.new_class.NewParameterRemove;
 import controller.new_class.SaveEditedOperation;
 import controller.ow.NewParameterOW;
 
-public class NewOperationWindow extends JDialog {
+public class NewOperationWindow extends JFrame {
 
 	/**
 	 * 

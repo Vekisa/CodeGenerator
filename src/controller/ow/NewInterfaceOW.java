@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import controller.tree.AddingChecker;
 import windows.InternalConfiguration;
 
 public class NewInterfaceOW extends AbstractAction {
@@ -21,7 +22,8 @@ public class NewInterfaceOW extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(!AddingChecker.checkSelectedItem())
+			return;
 	}
 
 }

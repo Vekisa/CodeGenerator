@@ -2,6 +2,8 @@ package controller.ow;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
+
+import controller.tree.AddingChecker;
 import windows.InternalConfiguration;
 import windows.new_enum.NewEnumWindow;
 
@@ -22,6 +24,8 @@ public class NewEnumOW extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		if(!AddingChecker.checkSelectedItem())
+			return;
 		NewEnumWindow.getInstance();
 	}
 

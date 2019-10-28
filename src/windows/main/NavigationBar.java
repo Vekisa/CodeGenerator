@@ -70,8 +70,14 @@ public class NavigationBar extends JPanel {
 	
 	public void insertInSelectedNode(Item item) {
 		DefaultMutableTreeNode parent = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
-		treeModel.insertNodeInto(new DefaultMutableTreeNode(item),parent, parent.getChildCount());
-		tree.expandPath(new TreePath(parent.getPath()));
+		if(parent == null){
+			DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+			treeModel.insertNodeInto(new DefaultMutableTreeNode(item),root, root.getChildCount());
+			tree.expandPath(new TreePath(root.getPath()));
+		}else {
+			treeModel.insertNodeInto(new DefaultMutableTreeNode(item),parent, parent.getChildCount());
+			tree.expandPath(new TreePath(parent.getPath()));
+		}
 	}
 	
 	public void removeSelecetedNode() {

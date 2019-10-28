@@ -26,6 +26,8 @@ public class Open extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		String path = FileChooser.chooseFile();
 		model.Project proj = Serializer.deserialize(path);
+		if(proj == null)
+			return;
 		System.out.println(proj.getName() + " " +  proj.getChildren().size());
 		MainWindow.getInstance().getModel().setProject(proj);
 	}

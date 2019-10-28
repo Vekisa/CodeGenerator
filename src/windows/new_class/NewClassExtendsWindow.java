@@ -6,14 +6,13 @@ import java.awt.Toolkit;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.new_class.NewClassExtendsList;
-import controller.new_enum.NewItem;
 
-public class NewClassExtendsWindow extends JDialog{
+public class NewClassExtendsWindow extends JFrame{
 	
 	/**
 	 * 

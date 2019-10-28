@@ -7,7 +7,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import model.Item;
+import parsers.MainParser;
 import windows.TreeDropDownMenu;
+import windows.main.MainWindow;
 
 public class TreeListener extends MouseAdapter {
 
@@ -26,6 +28,12 @@ public class TreeListener extends MouseAdapter {
         @SuppressWarnings("unused")
 		TreeDropDownMenu dropdown = new TreeDropDownMenu(item, tree, x, y);
         
+    }
+	public void mouseClicked(MouseEvent e){
+        if(e.getClickCount()==2){
+        	Item item = (Item)MainWindow.getInstance().getNavigationBar().getSelectedNode().getUserObject();
+    		MainWindow.getInstance().getWorkspace().showItem(MainParser.parse(item));
+        }
     }
     public void mousePressed(MouseEvent e) {
         if (e.isPopupTrigger()) myPopupEvent(e);

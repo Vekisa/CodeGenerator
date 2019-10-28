@@ -1,4 +1,4 @@
-package windows;
+ package windows;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -9,6 +9,11 @@ import controller.tree.ShowItem;
 import model.Item;
 
 public class TreeDropDownMenu extends JPopupMenu {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4263473830095787137L;
 
 	public TreeDropDownMenu(Item item, JTree tree, int x, int y) {
 		JMenuItem remove = new JMenuItem("Remove");
