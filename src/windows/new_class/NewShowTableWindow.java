@@ -26,7 +26,7 @@ public class NewShowTableWindow extends JDialog {
 	private static NewShowTableWindow instance;
 	private DefaultTableModel modelTable;
 	private JTable table;
-	Object[] data = {"Type", "Name", "Static", "Virtual", "Getters", "Setters"};
+	Object[] data = {"Type", "Name", "Static", "Const", "Getters", "Setters"};
 	
 	@SuppressWarnings("deprecation")
 	public static NewShowTableWindow getInstance () {
@@ -56,9 +56,11 @@ public class NewShowTableWindow extends JDialog {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBackground(new Color(55,55,55));
 		table.setFillsViewportHeight(false);
+		JButton edit = new JButton(new NewTableEdit());
 		
 		
 		top.add(scrollPane);
+		top.add(edit);
 		this.add(top, BorderLayout.NORTH);
 		this.setVisible(true);
 		arrayToTable();
@@ -74,6 +76,38 @@ public class NewShowTableWindow extends JDialog {
 			modelTable.insertRow(0, row);
 		}
 		System.out.println(data);
+	}
+	public ArrayList<model.Attribute> tableToArray() {
+		model.Attribute parametar = null;
+		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
+		for(int j = 0; j < modelTable.getRowCount(); j++ ) {
+			parametar = new model.Attribute();
+			parametar.setType(modelTable.getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
+			parametar.setName(modelTable.getValueAt(j, table.getColumn("Name").getModelIndex()).toString());
+			parametar.setIsStatic(modelTable.getValueAt(j, table.getColumn("Static").getModelIndex()).toString());
+			parametar.setConst(modelTable.getValueAt(j, table.getColumn("Const").getModelIndex()).toString());
+			parametar.setGetter(modelTable.getValueAt(j, table.getColumn("Getters").getModelIndex()).toString());
+			parametar.setSetter(modelTable.getValueAt(j, table.getColumn("Setters").getModelIndex()).toString());
+			parameters.add((model.Attribute) parametar);
+		}
+		
+		return parameters;
+	}
+
+	public DefaultTableModel getModelTable() {
+		return modelTable;
+	}
+
+	public void setModelTable(DefaultTableModel modelTable) {
+		this.modelTable = modelTable;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
 	}
 }
 

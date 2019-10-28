@@ -52,6 +52,7 @@ public class NewClassWindow extends JDialog {
 	private JComboBox<String> combo;
 	private int row;
 	private int col;
+	private JComboBox<String> classAcsModifier;
 
 	public String[] getColumnNames() {
 		return columnNames;
@@ -81,6 +82,8 @@ public class NewClassWindow extends JDialog {
 		classNameField = new JTextField();
 		Dimension fieldDimension = new Dimension(200, 25);
 		classNameField.setPreferredSize(fieldDimension);
+		String[] list2 = {"public", "private", "protected"};
+		classAcsModifier = new JComboBox<String>(list2);
 
 		String[] list = { "extends", "implement" };
 		combo = new JComboBox<String>(list);
@@ -109,7 +112,8 @@ public class NewClassWindow extends JDialog {
 		listScroller.setPreferredSize(new Dimension(150, 80));
 
 		JButton addNewClass = new JButton(new NewClassExtendsOW());
-
+		
+		namePane.add(classAcsModifier);
 		namePane.add(classNameLabel);
 		namePane.add(classNameField);
 		namePane.add(combo);
@@ -141,7 +145,9 @@ public class NewClassWindow extends JDialog {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewAttribute = new JButton(new NewAttributeOW());
+		JButton removeAttribute = new JButton(new NewAttributeRemove());
 		buttonPanel.add(addNewAttribute);
+		buttonPanel.add(removeAttribute);
 		attributesPanel.add(buttonPanel, BorderLayout.NORTH);
 
 		// operations panel
@@ -157,7 +163,9 @@ public class NewClassWindow extends JDialog {
 		JPanel buttonPanel2 = new JPanel();
 		buttonPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewOperation = new JButton(new NewOperationOW());
+		JButton removeOperation = new JButton(new NewOperationRemove());
 		buttonPanel2.add(addNewOperation);
+		buttonPanel2.add(removeOperation);
 		operationsPanel.add(buttonPanel2, BorderLayout.NORTH);
 		table2.getColumnModel().getColumn(5).setMinWidth(0);
 		table2.getColumnModel().getColumn(5).setMaxWidth(0);
@@ -323,6 +331,13 @@ public class NewClassWindow extends JDialog {
 
 	public int getCol() {
 		return col;
+	}
+	
+	public void removeTableRow(JTable table, DefaultTableModel modelTable) {
+		int[] rows = table.getSelectedRows();
+		for(int row: rows) {
+			modelTable.removeRow(table.convertRowIndexToModel(row));
+		}
 	}
 
 }
