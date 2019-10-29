@@ -28,7 +28,6 @@ public class Open extends AbstractAction {
 		model.Project proj = Serializer.deserialize(path);
 		if(proj == null)
 			return;
-		System.out.println(proj.getName() + " " +  proj.getChildren().size());
 		MainWindow.getInstance().getModel().setProject(proj);
 	}
 
