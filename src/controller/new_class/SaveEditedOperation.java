@@ -19,16 +19,7 @@ public class SaveEditedOperation extends AbstractAction {
 		super("Save", null);
 	}
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object[] data = 
-			{NewOperationWindow.getInstance().getAcsModifier().getSelectedItem().toString()
-			,NewOperationWindow.getInstance().getStaticBox().isSelected()
-			,NewOperationWindow.getInstance().getCombo().getSelectedItem().toString()
-			,NewOperationWindow.getInstance().getMethodName().getText()
-			,NewOperationWindow.getInstance().getVirtual().isSelected()
-			,NewOperationWindow.getInstance().tableToArray()
-			,NewOperationWindow.getInstance().tableToString()};
-		
+	public void actionPerformed(ActionEvent e) {		
 		int selectedIndex = NewClassWindow.getInstance().getTable2().getSelectedRow();
 		NewClassWindow.getInstance().getTable2().setValueAt(NewOperationWindow.getInstance().getAcsModifier().getSelectedItem().toString(), 
 				selectedIndex, NewClassWindow.getInstance().getTable2().getColumn("AcsModifier").getModelIndex());

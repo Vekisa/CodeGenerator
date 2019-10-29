@@ -22,11 +22,16 @@ public class NewOperationEditOW extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		int row = NewClassWindow.getInstance().getTable2().getSelectedRow();
 		
-		NewOperationWindow.getInstance().setAcsModifier(NewClassWindow.getInstance().getTable2().getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("AcsModifier").getModelIndex()).toString());
-		NewOperationWindow.getInstance().setStaticBox(NewClassWindow.getInstance().getTable2().getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("Static").getModelIndex()).toString());
-		NewOperationWindow.getInstance().setCombo(NewClassWindow.getInstance().getTable2().getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("Return Value").getModelIndex()).toString());
-		NewOperationWindow.getInstance().setMethodName(NewClassWindow.getInstance().getTable2().getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("Name").getModelIndex()).toString());
-		NewOperationWindow.getInstance().setVirtual(NewClassWindow.getInstance().getTable2().getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("Virtual").getModelIndex()).toString());
+		NewOperationWindow.getInstance().setAcsModifier(NewClassWindow.getInstance().getTable2()
+				.getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("AcsModifier").getModelIndex()).toString());
+		NewOperationWindow.getInstance().setStaticBox(NewClassWindow.getInstance().getTable2()
+				.getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("Static").getModelIndex()).toString());
+		NewOperationWindow.getInstance().setCombo(NewClassWindow.getInstance().getTable2()
+				.getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("Return Value").getModelIndex()).toString());
+		NewOperationWindow.getInstance().setMethodName(NewClassWindow.getInstance().getTable2()
+				.getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("Name").getModelIndex()).toString());
+		NewOperationWindow.getInstance().setVirtual(NewClassWindow.getInstance().getTable2()
+				.getValueAt(row, NewClassWindow.getInstance().getTable2().getColumn("Virtual").getModelIndex()).toString());
 		NewOperationWindow.getInstance().arrayToTable(row);
 		NewOperationWindow.getInstance().getCreateButton().hide();
 		NewOperationWindow.getInstance().getSaveButton().show();

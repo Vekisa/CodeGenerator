@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.new_class.NewAttribute;
+import controller.new_class.SaveEditedAttribute;
 
 public class NewAttributeWindow extends JFrame {
 
@@ -28,6 +29,8 @@ public class NewAttributeWindow extends JFrame {
 	private JCheckBox isConst;
 	private JCheckBox getters;
 	private JCheckBox setters;
+	private JButton createButton;
+	private JButton saveButton;
 	
 	@SuppressWarnings("deprecation")
 	public static NewAttributeWindow getInstance () {
@@ -38,9 +41,10 @@ public class NewAttributeWindow extends JFrame {
 	    return NewAttributeWindow.instance;
 	}
 
+	@SuppressWarnings("deprecation")
 	public NewAttributeWindow() {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension(500, 200));
+		this.setPreferredSize(new Dimension(600, 200));
 		this.pack();
 		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
 		this.setTitle("Attribute");
@@ -64,16 +68,20 @@ public class NewAttributeWindow extends JFrame {
 		
 		//create cancel panel
 		JPanel ccBtnPanel = new JPanel();
-		JButton createButton = new JButton(new NewAttribute());
+		createButton = new JButton(new NewAttribute());
 		JButton cancelButton = new JButton("Cancel");
+		saveButton = new JButton(new SaveEditedAttribute());
+		saveButton.hide();
+		createButton.hide();
 		ccBtnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		ccBtnPanel.add(saveButton);
 		ccBtnPanel.add(createButton);
 		ccBtnPanel.add(cancelButton);
 		
 		top.add(acsModifier);
-		top.add(attributeName);
-		top.add(combo);
 		top.add(staticBox);
+		top.add(combo);
+		top.add(attributeName);
 		top.add(isConst);
 		top.add(getters);
 		top.add(setters);
@@ -82,28 +90,68 @@ public class NewAttributeWindow extends JFrame {
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
 	}
 
+	public JCheckBox getIsConst() {
+		return isConst;
+	}
+
+	public JButton getCreateButton() {
+		return createButton;
+	}
+
+	public void setCreateButton(JButton createButton) {
+		this.createButton = createButton;
+	}
+
+	public JButton getSaveButton() {
+		return saveButton;
+	}
+
+	public void setSaveButton(JButton saveButton) {
+		this.saveButton = saveButton;
+	}
+
+	public void setIsConst(JCheckBox isConst) {
+		this.isConst = isConst;
+	}
+
+	public void setAttributeName(JTextField attributeName) {
+		this.attributeName = attributeName;
+	}
+
+	public void setStaticBox(JCheckBox staticBox) {
+		this.staticBox = staticBox;
+	}
+
+	public void setGetters(JCheckBox getters) {
+		this.getters = getters;
+	}
+
+	public void setSetters(JCheckBox setters) {
+		this.setters = setters;
+	}
+
 	public void setAttributeName(String t) {
 		this.attributeName.setText(t);
 	}
 
-	public void setCombo(JComboBox<String> combo) {
-		this.combo = combo;
+	public void setCombo(String s) {
+		this.combo.setSelectedItem(s);;
 	}
 
-	public void setStaticBox(boolean b) {
-		this.staticBox.setSelected(b);
+	public void setStaticBox(String b) {
+		this.staticBox.setSelected(Boolean.parseBoolean(b));
 	}
 
-	public void setConst(boolean b) {
-		this.isConst.setSelected(b);
+	public void setConst(String b) {
+		this.isConst.setSelected(Boolean.parseBoolean(b));
 	}
 
-	public void setGetters(boolean b) {
-		this.getters.setSelected(b);
+	public void setGetters(String b) {
+		this.getters.setSelected(Boolean.parseBoolean(b));
 	}
 
-	public void setSetters(boolean b) {
-		this.setters.setSelected(b);
+	public void setSetters(String b) {
+		this.setters.setSelected(Boolean.parseBoolean(b));
 	}
 
 	public JTextField getAttributeName() {
@@ -134,7 +182,7 @@ public class NewAttributeWindow extends JFrame {
 		return acsModifier;
 	}
 
-	public void setAcsModifier(JComboBox<String> acsModifier) {
-		this.acsModifier = acsModifier;
+	public void setAcsModifier(String s) {
+		this.acsModifier.setSelectedItem(s);
 	}
 }

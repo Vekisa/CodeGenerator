@@ -18,9 +18,11 @@ public class NewAttributeOW extends AbstractAction {
 	    putValue(SHORT_DESCRIPTION, "Add new attribute");
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		NewAttributeWindow.getInstance().getCreateButton().show();
 		NewAttributeWindow.getInstance();
 	}
 

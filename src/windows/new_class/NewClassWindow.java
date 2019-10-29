@@ -29,6 +29,7 @@ import controller.new_class.NewClass;
 import controller.new_class.NewOperationRemove;
 import controller.new_class.RemoveAttribute;
 import controller.new_class.RemoveClassExtends;
+import controller.ow.NewAttributeEditOW;
 import controller.ow.NewAttributeOW;
 import controller.ow.NewClassExtendsOW;
 import controller.ow.NewOperationEditOW;
@@ -132,7 +133,7 @@ public class NewClassWindow extends JFrame {
 		// attributes panel
 		JPanel attributesPanel = new JPanel();
 		attributesPanel.setLayout(new BorderLayout());
-		Object[] data = { "AcsModifier", "Name", "Type", "Static", "Const", "Getters", "Setters" };
+		Object[] data = { "AcsModifier", "Static", "Type", "Name", "Const", "Getters", "Setters" };
 		modelTable = new DefaultTableModel(data, 7);
 		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
@@ -144,8 +145,11 @@ public class NewClassWindow extends JFrame {
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewAttribute = new JButton(new NewAttributeOW());
 		JButton removeAttribute = new JButton(new RemoveAttribute());
+		JButton editAttribute = new JButton(new NewAttributeEditOW());
+		
 		buttonPanel.add(addNewAttribute);
 		buttonPanel.add(removeAttribute);
+		buttonPanel.add(editAttribute);
 		attributesPanel.add(buttonPanel, BorderLayout.NORTH);
 
 		// operations panel
@@ -293,9 +297,9 @@ public class NewClassWindow extends JFrame {
 			atribut = new model.Attribute();
 			System.out.println("radi i for");
 			atribut.setAcsModifiers(modelTable.getValueAt(i, table.getColumn("AcsModifier").getModelIndex()).toString());
-			atribut.setName(modelTable.getValueAt(i, table.getColumn("Name").getModelIndex()).toString());
-			atribut.setType(modelTable.getValueAt(i, table.getColumn("Type").getModelIndex()).toString());
 			atribut.setIsStatic(modelTable.getValueAt(i, table.getColumn("Static").getModelIndex()).toString());
+			atribut.setType(modelTable.getValueAt(i, table.getColumn("Type").getModelIndex()).toString());
+			atribut.setName(modelTable.getValueAt(i, table.getColumn("Name").getModelIndex()).toString());
 			atribut.setConst(modelTable.getValueAt(i, table.getColumn("Const").getModelIndex()).toString());
 			atribut.setGetter(modelTable.getValueAt(i, table.getColumn("Getters").getModelIndex()).toString());
 			atribut.setSetter(modelTable.getValueAt(i, table.getColumn("Setters").getModelIndex()).toString());

@@ -23,19 +23,15 @@ public class NewAttribute extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		Object[] data = 
 			{NewAttributeWindow.getInstance().getAcsModifier().getSelectedItem().toString()
-			,NewAttributeWindow.getInstance().getAttributeName().getText()
-			,NewAttributeWindow.getInstance().getCombo().getSelectedItem().toString()
 			,NewAttributeWindow.getInstance().getStaticBox().isSelected()
+			,NewAttributeWindow.getInstance().getCombo().getSelectedItem().toString()
+			,NewAttributeWindow.getInstance().getAttributeName().getText()
 			,NewAttributeWindow.getInstance().getConst().isSelected()
 			,NewAttributeWindow.getInstance().getGetters().isSelected()
 			,NewAttributeWindow.getInstance().getSetters().isSelected()};
 		
 		NewClassWindow.getInstance().addingRowTableAttributes(data);
 		NewAttributeWindow.getInstance().setAttributeName("");
-		NewAttributeWindow.getInstance().setStaticBox(false);
-		NewAttributeWindow.getInstance().setConst(false);
-		NewAttributeWindow.getInstance().setGetters(false);
-		NewAttributeWindow.getInstance().setSetters(false);
 		
 		NewAttributeWindow.getInstance().dispose();
 		
