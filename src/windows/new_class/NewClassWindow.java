@@ -27,6 +27,8 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.new_class.NewClass;
 import controller.new_class.NewOperationRemove;
+import controller.new_class.RemoveAttribute;
+import controller.new_class.RemoveClassExtends;
 import controller.ow.NewAttributeOW;
 import controller.ow.NewClassExtendsOW;
 import controller.ow.NewOperationEditOW;
@@ -48,8 +50,6 @@ public class NewClassWindow extends JFrame {
 	private JTable table2;
 	private JTextField classNameField;
 	private JCheckBox defaultConstructor;
-	private JCheckBox getters;
-	private JCheckBox setters;
 	private String[] columnNames = { "Name", "Type", "Static", "Virtual", "Getter", "Setter" };
 	private JComboBox<String> combo;
 	private JComboBox<String> classAcsModifier;
@@ -112,6 +112,7 @@ public class NewClassWindow extends JFrame {
 		listScroller.setPreferredSize(new Dimension(150, 80));
 
 		JButton addNewClass = new JButton(new NewClassExtendsOW());
+		JButton removeClass = new JButton(new RemoveClassExtends());
 		
 		namePane.add(classAcsModifier);
 		namePane.add(classNameLabel);
@@ -119,17 +120,14 @@ public class NewClassWindow extends JFrame {
 		namePane.add(combo);
 		namePane.add(listScroller);
 		namePane.add(addNewClass);
+		namePane.add(removeClass);
 
 		// parameters panel
 		JPanel parametersPanel = new JPanel();
 		parametersPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		parametersPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		defaultConstructor = new JCheckBox("Default Constructor");
-		getters = new JCheckBox("Getters");
-		setters = new JCheckBox("Setters");
 		parametersPanel.add(defaultConstructor);
-		parametersPanel.add(getters);
-		parametersPanel.add(setters);
 
 		// attributes panel
 		JPanel attributesPanel = new JPanel();
@@ -145,7 +143,7 @@ public class NewClassWindow extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewAttribute = new JButton(new NewAttributeOW());
-		JButton removeAttribute = new JButton(new NewAttributeRemove());
+		JButton removeAttribute = new JButton(new RemoveAttribute());
 		buttonPanel.add(addNewAttribute);
 		buttonPanel.add(removeAttribute);
 		attributesPanel.add(buttonPanel, BorderLayout.NORTH);
@@ -199,6 +197,30 @@ public class NewClassWindow extends JFrame {
 		System.out.println("IMPL: " + modelImplements.getSize());
 		System.out.println("EXT: " + modelExtends.getSize());
 	}
+	
+	public JList<String> getClassListJList() {
+		return classList;
+	}
+	
+	public void setClassList(JList<String> classList) {
+		this.classList = classList;
+	}
+
+	public DefaultListModel<String> getModelExtends() {
+		return modelExtends;
+	}
+
+	public void setModelExtends(DefaultListModel<String> modelExtends) {
+		this.modelExtends = modelExtends;
+	}
+
+	public DefaultListModel<String> getModelImplements() {
+		return modelImplements;
+	}
+
+	public void setModelImplements(DefaultListModel<String> modelImplements) {
+		this.modelImplements = modelImplements;
+	}
 
 	public JTable getTable() {
 		return table;
@@ -245,22 +267,6 @@ public class NewClassWindow extends JFrame {
 
 	public void setDefaultConstructor(JCheckBox defaultConstructor) {
 		this.defaultConstructor = defaultConstructor;
-	}
-
-	public JCheckBox getGetters() {
-		return getters;
-	}
-
-	public void setGetters(JCheckBox getters) {
-		this.getters = getters;
-	}
-
-	public JCheckBox getSetters() {
-		return setters;
-	}
-
-	public void setSetters(JCheckBox setters) {
-		this.setters = setters;
 	}
 
 	public ArrayList<String> getClassList() {
@@ -322,6 +328,14 @@ public class NewClassWindow extends JFrame {
 		for(int row: rows) {
 			modelTable.removeRow(table.convertRowIndexToModel(row));
 		}
+	}
+
+	public JComboBox<String> getCombo() {
+		return combo;
+	}
+
+	public void setCombo(JComboBox<String> combo) {
+		this.combo = combo;
 	}
 
 }
