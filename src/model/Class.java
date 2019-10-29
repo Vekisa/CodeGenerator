@@ -14,8 +14,6 @@ public class Class extends Item implements java.io.Serializable {
 	private ArrayList<Attribute> attributes;
 	private ArrayList<Operation> operations;
 	private boolean defaultConstructor;
-	private boolean getters;
-	private boolean setters;
 	
 	public Class ( ) {
 		extendsClasses = new ArrayList<String>();
@@ -68,24 +66,8 @@ public class Class extends Item implements java.io.Serializable {
 		return defaultConstructor;
 	}
 
-	public boolean isGetters() {
-		return getters;
-	}
-
-	public boolean isSetters() {
-		return setters;
-	}
-
 	public void setDefaultConstructor(boolean defaultConstructor) {
 		this.defaultConstructor = defaultConstructor;
-	}
-
-	public void setGetters(boolean getters) {
-		this.getters = getters;
-	}
-
-	public void setSetters(boolean setters) {
-		this.setters = setters;
 	}
 
 	
