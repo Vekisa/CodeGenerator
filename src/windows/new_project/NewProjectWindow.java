@@ -62,6 +62,7 @@ public class NewProjectWindow extends JDialog {
 		this.add(inputPanel, BorderLayout.NORTH);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		this.setVisible(true);
+		this.getRootPane().setDefaultButton(create);
 	}
 	
 	public String getValue() {

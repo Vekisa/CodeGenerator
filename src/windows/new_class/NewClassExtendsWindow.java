@@ -49,6 +49,7 @@ public class NewClassExtendsWindow extends JFrame{
 		this.add(addlabel);
 		this.add(item);
 		this.add(addInList);
+		this.getRootPane().setDefaultButton(addInList);
 	}
 	
 	public String getItem() {

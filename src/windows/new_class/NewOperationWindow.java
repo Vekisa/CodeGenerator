@@ -109,6 +109,8 @@ public class NewOperationWindow extends JFrame {
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
 		this.setVisible(true);
+		this.getRootPane().setDefaultButton(saveButton);
+		this.getRootPane().setDefaultButton(createButton);
 	}	
 	public JButton getCreateButton() {
 		return createButton;

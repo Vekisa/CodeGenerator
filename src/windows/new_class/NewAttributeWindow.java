@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.cancel.WindowCancel;
 import controller.new_class.NewAttribute;
 import controller.new_class.SaveEditedAttribute;
 
@@ -69,7 +70,7 @@ public class NewAttributeWindow extends JFrame {
 		//create cancel panel
 		JPanel ccBtnPanel = new JPanel();
 		createButton = new JButton(new NewAttribute());
-		JButton cancelButton = new JButton("Cancel");
+		JButton cancelButton = new JButton(new WindowCancel());
 		saveButton = new JButton(new SaveEditedAttribute());
 		saveButton.hide();
 		createButton.hide();
@@ -88,6 +89,7 @@ public class NewAttributeWindow extends JFrame {
 		this.setVisible(true);	
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
+		this.getRootPane().setDefaultButton(createButton);
 	}
 
 	public JCheckBox getIsConst() {

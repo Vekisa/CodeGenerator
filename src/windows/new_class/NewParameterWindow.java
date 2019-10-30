@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.cancel.WindowCancel;
 import controller.new_class.NewOperationParameter;
 
 public class NewParameterWindow extends JFrame{
@@ -59,7 +60,7 @@ public class NewParameterWindow extends JFrame{
 		//create cancel panel
 		JPanel ccBtnPanel = new JPanel();
 		JButton createButton = new JButton(new NewOperationParameter());
-		JButton cancelButton = new JButton("Cancel");
+		JButton cancelButton = new JButton(new WindowCancel());
 		ccBtnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		ccBtnPanel.add(createButton);
@@ -74,6 +75,7 @@ public class NewParameterWindow extends JFrame{
 		this.add(top, BorderLayout.NORTH);
 		this.add(ccBtnPanel, BorderLayout.SOUTH);
 		this.setVisible(true);
+		this.getRootPane().setDefaultButton(createButton);
 		
 	}
 	public JTextField getParameterName() {
