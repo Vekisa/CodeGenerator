@@ -90,6 +90,9 @@ public class NewOperationWindow extends JFrame {
 		JPanel ccBtnPanel = new JPanel();
 		createButton = new JButton(new NewOperation());
 		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(e ->{
+			this.dispose();
+		});
 		saveButton = new JButton(new SaveEditedOperation());
 		saveButton.hide();
 		createButton.hide();

@@ -51,6 +51,9 @@ public class NewProjectWindow extends JDialog {
 		nameField.setPreferredSize(fieldDimension);
 		
 		JButton cancel = new JButton("Cancel");
+		cancel.addActionListener(e ->{
+			this.dispose();
+		});
 		JButton create = new JButton("Ok");
 		create.addActionListener(new NewProject());
 		

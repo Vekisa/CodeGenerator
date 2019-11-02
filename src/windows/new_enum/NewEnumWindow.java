@@ -78,6 +78,9 @@ public class NewEnumWindow extends JDialog {
 		JPanel ccBtnPanel = new JPanel();
 		JButton createButton = new JButton(new NewEnum());
 		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(e ->{
+			this.dispose();
+		});
 		ccBtnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		ccBtnPanel.add(createButton);
 		ccBtnPanel.add(cancelButton);

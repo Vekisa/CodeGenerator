@@ -25,7 +25,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controller.cancel.WindowCancel;
 import controller.new_class.NewClass;
 import controller.new_class.NewOperationRemove;
 import controller.new_class.RemoveAttribute;
@@ -179,7 +178,10 @@ public class NewClassWindow extends JFrame {
 		// buttons panel
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		JButton cancel = new JButton(new WindowCancel());
+		JButton cancel = new JButton("Cancel");
+		cancel.addActionListener(e ->{
+			this.dispose();
+		});
 		JButton ok = new JButton(new NewClass());
 		buttonsPanel.add(ok);
 		buttonsPanel.add(cancel);
