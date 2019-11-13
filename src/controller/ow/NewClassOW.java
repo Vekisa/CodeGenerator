@@ -25,7 +25,7 @@ public class NewClassOW extends AbstractAction {
 		if(!AddingChecker.checkSelectedItem())
 			return;
 		NewClassWindow.getInstance();
-		NewClassWindow.getInstance().setTable(NewClassWindow.getInstance().getModelTable(), NewClassWindow.getInstance().getTable() );
-		NewClassWindow.getInstance().setTable(NewClassWindow.getInstance().getModelTable2(), NewClassWindow.getInstance().getTable2() );
+		NewClassWindow.getInstance().setTable(NewClassWindow.getInstance().getModelTable());
+		NewClassWindow.getInstance().setTable(NewClassWindow.getInstance().getModelTable2());
 	}
 }

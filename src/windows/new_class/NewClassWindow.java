@@ -246,8 +246,7 @@ public class NewClassWindow extends JFrame {
 		return table2;
 	}
 
-	public void setTable(DefaultTableModel modelTable, JTable table) {
-		modelTable = (DefaultTableModel) table.getModel();
+	public void setTable(DefaultTableModel modelTable) {
 		modelTable.setRowCount(0);
 	}
 

@@ -6,6 +6,7 @@ import javax.swing.AbstractAction;
 
 import controller.tree.AddingChecker;
 import windows.InternalConfiguration;
+import windows.new_interface.NewInterfaceWindow;
 
 public class NewInterfaceOW extends AbstractAction {
 
@@ -24,6 +25,8 @@ public class NewInterfaceOW extends AbstractAction {
 		// TODO Auto-generated method stub
 		if(!AddingChecker.checkSelectedItem())
 			return;
+		NewInterfaceWindow.getInstance();
+		NewInterfaceWindow.getInstance().setTable(NewInterfaceWindow.getInstance().getModelTable());
 	}
 
 }
