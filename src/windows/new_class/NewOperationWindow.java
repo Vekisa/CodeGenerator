@@ -166,7 +166,6 @@ public class NewOperationWindow extends JFrame {
 	}
 
 	public void setTable() {
-		modelTable = (DefaultTableModel) table.getModel();
 		modelTable.setRowCount(0);
 	}
 
@@ -219,14 +218,14 @@ public class NewOperationWindow extends JFrame {
 	public ArrayList<model.Attribute> tableToArray() {
 		model.Attribute parametar = null;
 		ArrayList<model.Attribute> parameters = new ArrayList<model.Attribute>();
-		for(int j = 0; j < table.getModel().getRowCount(); j++ ) {
+		for(int j = 0; j < modelTable.getRowCount(); j++ ) {
 			parametar = new model.Attribute();
-			parametar.setType(table.getModel().getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
-			parametar.setName(table.getModel().getValueAt(j, table.getColumn("Name").getModelIndex()).toString());
-			parametar.setIsStatic(table.getModel().getValueAt(j, table.getColumn("Static").getModelIndex()).toString());
-			parametar.setConst(table.getModel().getValueAt(j, table.getColumn("Const").getModelIndex()).toString());
-			parametar.setGetter(table.getModel().getValueAt(j, table.getColumn("Getters").getModelIndex()).toString());
-			parametar.setSetter(table.getModel().getValueAt(j, table.getColumn("Setters").getModelIndex()).toString());
+			parametar.setType(modelTable.getValueAt(j, table.getColumn("Type").getModelIndex()).toString());
+			parametar.setName(modelTable.getValueAt(j, table.getColumn("Name").getModelIndex()).toString());
+			parametar.setIsStatic(modelTable.getValueAt(j, table.getColumn("Static").getModelIndex()).toString());
+			parametar.setConst(modelTable.getValueAt(j, table.getColumn("Const").getModelIndex()).toString());
+			parametar.setGetter(modelTable.getValueAt(j, table.getColumn("Getters").getModelIndex()).toString());
+			parametar.setSetter(modelTable.getValueAt(j, table.getColumn("Setters").getModelIndex()).toString());
 			parameters.add((model.Attribute) parametar);
 		}
 		
@@ -234,7 +233,6 @@ public class NewOperationWindow extends JFrame {
 	}
 	
 	public void addingRowTable(Object[] data) {
-		this.modelTable = (DefaultTableModel) this.table.getModel();
 		modelTable.insertRow(0, data);
 	}
 

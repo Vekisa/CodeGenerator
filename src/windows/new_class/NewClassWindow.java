@@ -251,12 +251,10 @@ public class NewClassWindow extends JFrame {
 	}
 
 	public void addingRowTableAttributes(Object[] data) {
-		this.modelTable = (DefaultTableModel) this.table.getModel();
 		modelTable.insertRow(0, data);
 	}
 
 	public void addingRowTableOperations(Object[] data) {
-		this.modelTable2 = (DefaultTableModel) this.table2.getModel();
 		modelTable2.insertRow(0, data);
 	}
 

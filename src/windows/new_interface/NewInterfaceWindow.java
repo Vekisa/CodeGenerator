@@ -40,7 +40,7 @@ public class NewInterfaceWindow extends JFrame {
 	public NewInterfaceWindow() {
 		Box box = Box.createVerticalBox();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension(550, 350));
+		this.setPreferredSize(new Dimension(750, 350));
 		this.pack();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		this.setTitle("Interface");
@@ -59,7 +59,7 @@ public class NewInterfaceWindow extends JFrame {
 		// table methods
 		JPanel methodPanel = new JPanel();
 		methodPanel.setLayout(new BorderLayout());
-		Object[] data = { "AcsModifier", "Type", "Name", "HiddenParameters", "Parameters"};
+		Object[] data = { "AcsModifier", "Static", "Return Value", "Name", "Virtual", "HiddenParameters", "Parameters" };
 		modelTable = new DefaultTableModel(data, 10);
 		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
@@ -80,9 +80,9 @@ public class NewInterfaceWindow extends JFrame {
 		buttonPanel2.add(editMethod);
 		
 		methodPanel.add(buttonPanel2, BorderLayout.NORTH);
-		table.getColumnModel().getColumn(3).setMinWidth(0);
-		table.getColumnModel().getColumn(3).setMaxWidth(0);
-		table.getColumnModel().getColumn(3).setWidth(0);
+		table.getColumnModel().getColumn(5).setMinWidth(0);
+		table.getColumnModel().getColumn(5).setMaxWidth(0);
+		table.getColumnModel().getColumn(5).setWidth(0);
 		
 		//main button panel
 		JPanel buttonsPanel = new JPanel();
@@ -122,6 +122,10 @@ public class NewInterfaceWindow extends JFrame {
 
 	public void setTable(DefaultTableModel modelTable) {
 		modelTable.setRowCount(0);
+	}
+	
+	public void addingRowTableOperations(Object[] data) {
+		modelTable.insertRow(0, data);
 	}
 }
 

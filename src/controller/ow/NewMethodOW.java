@@ -19,7 +19,8 @@ public class NewMethodOW extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		NewMethodWindow.getInstance();		
+		NewMethodWindow.getInstance();
+		NewMethodWindow.getInstance().setTable();
 	}
 
 }
