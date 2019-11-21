@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -15,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import controller.new_interface.NewInterface;
 import controller.ow.NewMethodOW;
 
 
@@ -27,7 +29,16 @@ public class NewInterfaceWindow extends JFrame {
 	private static NewInterfaceWindow instance;
 	private DefaultTableModel modelTable;
 	private JTable table;
+	private JTextField interfaceName;
 	
+	public JTextField getInterfaceName() {
+		return interfaceName;
+	}
+
+	public void setInterfaceName(JTextField interfaceName) {
+		this.interfaceName = interfaceName;
+	}
+
 	@SuppressWarnings("deprecation")
 	public static NewInterfaceWindow getInstance() {
 		if(NewInterfaceWindow.instance == null) {
@@ -49,7 +60,7 @@ public class NewInterfaceWindow extends JFrame {
 		JPanel namePanel = new JPanel();
 		namePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JLabel classNameLabel = new JLabel("Name: ");
-		JTextField interfaceName = new JTextField();
+		interfaceName = new JTextField();
 		Dimension fieldDimension = new Dimension(200, 25);
 		interfaceName.setPreferredSize(fieldDimension);
 		
@@ -91,7 +102,7 @@ public class NewInterfaceWindow extends JFrame {
 		cancel.addActionListener(e ->{
 			this.dispose();
 		});
-		JButton create = new JButton("Create");
+		JButton create = new JButton(new NewInterface());
 		buttonsPanel.add(create);
 		buttonsPanel.add(cancel);
 		
@@ -107,7 +118,26 @@ public class NewInterfaceWindow extends JFrame {
 		
 		
 	}
-
+	
+	public ArrayList<model.Operation> getTableOperations() {
+		ArrayList<model.Operation> list = new ArrayList<model.Operation>();
+		model.Operation operation = null;
+		for(int i = 0; i < modelTable.getRowCount(); i++) {
+			operation = new model.Operation();
+			operation.setAcsModifier(modelTable.getValueAt(i, table.getColumn("AcsModifier").getModelIndex()).toString());
+			operation.setStatic(modelTable.getValueAt(i, table.getColumn("Static").getModelIndex()).toString());
+			operation.setReturnValue(modelTable.getValueAt(i, table.getColumn("Return Value").getModelIndex()).toString());
+			operation.setName(modelTable.getValueAt(i, table.getColumn("Name").getModelIndex()).toString());
+			operation.setVirtual(modelTable.getValueAt(i, table.getColumn("Virtual").getModelIndex()).toString());
+			Object o = modelTable.getValueAt(i, table.getColumn("HiddenParameters").getModelIndex());
+			@SuppressWarnings("unchecked")
+			ArrayList<model.Attribute> att = (ArrayList<model.Attribute>)o;
+			operation.setParameters(att);
+			list.add((model.Operation) operation);
+		}
+		return list;
+	}
+	
 	public DefaultTableModel getModelTable() {
 		return modelTable;
 	}

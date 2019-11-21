@@ -312,7 +312,7 @@ public class NewClassWindow extends JFrame {
 	public ArrayList<model.Operation> getTableOperations() {
 		ArrayList<model.Operation> list = new ArrayList<model.Operation>();
 		model.Operation operation = null;
-		for(int i = 0; i < table2.getModel().getRowCount(); i++) {
+		for(int i = 0; i < modelTable2.getRowCount(); i++) {
 			operation = new model.Operation();
 			operation.setAcsModifier(modelTable2.getValueAt(i, table2.getColumn("AcsModifier").getModelIndex()).toString());
 			operation.setStatic(modelTable2.getValueAt(i, table2.getColumn("Static").getModelIndex()).toString());
