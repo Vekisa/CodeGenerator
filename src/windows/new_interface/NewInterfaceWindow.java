@@ -1,6 +1,7 @@
 package windows.new_interface;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -16,7 +17,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import controller.new_class.RemoveAttribute;
 import controller.new_interface.NewInterface;
+import controller.ow.NewAttributeEditOW;
+import controller.ow.NewAttributeOW;
 import controller.ow.NewMethodOW;
 
 
@@ -28,7 +32,9 @@ public class NewInterfaceWindow extends JFrame {
 	private static final long serialVersionUID = -8313874263835311328L;
 	private static NewInterfaceWindow instance;
 	private DefaultTableModel modelTable;
+	private DefaultTableModel modelTable2;
 	private JTable table;
+	private JTable table2;
 	private JTextField interfaceName;
 	
 	public JTextField getInterfaceName() {
@@ -51,7 +57,7 @@ public class NewInterfaceWindow extends JFrame {
 	public NewInterfaceWindow() {
 		Box box = Box.createVerticalBox();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setPreferredSize(new Dimension(750, 350));
+		this.setPreferredSize(new Dimension(750, 300));
 		this.pack();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		this.setTitle("Interface");
@@ -71,7 +77,7 @@ public class NewInterfaceWindow extends JFrame {
 		JPanel methodPanel = new JPanel();
 		methodPanel.setLayout(new BorderLayout());
 		Object[] data = { "AcsModifier", "Static", "Return Value", "Name", "Virtual", "HiddenParameters", "Parameters" };
-		modelTable = new DefaultTableModel(data, 10);
+		modelTable = new DefaultTableModel(data, 7);
 		table = new JTable(modelTable);
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -80,20 +86,45 @@ public class NewInterfaceWindow extends JFrame {
 		methodPanel.add(scrollPane, BorderLayout.SOUTH);
 		
 		//method button panel
-		JPanel buttonPanel2 = new JPanel();
-		buttonPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewMethod = new JButton(new NewMethodOW());
 		JButton removeMethod = new JButton("Remove");
 		JButton editMethod = new JButton("Edit");
 		
-		buttonPanel2.add(addNewMethod);
-		buttonPanel2.add(removeMethod);
-		buttonPanel2.add(editMethod);
+		buttonPanel.add(addNewMethod);
+		buttonPanel.add(removeMethod);
+		buttonPanel.add(editMethod);
 		
-		methodPanel.add(buttonPanel2, BorderLayout.NORTH);
+		methodPanel.add(buttonPanel, BorderLayout.NORTH);
 		table.getColumnModel().getColumn(5).setMinWidth(0);
 		table.getColumnModel().getColumn(5).setMaxWidth(0);
 		table.getColumnModel().getColumn(5).setWidth(0);
+		
+		// table constants
+		/*JPanel constPanel = new JPanel();
+		constPanel.setLayout(new BorderLayout());
+		Object[] data2 = { "AcsModifier", "Static", "Type", "Name", "Const", "Getters", "Setters" };
+		modelTable2 = new DefaultTableModel(data2, 7);
+		table2 = new JTable(modelTable2);
+		table2.setPreferredScrollableViewportSize(table2.getPreferredSize());
+		JScrollPane scrollPane2 = new JScrollPane(table2);
+		scrollPane2.setBackground(new Color(55, 55, 55));
+		table2.setFillsViewportHeight(false);
+		constPanel.add(scrollPane2, BorderLayout.SOUTH);
+		
+		JPanel buttonPanel2 = new JPanel();
+		buttonPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JButton addNewAttribute = new JButton("add");
+		JButton removeAttribute = new JButton("remove");
+		JButton editAttribute = new JButton("edit");
+		
+		buttonPanel2.add(addNewAttribute);
+		buttonPanel2.add(removeAttribute);
+		buttonPanel2.add(editAttribute);
+		constPanel.add(buttonPanel2, BorderLayout.NORTH);
+		*/
+		
 		
 		//main button panel
 		JPanel buttonsPanel = new JPanel();
@@ -108,6 +139,7 @@ public class NewInterfaceWindow extends JFrame {
 		
 		//adding panels to the box
 		box.add(namePanel);
+		//box.add(constPanel);
 		box.add(methodPanel);
 		box.add(buttonsPanel);
 
@@ -156,6 +188,10 @@ public class NewInterfaceWindow extends JFrame {
 	
 	public void addingRowTableOperations(Object[] data) {
 		modelTable.insertRow(0, data);
+	}
+
+	public DefaultTableModel getModelTable2() {
+		return modelTable2;
 	}
 }
 

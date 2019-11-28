@@ -27,6 +27,7 @@ public class NewInterfaceOW extends AbstractAction {
 			return;
 		NewInterfaceWindow.getInstance();
 		NewInterfaceWindow.getInstance().setTable(NewInterfaceWindow.getInstance().getModelTable());
+		//NewInterfaceWindow.getInstance().setTable(NewInterfaceWindow.getInstance().getModelTable2());
 	}
 
 }

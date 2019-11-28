@@ -49,6 +49,11 @@ public class NavigationRenderer extends DefaultTreeCellRenderer {
 	    	  String text = String.format(SPAN_FORMAT, "blue", packageNode.getClassName());
 	    	  this.setText("<html>" + text + "</html>");
 	    	  this.setIcon(InternalConfiguration.classIcon);
+	      } else if(userObject instanceof model.Interface) {
+	    	  model.Interface packageNode = (model.Interface) userObject;
+	    	  String text = String.format(SPAN_FORMAT, "blue", packageNode.getName());
+	    	  this.setText("<html>" + text + "</html>");
+	    	  this.setIcon(InternalConfiguration.interfaceIcon);
 	      }
 	      return this;
 	}

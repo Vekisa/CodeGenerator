@@ -15,6 +15,9 @@ public class MainParser {
 		}else if(item instanceof model.Package) {
 			model.Package packagePom = (model.Package)item;
 			return PackageParser.parse(packagePom);
+		}else if(item instanceof model.Interface) {
+			model.Interface interfacePom = (model.Interface)item;
+			return InterfaceParser.parse(interfacePom);
 		}
 		
 		return "";
