@@ -21,6 +21,7 @@ public class SaveEditedOperation extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {		
 		int selectedIndex = NewClassWindow.getInstance().getTable2().getSelectedRow();
+		
 		NewClassWindow.getInstance().getTable2().setValueAt(NewOperationWindow.getInstance().getAcsModifier().getSelectedItem().toString(), 
 				selectedIndex, NewClassWindow.getInstance().getTable2().getColumn("AcsModifier").getModelIndex());
 		NewClassWindow.getInstance().getTable2().setValueAt(NewOperationWindow.getInstance().getStaticBox().isSelected(), 

@@ -17,8 +17,11 @@ public class NewMethodOW extends AbstractAction {
 		super("New Method", null);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		NewMethodWindow.getInstance().getCreateBtn().show();
+		NewMethodWindow.getInstance().getSaveButton().hide();
 		NewMethodWindow.getInstance();
 		NewMethodWindow.getInstance().setTable();
 	}

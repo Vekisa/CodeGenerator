@@ -20,8 +20,11 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.new_class.NewParameterRemove;
 import controller.new_interface.NewMethod;
+import controller.new_interface.RemoveParameter;
+import controller.new_interface.SaveEditedMethod;
 import controller.ow.NewMethodParameterOW;
 import controller.ow.NewParameterOW;
+import windows.new_class.NewClassWindow;
 
 public class NewMethodWindow extends JFrame {
 
@@ -37,6 +40,8 @@ public class NewMethodWindow extends JFrame {
 	private JTable table;
 	private JCheckBox isStatic;
 	private JCheckBox virtual;
+	private JButton saveButton;
+	private JButton createBtn;
 	Object[] data = {"Type", "Name", "Static", "Const", "Getters", "Setters"};
 	
 	@SuppressWarnings("deprecation")
@@ -48,6 +53,7 @@ public class NewMethodWindow extends JFrame {
 		return NewMethodWindow.instance;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public NewMethodWindow() {
 		Box box = Box.createVerticalBox();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -79,15 +85,19 @@ public class NewMethodWindow extends JFrame {
 		scrollPane.setBackground(new Color(55,55,55));
 		table.setFillsViewportHeight(false);
 		JButton addParameter = new JButton(new NewMethodParameterOW());
-		JButton removeParameter = new JButton("remove");
+		JButton removeParameter = new JButton(new RemoveParameter());
 		
 		//cancel create button panel
 		JPanel bot = new JPanel();
-		JButton createBtn = new JButton(new NewMethod());
+		createBtn = new JButton(new NewMethod());
 		JButton cancelBtn = new JButton("Cancel");
 		cancelBtn.addActionListener(e ->{
 			this.dispose();
 		});
+		saveButton = new JButton(new SaveEditedMethod());
+		saveButton.hide();
+		createBtn.hide();
+		bot.add(saveButton);
 		bot.add(createBtn);
 		bot.add(cancelBtn);
 		
@@ -130,16 +140,16 @@ public class NewMethodWindow extends JFrame {
 		return AcsModifier;
 	}
 
-	public void setAcsModifier(JComboBox<String> acsModifier) {
-		AcsModifier = acsModifier;
+	public void setAcsModifier(String str) {
+		AcsModifier.setSelectedItem(str);;
 	}
 
 	public JComboBox<String> getCombo() {
 		return combo;
 	}
 
-	public void setCombo(JComboBox<String> type) {
-		this.combo = type;
+	public void setCombo(String b) {
+		this.combo.setSelectedItem(b);
 	}
 
 	public DefaultTableModel getModelTable() {
@@ -205,15 +215,51 @@ public class NewMethodWindow extends JFrame {
 		return isStatic;
 	}
 
-	public void setIsStatic(JCheckBox isStatic) {
-		this.isStatic = isStatic;
+	public void setIsStatic(String b) {
+		this.isStatic.setSelected(Boolean.parseBoolean(b));
 	}
 
 	public JCheckBox getVirtual() {
 		return virtual;
 	}
 
-	public void setVirtual(JCheckBox virtual) {
-		this.virtual = virtual;
+	public void setVirtual(String b) {
+		this.virtual.setSelected(Boolean.parseBoolean(b));
+	}
+	
+	public void removeTableRow(JTable table) {
+		DefaultTableModel modelTable = (DefaultTableModel) table.getModel();
+		int[] rows = table.getSelectedRows();
+		for(int row: rows) {
+			modelTable.removeRow(table.convertRowIndexToModel(row));
+		}
+	}
+	
+	public void arrayToTable(int row) {
+		Object data = (NewInterfaceWindow.getInstance().getTable().getValueAt(row, 5));
+		@SuppressWarnings("unchecked")
+		ArrayList<model.Attribute> attributes = (ArrayList<model.Attribute>) data;
+		Object[] rowData = {};
+		for(model.Attribute a : attributes ) {
+			rowData = new Object[] {a.getType(), a.getName(), a.isStatic(), a.isConst(), a.isGetter(), a.isSetter()};
+			modelTable.insertRow(0, rowData);
+		}
+		System.out.println(data);
+	}
+
+	public JButton getSaveButton() {
+		return saveButton;
+	}
+
+	public void setSaveButton(JButton saveButton) {
+		this.saveButton = saveButton;
+	}
+
+	public JButton getCreateBtn() {
+		return createBtn;
+	}
+
+	public void setCreateBtn(JButton createBtn) {
+		this.createBtn = createBtn;
 	}
 }

@@ -53,6 +53,7 @@ public class NewOperationWindow extends JFrame {
 		NewOperationWindow.instance.show();
 	}*/
 	
+	@SuppressWarnings("deprecation")
 	public NewOperationWindow() {
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -257,7 +258,6 @@ public class NewOperationWindow extends JFrame {
 			rowData = new Object[] {a.getType(), a.getName(), a.isStatic(), a.isConst(), a.isGetter(), a.isSetter()};
 			modelTable.insertRow(0, rowData);
 		}
-		System.out.println(data);
 	}
 
 	public void setMethodName(JTextField methodName) {

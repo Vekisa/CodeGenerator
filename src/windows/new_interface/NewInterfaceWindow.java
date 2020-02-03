@@ -19,8 +19,10 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.new_class.RemoveAttribute;
 import controller.new_interface.NewInterface;
+import controller.new_interface.RemoveInterfaceMethod;
 import controller.ow.NewAttributeEditOW;
 import controller.ow.NewAttributeOW;
+import controller.ow.NewInterfaceMethodEditOW;
 import controller.ow.NewMethodOW;
 
 
@@ -89,8 +91,8 @@ public class NewInterfaceWindow extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JButton addNewMethod = new JButton(new NewMethodOW());
-		JButton removeMethod = new JButton("Remove");
-		JButton editMethod = new JButton("Edit");
+		JButton removeMethod = new JButton(new RemoveInterfaceMethod());
+		JButton editMethod = new JButton(new NewInterfaceMethodEditOW());
 		
 		buttonPanel.add(addNewMethod);
 		buttonPanel.add(removeMethod);
@@ -193,6 +195,15 @@ public class NewInterfaceWindow extends JFrame {
 	public DefaultTableModel getModelTable2() {
 		return modelTable2;
 	}
+	
+	public void removeTableRow(JTable table) {
+		DefaultTableModel modelTable = (DefaultTableModel) table.getModel();
+		int[] rows = table.getSelectedRows();
+		for(int row: rows) {
+			modelTable.removeRow(table.convertRowIndexToModel(row));
+		}
+	}
+	
 }
 
 
